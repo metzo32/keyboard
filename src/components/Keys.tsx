@@ -1,26 +1,37 @@
 import "../styles/styles.css";
-import QuadKeys from "./QuadKeys";
 import mainKeys from "../assets/data/keyArray";
+import { functionKeys } from "../assets/data/keyArray";
 import { AudioType } from "../assets/data/keyArray";
+
+import AAudio from "../assets/audio/A.mp3";
+import BAudio from "../assets/audio/B.mp3";
+import CAudio from "../assets/audio/C.mp3";
+import DAudio from "../assets/audio/D.mp3";
+import EAudio from "../assets/audio/E.mp3";
 
 interface KeysProps {
   onLightToggle: () => void;
+  typingOn: boolean;
+  onClickOn: boolean;
+  mouseEnterOn: boolean;
 }
 
-//A: 일반, B: 앤터, C:윈도우 D:탭 E: 스페이스
-
-export default function Keys({ onLightToggle }: KeysProps) {
-
+export default function Keys({
+  onLightToggle,
+  typingOn,
+  onClickOn,
+  mouseEnterOn,
+}: KeysProps) {
   const audioMap: { [key in AudioType]: string } = {
-    A: '../assets/audio/A.mp3',
-    B: '../assets/audio/B.mp3',
-    C: '../assets/audio/C.mp3',
-    D: '../assets/audio/D.mp3',
-    E: '../assets/audio/E.mp3',
+    A: AAudio,
+    B: BAudio,
+    C: CAudio,
+    D: DAudio,
+    E: EAudio,
   };
 
   const playHandler = (audio: AudioType) => {
-    const audioFile = audioMap[audio]; 
+    const audioFile = audioMap[audio];
     const audioElement = new Audio(audioFile);
     audioElement.play();
   };
@@ -28,12 +39,33 @@ export default function Keys({ onLightToggle }: KeysProps) {
   return (
     <div className="key-container">
       <div className="quad-key-row">
-        <button 
-        // onClick={() => playHandler(audio)} 
-        className="esc">
+        <button
+          onMouseEnter={mouseEnterOn ? () => playHandler("A") : undefined}
+          onClick={onClickOn ? () => playHandler("A") : undefined}
+          className="esc"
+        >
           <span>ESC</span>
         </button>
-        <QuadKeys />
+
+        <div className="quad-container">
+          {functionKeys.map((row, rowIndex) => (
+            <div className="quad-row" key={rowIndex}>
+              {row.map((key) => (
+                <button
+                  className="quad-keys"
+                  key={key}
+                  onMouseEnter={
+                    mouseEnterOn ? () => playHandler("A") : undefined
+                  }
+                  onClick={onClickOn ? () => playHandler("A") : undefined}
+                >
+                  <span>{key}</span>
+                </button>
+              ))}
+            </div>
+          ))}
+        </div>
+
         <button onClick={onLightToggle} className="wheel">
           <span>LED</span>
         </button>
@@ -44,7 +76,10 @@ export default function Keys({ onLightToggle }: KeysProps) {
           <div className="key-main-row" key={rowIndex}>
             {row.map((label, labelIndex) => (
               <button
-                onClick={() => playHandler(label.audio)}
+                onMouseEnter={
+                  mouseEnterOn ? () => playHandler(label.audio) : undefined
+                }
+                onClick={onClickOn ? () => playHandler(label.audio) : undefined}
                 className={`main-keys ${label.extraClass || ""}`}
                 key={labelIndex}
               >
