@@ -84,28 +84,28 @@
 }
 
 .esc {
-  @apply w-[5.5%] ml-[3.4%] text-sm  rounded-full whitespace-nowrap 
+  @apply w-[5.5%] ml-[3.4%] text-sm rounded-full whitespace-nowrap 
   text-gray-400 opacity-0 
   hoverEffect
   text-sizing;
 }
 
 .wheel {
-  @apply w-[4%] ml-[1%] text-sm  rounded-full 
+  @apply w-[4%] ml-[1%] text-sm rounded-full 
   text-gray-400 opacity-0 
   hoverEffect
   text-sizing;
 }
 
 .quad-keys {
-  @apply w-[21%] mr-[2.5%] text-sm  rounded-full whitespace-nowrap 
+  @apply w-[21%] mr-[2.5%] text-sm rounded-full whitespace-nowrap 
   text-gray-400  opacity-0 
   hoverEffect
   text-sizing;
 }
 
 .main-keys {
-  @apply w-[6%] text-sm  rounded-full whitespace-nowrap 
+  @apply w-[6%] text-sm rounded-full whitespace-nowrap 
   text-white opacity-0 
   hoverEffect
   text-sizing;

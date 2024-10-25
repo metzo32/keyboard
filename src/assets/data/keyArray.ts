@@ -12,7 +12,6 @@ export const functionKeys = [
   ["F9", "F10", "F11", "F12"],
 ];
 
-
 const mainKeys: Key[][] = [
   [
     { label: "~", audio: "A" },
@@ -45,7 +44,7 @@ const mainKeys: Key[][] = [
     { label: "P", audio: "A" },
     { label: "[", audio: "A" },
     { label: "]", audio: "A" },
-    { label: "\\", audio: "A", extraClass: "w-[9.1%]" },
+    { label: "\\", audio: "D", extraClass: "w-[9.1%]" },
     { label: "PU", audio: "A" },
   ],
   [

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaKeyboard } from "react-icons/fa";
 import { GiArrowCursor } from "react-icons/gi";
 import { PiMouseLeftClickFill } from "react-icons/pi";
