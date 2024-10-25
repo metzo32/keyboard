@@ -2,10 +2,11 @@
 import { useState } from "react";
 import "./styles/styles.css";
 import keyboard from "./assets/svg/keyboard_base.svg.svg";
+import keyboardTest from "./assets/svg/keyboard_base_test.svg.svg";
 import keyboardOn from "./assets/svg/keyboard_on.svg";
 import keyboardOff from "./assets/svg/keyboard_off.svg";
 import Keys from "./components/Keys";
-// import Background from "./components/Background";
+import Background from "./components/Background";
 import ModeButtons from "./components/ModeButtons";
 
 function App() {
@@ -36,7 +37,6 @@ function App() {
 
   return (
     <div className="background">
-      {/* <Background /> */}
       <ModeButtons onButtonGroupChange={handleButtonGroupChange} />
       <div className="base">
         <Keys
@@ -45,12 +45,13 @@ function App() {
           onClickOn={onClickOn}
           mouseEnterOn={mouseEnterOn}
         />
-        <img src={keyboard} alt="keyboard" className="w-full h-auto" />
+        <img src={keyboardTest} alt="keyboard" className="w-full h-auto shadow-2xl shadow-black" />
         {lightOn ? (
-          <img src={keyboardOn} alt="keyboard" className="on" />
+         <Background />
         ) : (
           <img src={keyboardOff} alt="keyboard" className="off" />
         )}
+  
       </div>
     </div>
   );

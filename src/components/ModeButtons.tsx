@@ -22,11 +22,12 @@ const ButtonGroup = ({ onButtonGroupChange }: ButtonGroupProps) => {
       {buttons.map((button, index) => (
         <button
           key={index}
-          className={`button
+          className={`group button
             ${selectedButton === index ? "selected" : "unselected"}`}
           onClick={() => handleButtonClick(index)}
         >
-          {button}
+          <span className="clickEffect">{button}</span>
+          <div className="button-bg"/>
         </button>
       ))}
     </div>

@@ -31,11 +31,11 @@ export default function Keys({ onLightToggle, typingOn, onClickOn, mouseEnterOn 
     Array.from({ length: count }, () => new Audio(audioSrc));
   
   const audioMap = useRef<{ [key in AudioType]: HTMLAudioElement[] }>({
-    A: createAudioArray(AAudio, 7),
-    B: createAudioArray(BAudio, 7),
-    C: createAudioArray(CAudio, 7),
-    D: createAudioArray(DAudio, 7),
-    E: createAudioArray(EAudio, 7),
+    A: createAudioArray(AAudio, 10),
+    B: createAudioArray(BAudio, 10),
+    C: createAudioArray(CAudio, 10),
+    D: createAudioArray(DAudio, 10),
+    E: createAudioArray(EAudio, 10),
   });
 
   // 현재 재생할 복제본의 인덱스를 저장할 객체
@@ -80,7 +80,7 @@ export default function Keys({ onLightToggle, typingOn, onClickOn, mouseEnterOn 
           <span>ESC</span>
         </button>
 
-        <div className="quad-container">
+        <div className="quad-container ">
           {functionKeys.map((row, rowIndex) => (
             <div className="quad-row" key={rowIndex}>
               {row.map((key) => (
