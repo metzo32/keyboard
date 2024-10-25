@@ -35,7 +35,7 @@ const mainKeys: Key[][] = [
     { label: "Q", audio: "A", extraClass: "w-[6.22%]" },
     { label: "W", audio: "A", extraClass: "w-[6.22%]" },
     { label: "E", audio: "A", extraClass: "w-[6.22%]" },
-    { label: "R", audio: "A", extraClass: "w-[6.22%]" },
+    { label: "R", audio: "A", extraClass: "w-[6.22%] mr-[0.1%]" },
     { label: "T", audio: "A", extraClass: "w-[6.22%] mr-[0.1%]" },
     { label: "Y", audio: "A", extraClass: "w-[6.22%]" },
     { label: "U", audio: "A", extraClass: "w-[6.22%]" },

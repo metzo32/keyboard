@@ -76,12 +76,12 @@
 }
 
 .quad-container {
-  @apply w-[calc(79.55%+2px)] ml-[6%]
+  @apply w-[calc(79.55%+2px)] ml-[6.5%]
   flex flex-row justify-between;
 }
 
 .quad-row {
-  @apply w-[32%] h-auto border
+  @apply w-[31.6%] h-auto border
   flex flex-row justify-between;
 }
 
