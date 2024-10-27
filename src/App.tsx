@@ -1,9 +1,7 @@
 // import './App.css'
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import "./styles/styles.css";
-import keyboard from "./assets/svg/keyboard_base.svg.svg";
-import keyboardTest from "./assets/svg/keyboard_base_test.svg.svg";
-import keyboardOn from "./assets/svg/keyboard_on.svg";
+import keyboard from "./assets/svg/keyboard_base.svg";
 import keyboardOff from "./assets/svg/keyboard_off.svg";
 import Keys from "./components/Keys";
 import Background from "./components/Background";
@@ -14,6 +12,11 @@ function App() {
   const [typingOn, setTypingOn] = useState<boolean>(true);
   const [onClickOn, setOnClickOn] = useState<boolean>(false);
   const [mouseEnterOn, setMouseEnterOn] = useState<boolean>(false);
+  const [knobValue, setKnobValue] = useState<number>(0);
+
+  const handleKnobChange = (value: number) => {
+    setKnobValue(value);
+  };
 
   const handleButtonGroupChange = (index: number) => {
     if (index === 0) {
@@ -35,6 +38,11 @@ function App() {
     setLightOn(!lightOn);
   };
 
+  const brightnessStyle = useMemo(() => {
+    return { filter: lightOn ? `brightness(${100 - knobValue}%)` : "brightness(100%)" };
+  }, [lightOn, knobValue]);
+
+
   return (
     <div className="background">
       <ModeButtons onButtonGroupChange={handleButtonGroupChange} />
@@ -44,14 +52,23 @@ function App() {
           typingOn={typingOn}
           onClickOn={onClickOn}
           mouseEnterOn={mouseEnterOn}
+          onKnobChange={handleKnobChange}
+          onLightOn={lightOn}
         />
-        <img src={keyboardTest} alt="keyboard" className="w-full h-auto shadow-2xl shadow-black" />
+        <img
+          src={keyboard}
+          alt="keyboard"
+          className="keyboard"
+          style={brightnessStyle}
+        />
         {lightOn ? (
-         <Background />
+          <Background />
         ) : (
+          <>
           <img src={keyboardOff} alt="keyboard" className="off" />
+
+          </>
         )}
-  
       </div>
     </div>
   );

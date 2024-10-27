@@ -1,5 +1,7 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import "../styles/styles.css";
+import { Knob } from "primereact/knob";
+import "primereact/resources/themes/lara-light-cyan/theme.css";
 import mainKeys from "../assets/data/keyArray";
 import { functionKeys } from "../assets/data/keyArray";
 import { AudioType } from "../assets/data/keyArray";
@@ -11,25 +13,27 @@ import DAudio from "../assets/audio/D.mp3";
 import EAudio from "../assets/audio/E.mp3";
 
 interface KeysProps {
-onLightToggle: () => void;
-typingOn: boolean;
-onClickOn: boolean;
-mouseEnterOn: boolean;
+  onLightToggle: () => void;
+  typingOn: boolean;
+  onClickOn: boolean;
+  mouseEnterOn: boolean;
+  onKnobChange: (value: number) => void;
+  onLightOn: boolean;
 }
 
-export default function Keys({ onLightToggle, typingOn, onClickOn, mouseEnterOn }: KeysProps) {
-  
-  // const audioMap = useRef<{ [key in AudioType]: HTMLAudioElement[] }>({
-  //   A: [new Audio(AAudio), new Audio(AAudio), new Audio(AAudio), new Audio(AAudio), new Audio(AAudio)],
-  //   B: [new Audio(BAudio), new Audio(BAudio), new Audio(BAudio), new Audio(BAudio), new Audio(BAudio)],
-  //   C: [new Audio(CAudio), new Audio(CAudio), new Audio(CAudio), new Audio(CAudio), new Audio(CAudio)],
-  //   D: [new Audio(DAudio), new Audio(DAudio), new Audio(DAudio), new Audio(DAudio), new Audio(DAudio)],
-  //   E: [new Audio(EAudio), new Audio(EAudio), new Audio(EAudio), new Audio(EAudio), new Audio(EAudio)],
-  // });
+export default function Keys({
+  onLightToggle,
+  typingOn,
+  onClickOn,
+  mouseEnterOn,
+  onKnobChange,
+  onLightOn,
+}: KeysProps) {
+  const [knobValue, setKnobValue] = useState<number>(0);
 
-  const createAudioArray = (audioSrc: string, count: number) => 
+  const createAudioArray = (audioSrc: string, count: number) =>
     Array.from({ length: count }, () => new Audio(audioSrc));
-  
+
   const audioMap = useRef<{ [key in AudioType]: HTMLAudioElement[] }>({
     A: createAudioArray(AAudio, 10),
     B: createAudioArray(BAudio, 10),
@@ -57,7 +61,7 @@ export default function Keys({ onLightToggle, typingOn, onClickOn, mouseEnterOn 
   const playHandler = (audio: AudioType) => {
     const audioArray = audioMap.current[audio];
     const index = audioIndex.current[audio];
-    
+
     // 현재 인덱스에 해당하는 오디오 객체를 재생
     const audioElement = audioArray[index];
     audioElement.currentTime = 0; // 초기화
@@ -67,7 +71,11 @@ export default function Keys({ onLightToggle, typingOn, onClickOn, mouseEnterOn 
     audioIndex.current[audio] = (index + 1) % audioArray.length;
   };
 
-
+  const handleKnobChange = (e: { value: number }) => {
+    setKnobValue(e.value);
+    onKnobChange(e.value); // 부모 컴포넌트에 knobValue 전달
+  };
+  
 
   return (
     <div className="key-container">
@@ -77,7 +85,7 @@ export default function Keys({ onLightToggle, typingOn, onClickOn, mouseEnterOn 
           onClick={onClickOn ? () => playHandler("A") : undefined}
           className="esc"
         >
-          <span>ESC</span>
+          <span className="key-span">ESC</span>
         </button>
 
         <div className="quad-container ">
@@ -92,7 +100,7 @@ export default function Keys({ onLightToggle, typingOn, onClickOn, mouseEnterOn 
                   }
                   onClick={onClickOn ? () => playHandler("A") : undefined}
                 >
-                  <span>{key}</span>
+                  <span className="key-span">{key}</span>
                 </button>
               ))}
             </div>
@@ -100,8 +108,19 @@ export default function Keys({ onLightToggle, typingOn, onClickOn, mouseEnterOn 
         </div>
 
         <button onClick={onLightToggle} className="wheel">
-          <span>LED</span>
+          <span className="key-span">LED</span>
         </button>
+
+        {onLightOn ? (
+          <Knob
+            value={knobValue}
+            min={0}
+            max={70}
+            showValue={false}
+            onChange={handleKnobChange}
+            className="knob"
+          />
+        ) : null}
       </div>
 
       <div className="key-main-container">
@@ -116,7 +135,7 @@ export default function Keys({ onLightToggle, typingOn, onClickOn, mouseEnterOn 
                 className={`main-keys ${label.extraClass || ""}`}
                 key={labelIndex}
               >
-                <span>{label.label}</span>
+                <span className="key-span">{label.label}</span>
               </button>
             ))}
           </div>

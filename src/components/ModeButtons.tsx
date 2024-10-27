@@ -18,7 +18,7 @@ const ButtonGroup = ({ onButtonGroupChange }: ButtonGroupProps) => {
   const buttons = [<FaKeyboard />, <PiMouseLeftClickFill/>,  <GiArrowCursor />];
 
   return (
-    <div className="w-[50%] flex flex-row justify-between mb-[0.5%]">
+    <div className="buttons-container">
       {buttons.map((button, index) => (
         <button
           key={index}
