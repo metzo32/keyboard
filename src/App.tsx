@@ -3,6 +3,7 @@ import { useState, useMemo } from "react";
 import "./styles/styles.css";
 import keyboard from "./assets/svg/keyboard_base.svg";
 import keyboardOff from "./assets/svg/keyboard_off.svg";
+import shadow from "./assets/svg/shadow.svg"
 import Keys from "./components/Keys";
 import Background from "./components/Background";
 import ModeButtons from "./components/ModeButtons";
@@ -47,6 +48,7 @@ function App() {
     <div className="background">
       <ModeButtons onButtonGroupChange={handleButtonGroupChange} />
       <div className="base">
+        <img src={shadow} alt="shadow" className="base-shadow"/>
         <Keys
           onLightToggle={lightHandler}
           typingOn={typingOn}

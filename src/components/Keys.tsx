@@ -31,9 +31,11 @@ export default function Keys({
 }: KeysProps) {
   const [knobValue, setKnobValue] = useState<number>(0);
 
+  // 오디오 객체 배열 생성 함수
   const createAudioArray = (audioSrc: string, count: number) =>
     Array.from({ length: count }, () => new Audio(audioSrc));
 
+  // 각 오디오 타입별로 미리 10개의 오디오 객체 생성
   const audioMap = useRef<{ [key in AudioType]: HTMLAudioElement[] }>({
     A: createAudioArray(AAudio, 10),
     B: createAudioArray(BAudio, 10),
@@ -51,31 +53,78 @@ export default function Keys({
     E: 0,
   });
 
-  // 미리 오디오 파일을 로드
+  // 미리 오디오 파일 로드
   useEffect(() => {
     Object.values(audioMap.current).forEach((audioArray) =>
       audioArray.forEach((audio) => audio.load())
     );
   }, []);
 
+  // 오디오 재생
   const playHandler = (audio: AudioType) => {
     const audioArray = audioMap.current[audio];
     const index = audioIndex.current[audio];
 
-    // 현재 인덱스에 해당하는 오디오 객체를 재생
+    // 현재 인덱스에 해당하는 오디오 객체 재생
     const audioElement = audioArray[index];
     audioElement.currentTime = 0; // 초기화
     audioElement.play();
 
-    // 다음 재생을 위해 인덱스 순환
+    // 인덱스 순환하며 다음 오디오 재생
     audioIndex.current[audio] = (index + 1) % audioArray.length;
   };
 
+  useEffect(() => {
+    if (!typingOn) return; //타이핑 모드에서만 실행
+
+    const specialKeyMap: { [key: string]: AudioType } = {
+      //데이터의 label과 실제 값이 다른 키
+      " ": "E",
+      escape: "B",
+      backspace: "A",
+      enter: "B",
+      tab: "D",
+      capslock: "D",
+      arrowup: "A",
+      arrowdown: "A",
+      arrowleft: "A",
+      arrowright: "A",
+      control: "C",
+      meta: "C",
+      alt: "C",
+      fn: "C",
+      "`": "A",
+      "=": "A",
+    };
+
+    //실제 키 이름과 맞추기 ---> mainKeys에 specialKeyMap를 더하기
+    const keyMap = mainKeys.flat().reduce((accumulator, currentValue) => {
+      const keyLabel = currentValue.label.toLowerCase(); //소문자만 인식됨. 각 키의 실제 이름
+      accumulator[keyLabel] = currentValue.audio;
+      return accumulator;
+    }, specialKeyMap); //초기값으로 지정했기 때문에 accumulator는 specialKeyMap를 갖고 출발
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      const keyName = event.key.toLowerCase();
+      const audioType = keyMap[keyName];
+
+      if (audioType) {
+        event.preventDefault();
+        playHandler(audioType);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [typingOn]);
+
   const handleKnobChange = (e: { value: number }) => {
     setKnobValue(e.value);
-    onKnobChange(e.value); // 부모 컴포넌트에 knobValue 전달
+    onKnobChange(e.value);
   };
-  
 
   return (
     <div className="key-container">
@@ -83,7 +132,7 @@ export default function Keys({
         <button
           onMouseEnter={mouseEnterOn ? () => playHandler("A") : undefined}
           onClick={onClickOn ? () => playHandler("A") : undefined}
-          className="esc"
+          className={`esc ${!typingOn ? "hoverEffect" : ""}`}
         >
           <span className="key-span">ESC</span>
         </button>
@@ -93,7 +142,7 @@ export default function Keys({
             <div className="quad-row" key={rowIndex}>
               {row.map((key) => (
                 <button
-                  className="quad-keys"
+                  className={`quad-keys ${!typingOn ? "hoverEffect" : ""}`}
                   key={key}
                   onMouseEnter={
                     mouseEnterOn ? () => playHandler("A") : undefined
@@ -118,7 +167,8 @@ export default function Keys({
             max={70}
             showValue={false}
             onChange={handleKnobChange}
-            className="knob"
+            strokeWidth={5}
+            className={`knob ${onLightOn ? "knob-show" : "knob-hide"}`}
           />
         ) : null}
       </div>
@@ -132,7 +182,7 @@ export default function Keys({
                   mouseEnterOn ? () => playHandler(label.audio) : undefined
                 }
                 onClick={onClickOn ? () => playHandler(label.audio) : undefined}
-                className={`main-keys ${label.extraClass || ""}`}
+                className={`main-keys ${label.extraClass || ""} ${ !typingOn ? "hoverEffect" : ""}`}
                 key={labelIndex}
               >
                 <span className="key-span">{label.label}</span>
