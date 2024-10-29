@@ -101,12 +101,16 @@
   @apply transition transform duration-200 ease-in
   hover:opacity-100
   hover:scale-[130%]
-  hover:cursor-pointer;
+  hover:cursor-pointer
 }
 
 .text-sizing {
   @apply text-[0.4rem]
   sm:text-sm leading-[0.286rem];
+}
+
+.test {
+  @apply bg-red-500
 }
 
 .esc {
