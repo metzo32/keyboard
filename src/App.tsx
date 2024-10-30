@@ -2,6 +2,7 @@
 import { useState, useMemo } from "react";
 import "./styles/styles.css";
 import keyboard from "./assets/svg/keyboard_base.svg";
+import KeysLegacy from "./components/KeysOriginal";
 import keyboardOff from "./assets/svg/keyboard_off.svg";
 import shadow from "./assets/svg/shadow.svg"
 import Keys from "./components/Keys";
@@ -43,6 +44,7 @@ function App() {
     return { filter: lightOn ? `brightness(${100 - knobValue}%)` : "brightness(100%)" };
   }, [lightOn, knobValue]);
 
+  
 
   return (
     <div className="background">
@@ -57,6 +59,13 @@ function App() {
           onKnobChange={handleKnobChange}
           onLightOn={lightOn}
         />
+        {/* <KeysLegacy
+         onLightToggle={lightHandler}
+         typingOn={typingOn}
+         onClickOn={onClickOn}
+         mouseEnterOn={mouseEnterOn}
+         onKnobChange={handleKnobChange}
+         onLightOn={lightOn}/> */}
         <img
           src={keyboard}
           alt="keyboard"

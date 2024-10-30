@@ -21,7 +21,7 @@ interface KeysProps {
   onLightOn: boolean;
 }
 
-export default function Keys({
+export default function KeysLegacy({
   onLightToggle,
   typingOn,
   onClickOn,

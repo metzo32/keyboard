@@ -15,7 +15,7 @@ const ButtonGroup = ({ onButtonGroupChange }: ButtonGroupProps) => {
     onButtonGroupChange(index); // 부모 컴포넌트로 상태 변경 알림
   };
 
-  const buttons = [<FaKeyboard />, <PiMouseLeftClickFill/>,  <GiArrowCursor />];
+  const buttons = [<FaKeyboard/>, <PiMouseLeftClickFill/>,  <GiArrowCursor/>];
 
   return (
     <div className="buttons-container">

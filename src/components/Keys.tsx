@@ -34,13 +34,15 @@ export default function Keys({
     Array.from({ length: count }, () => new Audio(audioSource));
 
   // 오디오 맵 초기화
-  const audioMap = useRef<{ [audioFileName in AudioType]: HTMLAudioElement[] }>({
-    A: createAudioArray(AAudio, 20),
-    B: createAudioArray(BAudio, 10),
-    C: createAudioArray(CAudio, 10),
-    D: createAudioArray(DAudio, 10),
-    E: createAudioArray(EAudio, 10),
-  });
+  const audioMap = useRef<{ [audioFileName in AudioType]: HTMLAudioElement[] }>(
+    {
+      A: createAudioArray(AAudio, 10),
+      B: createAudioArray(BAudio, 10),
+      C: createAudioArray(CAudio, 10),
+      D: createAudioArray(DAudio, 10),
+      E: createAudioArray(EAudio, 10),
+    }
+  );
 
   // 현재 재생할 복제본의 인덱스 저장
   const audioIndex = useRef<{ [audioFileName in AudioType]: number }>({
@@ -75,30 +77,62 @@ export default function Keys({
   useEffect(() => {
     if (!typingOn) return;
 
-    // mainKeys의 code를 key로, audio를 값으로 설정
-    const keyMap = mainKeys.flat().reduce<{ [key: string]: AudioType }>(
-      (accumulator, currentValue) => {
+    // keyMap 생성: code와 audio 매핑
+    const keyMap = mainKeys
+      .flat()
+      .reduce<{ [key: string]: AudioType }>((accumulator, currentValue) => {
         const keyCode = currentValue.code.toLowerCase();
         accumulator[keyCode] = currentValue.audio;
         return accumulator;
-      },
-      {}
-    );
+      }, {});
+
+    // codeToLabelMap 생성
+    const codeToLabelMap = new Map<string, string>();
+    mainKeys.forEach((row) => {
+      row.forEach((elem) => {
+        codeToLabelMap.set(elem.code.toLowerCase(), elem.label);
+      });
+    });
 
     const handleKeyDown = (event: KeyboardEvent) => {
       const keyName = event.key.toLowerCase();
+      if (keyName === "capslock" && !event.getModifierState('CapsLock')) return;
       const audioType = keyMap[keyName];
 
       if (audioType) {
         event.preventDefault();
         playHandler(audioType);
+
+        // 해당하는 span 요소에 test 클래스 추가
+        const spanElement = document.querySelector(
+          `span[data-code="${keyName}"]`
+        );
+        if (spanElement) {
+          spanElement.classList.add("test");
+          console.log(spanElement, "추가");
+        }
+      }
+    };
+
+    const handleKeyUp = (event: KeyboardEvent) => {
+      const keyName = event.key.toLowerCase();
+
+      // span 요소에서 test 클래스 제거
+      const spanElement = document.querySelector(
+        `span[data-code="${keyName}"]`
+      );
+      if (spanElement) {
+        spanElement.classList.remove("test");
+        console.log("test 클래스가 제거되었습니다.");
       }
     };
 
     document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("keyup", handleKeyUp);
 
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("keyup", handleKeyUp);
     };
   }, [typingOn]);
 
@@ -125,7 +159,9 @@ export default function Keys({
                 <button
                   className={`quad-keys ${!typingOn ? "hoverEffect" : ""}`}
                   key={key}
-                  onMouseEnter={mouseEnterOn ? () => playHandler("A") : undefined}
+                  onMouseEnter={
+                    mouseEnterOn ? () => playHandler("A") : undefined
+                  }
                   onClick={onClickOn ? () => playHandler("A") : undefined}
                 >
                   <span className="key-span">{key}</span>
@@ -138,7 +174,7 @@ export default function Keys({
         <button onClick={onLightToggle} className="wheel">
           <span className="key-span">LED</span>
         </button>
-
+ 
         {onLightOn && (
           <Knob
             value={knobValue}
@@ -161,10 +197,17 @@ export default function Keys({
                   mouseEnterOn ? () => playHandler(label.audio) : undefined
                 }
                 onClick={onClickOn ? () => playHandler(label.audio) : undefined}
-                className={`main-keys ${label.extraClass || ""} ${!typingOn ? "hoverEffect" : ""}`}
+                className={`main-keys ${label.extraClass || ""} ${
+                  !typingOn ? "hoverEffect" : ""
+                }`}
                 key={labelIndex}
               >
-                <span className="key-span">{label.label}</span>
+                <span
+                  className="key-span"
+                  data-code={label.code.toLowerCase()} // 각 span에 data-code 추가
+                >
+                  {label.label}
+                </span>
               </button>
             ))}
           </div>

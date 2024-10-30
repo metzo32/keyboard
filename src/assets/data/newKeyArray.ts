@@ -7,10 +7,31 @@ interface Key {
   extraClass?: string;
 }
 
-export const functionKeys = [
-  ["F1", "F2", "F3", "F4"],
-  ["F5", "F6", "F7", "F8"],
-  ["F9", "F10", "F11", "F12"],
+export const escKey: Key[][] = [
+  [
+    { code: "Escape", label: "ESC", audio: "A", extraClass: "w-[33.5%] mr-[10%]"},
+  ],
+]
+
+export const functionKeys: Key[][] = [
+  [
+    { code: "F1", label: "F1", audio: "A" },
+    { code: "F2", label: "F2", audio: "A" },
+    { code: "F3", label: "F3", audio: "A" },
+    { code: "F4", label: "F4", audio: "A" },
+  ],
+  [
+    { code: "F5", label: "F5", audio: "A" },
+    { code: "F6", label: "F6", audio: "A" },
+    { code: "F7", label: "F7", audio: "A" },
+    { code: "F8", label: "F8", audio: "A" },
+  ],
+  [
+    { code: "F9", label: "F9", audio: "A" },
+    { code: "F10", label: "F10", audio: "A" },
+    { code: "F11", label: "F11", audio: "A" },
+    { code: "F12", label: "F12", audio: "A" },
+  ],
 ];
 
 const mainKeys: Key[][] = [
@@ -86,9 +107,14 @@ const mainKeys: Key[][] = [
     { code: "alt", label: "ALT", audio: "C", extraClass: "w-[7.7%]" },
     { code: " ", label: "SPACE", audio: "E", extraClass: "w-[39.2%]" },
     { code: "FN", label: "FN", audio: "C", extraClass: "w-[7.7%]" },
-    { code: "control", label: "CTRL", audio: "C", extraClass: "w-[7.8%] mr-[2.9%]" },
+    {
+      code: "control",
+      label: "CTRL",
+      audio: "C",
+      extraClass: "w-[7.8%] mr-[2.9%]",
+    },
     { code: "arrowleft", label: "←", audio: "A" },
-    { code: "arrowdown", label: "↓", audio: "A", extraClass: "w-[6.1%]"},
+    { code: "arrowdown", label: "↓", audio: "A", extraClass: "w-[6.1%]" },
     { code: "arrowright", label: "→", audio: "A", extraClass: "w-[6.25%]" },
   ],
 ];

@@ -109,10 +109,6 @@
   sm:text-sm leading-[0.286rem];
 }
 
-.test {
-  @apply bg-red-500
-}
-
 .esc {
   @apply w-[6.2%] text-sm  whitespace-nowrap
   text-gray-400 opacity-0
@@ -133,15 +129,21 @@
 
 .main-keys {
   @apply w-[6.3%] text-lg whitespace-nowrap 
-  text-white opacity-0
-
+  text-white opacity-100
   text-sizing
 }
 
 .key-span {
   @apply 
-  absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
-  z-50
+  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
+  z-50   transition transform duration-200 ease-in
+}
+
+.test {
+  @apply bg-red-500
+  opacity-100
+  scale-[130%]
+
 }
 
 @keyframes slideIn {
