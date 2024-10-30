@@ -4,12 +4,11 @@
 }
 
 .keyboard {
-  @apply w-full h-auto
+  @apply w-full h-auto;
 }
 
 .button {
-  @apply 
-  border-2 border-white
+  @apply border-2 border-white
   flex justify-center items-center
   rounded-lg
   text-base
@@ -39,7 +38,7 @@
 }
 
 .buttons-container {
-  @apply min-w-[150px] w-[50%] flex flex-row justify-between mb-[1.5%]
+  @apply min-w-[150px] w-[50%] flex flex-row justify-between mb-[1.5%];
 }
 
 .base {
@@ -51,7 +50,7 @@
   @apply w-[150%] h-auto max-w-full
   absolute top-[1%] right-[-2.5%]
   flex items-center justify-center z-0
-  opacity-60
+  opacity-60;
 }
 
 .on {
@@ -101,7 +100,7 @@
   @apply transition transform duration-200 ease-in
   hover:opacity-100
   hover:scale-[130%]
-  hover:cursor-pointer
+  hover:cursor-pointer;
 }
 
 .text-sizing {
@@ -112,40 +111,40 @@
 .esc {
   @apply w-[6.2%] text-sm  whitespace-nowrap
   text-gray-400 opacity-0
-  text-sizing
+  text-sizing;
 }
 
 .wheel {
   @apply w-[6%] ml-[2.2%] text-sm rounded-full 
   text-gray-400 opacity-0 hoverEffect
-  text-sizing
+  text-sizing;
 }
 
 .quad-keys {
   @apply w-[25%] text-sm whitespace-nowrap 
   text-gray-400 opacity-0
-  text-sizing
+  text-sizing;
 }
 
 .main-keys {
   @apply w-[6.3%] text-lg whitespace-nowrap 
-  text-white bg-opacity-0 opacity-0
-  text-sizing
+  text-white opacity-0
+  text-sizing;
 }
 
 .key-span {
-  @apply 
-  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
-  z-50   transition duration-200 ease-in
-} 
+  @apply top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
+  z-50   transition duration-200 ease-in;
+}
 
 .test {
   @apply transition transform duration-200 ease-in
- bg-[#4693DA]
-  scale-[100%]
+  bg-[#4693DA]/[0.5]
+  opacity-100
   backdrop-blur-2xl 
-  mix-blend-multiply
+  mix-blend-multiply;
 }
+
 
 @keyframes slideIn {
   0% {
@@ -170,9 +169,8 @@
 }
 
 .knob {
-  @apply 
-  w-[10%] aspect-square
-  absolute top-[0%] right-[1%] transform translate-y-[-100%] z-10 
+  @apply w-[10%] aspect-square
+  absolute top-[0%] right-[1%] transform translate-y-[-100%] z-10;
 }
 
 .knob-show {

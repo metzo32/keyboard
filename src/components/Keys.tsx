@@ -58,7 +58,6 @@ export default function Keys({
     Object.values(audioMap.current).forEach((audioArray) =>
       audioArray.forEach((audio) => audio.load())
     );
-    
   }, []);
 
   // 오디오 재생
@@ -82,9 +81,9 @@ export default function Keys({
     const keyMap = new Map<string, AudioType>(
       mainKeys.flat().map((key) => [key.code, key.audio])
     );
-    
+
     function findAudioFile(audioFile: string) {
-      return keyMap.get(audioFile)
+      return keyMap.get(audioFile);
     }
 
     // code, label이 매핑된 객체
@@ -96,7 +95,7 @@ export default function Keys({
     const handleKeyDown = (event: KeyboardEvent) => {
       const keyName = event.key.toLowerCase();
       if (keyName === "capslock" && !event.getModifierState("CapsLock")) return;
-      const audioFile = findAudioFile(keyName)
+      const audioFile = findAudioFile(keyName);
 
       if (audioFile) {
         event.preventDefault();
@@ -106,7 +105,7 @@ export default function Keys({
         const buttonElement = document.querySelector(
           `button[data-code="${keyName}"]`
         );
-        const spanElement =  document.querySelector(
+        const spanElement = document.querySelector(
           `span[data-code="${keyName}"]`
         );
         if (buttonElement) {
@@ -115,10 +114,9 @@ export default function Keys({
         }
         if (spanElement) {
           spanElement.classList.add("test-span");
-
         }
       }
-    }; 
+    };
 
     //뗄 때
     const handleKeyUp = (event: KeyboardEvent) => {
@@ -188,7 +186,7 @@ export default function Keys({
             max={70}
             showValue={false}
             onChange={handleKnobChange}
-            strokeWidth={5}
+            strokeWidth={8}
             className={`knob ${onLightOn ? "knob-show" : "knob-hide"}`}
           />
         )}
@@ -209,10 +207,7 @@ export default function Keys({
                 onClick={onClickOn ? () => playHandler(label.audio) : undefined}
                 data-code={label.code.toLowerCase()}
               >
-                <span
-                  className="key-span"
-                  data-code={label.code.toLowerCase()}
-                >
+                <span className="key-span">
                   {label.label}
                 </span>
               </button>
