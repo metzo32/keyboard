@@ -1,9 +1,7 @@
 <svg width="1185" height="514" viewBox="0 0 1185 514" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect x="1.5" y="1.5" width="1182" height="511" rx="27.5" stroke="#262F3E" stroke-opacity="0.01" stroke-width="3"/>
 <path d="M33 135C33 133.343 34.3431 132 36 132H1144C1145.66 132 1147 133.343 1147 135V473C1147 474.657 1145.66 476 1144 476H942C940.343 476 939 474.657 939 473V410C939 408.343 937.657 407 936 407H908.5C906.843 407 905.5 408.343 905.5 410V473C905.5 474.657 904.157 476 902.5 476H36C34.3432 476 33 474.657 33 473V135Z" stroke="#262F3E" stroke-width="2"/>
 <rect x="173" y="38" width="279" height="71" rx="3" stroke="#262F3E" stroke-width="2"/>
 <rect x="474" y="38" width="279" height="71" rx="3" stroke="#262F3E" stroke-width="2"/>
-<rect x="776" y="38" width="279" height="71" rx="3" stroke="#262F3E" stroke-width="2"/>
 <rect x="593" y="132" width="69" height="71" rx="3" stroke="#262F3E" stroke-width="2"/>
 <rect x="663" y="132" width="69" height="71" rx="3" stroke="#262F3E" stroke-width="2"/>
 <rect x="733" y="132" width="69" height="71" rx="3" stroke="#262F3E" stroke-width="2"/>
@@ -16,13 +14,9 @@
 <rect x="313" y="38" width="69" height="71" rx="3" stroke="#262F3E" stroke-width="2"/>
 <rect x="383" y="38" width="69" height="71" rx="3" stroke="#262F3E" stroke-width="2"/>
 <rect x="474" y="38" width="69" height="71" rx="3" stroke="#262F3E" stroke-width="2"/>
-<rect x="776" y="38" width="69" height="71" rx="3" stroke="#262F3E" stroke-width="2"/>
 <rect x="544" y="38" width="69" height="71" rx="3" stroke="#262F3E" stroke-width="2"/>
-<rect x="846" y="38" width="69" height="71" rx="3" stroke="#262F3E" stroke-width="2"/>
 <rect x="614" y="38" width="69" height="71" rx="3" stroke="#262F3E" stroke-width="2"/>
-<rect x="916" y="38" width="69" height="71" rx="3" stroke="#262F3E" stroke-width="2"/>
 <rect x="684" y="38" width="69" height="71" rx="3" stroke="#262F3E" stroke-width="2"/>
-<rect x="986" y="38" width="69" height="71" rx="3" stroke="#262F3E" stroke-width="2"/>
 <rect x="523" y="132" width="69" height="71" rx="3" stroke="#262F3E" stroke-width="2"/>
 <rect x="453" y="132" width="69" height="71" rx="3" stroke="#262F3E" stroke-width="2"/>
 <rect x="383" y="132" width="69" height="71" rx="3" stroke="#262F3E" stroke-width="2"/>
@@ -163,4 +157,10 @@
 <line x1="818.5" y1="406" x2="818.5" y2="409" stroke="#262F3E" stroke-width="3"/>
 <line x1="1077.5" y1="406" x2="1077.5" y2="409" stroke="#262F3E" stroke-width="3"/>
 <line x1="1008.5" y1="406" x2="1008.5" y2="409" stroke="#262F3E" stroke-width="3"/>
+<rect x="775" y="38" width="69" height="71" rx="3" stroke="#262F3E" stroke-width="2"/>
+<rect x="845" y="38" width="69" height="71" rx="3" stroke="#262F3E" stroke-width="2"/>
+<rect x="915" y="38" width="69" height="71" rx="3" stroke="#262F3E" stroke-width="2"/>
+<rect x="985" y="38" width="69" height="71" rx="3" stroke="#262F3E" stroke-width="2"/>
+<rect x="775" y="38" width="279" height="71" rx="3" stroke="#262F3E" stroke-width="2"/>
+<rect x="1.5" y="1.5" width="1182" height="511" rx="27.5" stroke="#262F3E" stroke-opacity="0.01" stroke-width="3"/>
 </svg>
