@@ -58,6 +58,7 @@ export default function Keys({
     Object.values(audioMap.current).forEach((audioArray) =>
       audioArray.forEach((audio) => audio.load())
     );
+    
   }, []);
 
   // 오디오 재생
@@ -77,52 +78,57 @@ export default function Keys({
   useEffect(() => {
     if (!typingOn) return;
 
-    // keyMap 생성: code와 audio 매핑
-    const keyMap = mainKeys
-      .flat()
-      .reduce<{ [key: string]: AudioType }>((accumulator, currentValue) => {
-        const keyCode = currentValue.code.toLowerCase();
-        accumulator[keyCode] = currentValue.audio;
-        return accumulator;
-      }, {});
+    // code, audio가 매핑된 객체
+    const keyMap = new Map<string, AudioType>(
+      mainKeys.flat().map((key) => [key.code, key.audio])
+    );
+    
+    function findAudioFile(audioFile: string) {
+      return keyMap.get(audioFile)
+    }
 
-    // codeToLabelMap 생성
-    const codeToLabelMap = new Map<string, string>();
-    mainKeys.forEach((row) => {
-      row.forEach((elem) => {
-        codeToLabelMap.set(elem.code.toLowerCase(), elem.label);
-      });
-    });
+    // code, label이 매핑된 객체
+    const codeToLabelMap = new Map<string, string>(
+      mainKeys.flat().map((elem) => [elem.code, elem.label])
+    );
 
+    //눌렀을 때
     const handleKeyDown = (event: KeyboardEvent) => {
       const keyName = event.key.toLowerCase();
-      if (keyName === "capslock" && !event.getModifierState('CapsLock')) return;
-      const audioType = keyMap[keyName];
+      if (keyName === "capslock" && !event.getModifierState("CapsLock")) return;
+      const audioFile = findAudioFile(keyName)
 
-      if (audioType) {
+      if (audioFile) {
         event.preventDefault();
-        playHandler(audioType);
+        playHandler(audioFile);
 
-        // 해당하는 span 요소에 test 클래스 추가
-        const spanElement = document.querySelector(
+        // 해당하는 버튼 요소에 test 클래스 추가
+        const buttonElement = document.querySelector(
+          `button[data-code="${keyName}"]`
+        );
+        const spanElement =  document.querySelector(
           `span[data-code="${keyName}"]`
         );
+        if (buttonElement) {
+          buttonElement.classList.add("test");
+          console.log(buttonElement, "추가");
+        }
         if (spanElement) {
-          spanElement.classList.add("test");
-          console.log(spanElement, "추가");
+          spanElement.classList.add("test-span");
+
         }
       }
-    };
+    }; 
 
+    //뗄 때
     const handleKeyUp = (event: KeyboardEvent) => {
       const keyName = event.key.toLowerCase();
-
-      // span 요소에서 test 클래스 제거
-      const spanElement = document.querySelector(
-        `span[data-code="${keyName}"]`
+      //클래스 제거
+      const buttonElement = document.querySelector(
+        `button[data-code="${keyName}"]`
       );
-      if (spanElement) {
-        spanElement.classList.remove("test");
+      if (buttonElement) {
+        buttonElement.classList.remove("test");
         console.log("test 클래스가 제거되었습니다.");
       }
     };
@@ -155,16 +161,16 @@ export default function Keys({
         <div className="quad-container">
           {functionKeys.map((row, rowIndex) => (
             <div className="quad-row" key={rowIndex}>
-              {row.map((key) => (
+              {row.map((label, labelIndex) => (
                 <button
                   className={`quad-keys ${!typingOn ? "hoverEffect" : ""}`}
-                  key={key}
+                  key={labelIndex}
                   onMouseEnter={
                     mouseEnterOn ? () => playHandler("A") : undefined
                   }
                   onClick={onClickOn ? () => playHandler("A") : undefined}
                 >
-                  <span className="key-span">{key}</span>
+                  <span className="key-span">{label.label}</span>
                 </button>
               ))}
             </div>
@@ -174,7 +180,7 @@ export default function Keys({
         <button onClick={onLightToggle} className="wheel">
           <span className="key-span">LED</span>
         </button>
- 
+
         {onLightOn && (
           <Knob
             value={knobValue}
@@ -193,18 +199,19 @@ export default function Keys({
           <div className="key-main-row" key={rowIndex}>
             {row.map((label, labelIndex) => (
               <button
-                onMouseEnter={
-                  mouseEnterOn ? () => playHandler(label.audio) : undefined
-                }
-                onClick={onClickOn ? () => playHandler(label.audio) : undefined}
                 className={`main-keys ${label.extraClass || ""} ${
                   !typingOn ? "hoverEffect" : ""
                 }`}
                 key={labelIndex}
+                onMouseEnter={
+                  mouseEnterOn ? () => playHandler(label.audio) : undefined
+                }
+                onClick={onClickOn ? () => playHandler(label.audio) : undefined}
+                data-code={label.code.toLowerCase()}
               >
                 <span
                   className="key-span"
-                  data-code={label.code.toLowerCase()} // 각 span에 data-code 추가
+                  data-code={label.code.toLowerCase()}
                 >
                   {label.label}
                 </span>

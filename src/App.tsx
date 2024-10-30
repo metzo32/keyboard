@@ -44,10 +44,11 @@ function App() {
     return { filter: lightOn ? `brightness(${100 - knobValue}%)` : "brightness(100%)" };
   }, [lightOn, knobValue]);
 
-  
+
 
   return (
     <div className="background">
+
       <ModeButtons onButtonGroupChange={handleButtonGroupChange} />
       <div className="base">
         <img src={shadow} alt="shadow" className="base-shadow"/>

@@ -129,7 +129,7 @@
 
 .main-keys {
   @apply w-[6.3%] text-lg whitespace-nowrap 
-  text-white opacity-100
+  text-white bg-opacity-0 opacity-0
   text-sizing
 }
 
@@ -137,13 +137,14 @@
   @apply 
   top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
   z-50   transition duration-200 ease-in
-}
+} 
 
 .test {
-  @apply bg-red-500
-  opacity-100
-  scale-[130%]
-
+  @apply transition transform duration-200 ease-in
+ bg-[#4693DA]
+  scale-[100%]
+  backdrop-blur-2xl 
+  mix-blend-multiply
 }
 
 @keyframes slideIn {
