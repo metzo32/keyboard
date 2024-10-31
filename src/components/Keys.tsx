@@ -7,12 +7,8 @@ import mainKeys, {
   escKey,
   AudioType,
 } from "../assets/data/keyArray";
+import useAudioPlayer from "./hooks/AudioPlay";
 
-import AAudio from "../assets/audio/A.mp3";
-import BAudio from "../assets/audio/B.mp3";
-import CAudio from "../assets/audio/C.mp3";
-import DAudio from "../assets/audio/D.mp3";
-import EAudio from "../assets/audio/E.mp3";
 
 interface KeysProps {
   onLightToggle: () => void;
@@ -32,45 +28,8 @@ export default function Keys({
   onLightOn,
 }: KeysProps) {
   const [knobValue, setKnobValue] = useState<number>(0);
-
-  const createAudioArray = (audioSource: string, count: number) =>
-    Array.from({ length: count }, () => new Audio(audioSource));
-
-  const audioMap = useRef<{ [audioFileName in AudioType]: HTMLAudioElement[] }>(
-    {
-      A: createAudioArray(AAudio, 10),
-      B: createAudioArray(BAudio, 10),
-      C: createAudioArray(CAudio, 10),
-      D: createAudioArray(DAudio, 10),
-      E: createAudioArray(EAudio, 10),
-    }
-  );
-
-  useEffect(() => {
-    Object.values(audioMap.current).forEach((audioArray) =>
-      audioArray.forEach((audio) => audio.load())
-    );
-  }, []);
-
-  const audioIndex = useRef<{ [audioFileName in AudioType]: number }>({
-    A: 0,
-    B: 0,
-    C: 0,
-    D: 0,
-    E: 0,
-  });
-
-  const playHandler = (audio: AudioType) => {
-    const audioArray = audioMap.current[audio];
-    const index = audioIndex.current[audio];
-
-    const audioElement = audioArray[index];
-    audioElement.currentTime = 0;
-    audioElement.play();
-
-    audioIndex.current[audio] = (index + 1) % audioArray.length;
-  };
-
+  const { playHandler } = useAudioPlayer();
+ 
   useEffect(() => {
     if (!typingOn) return;
 

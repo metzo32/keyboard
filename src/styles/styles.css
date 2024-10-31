@@ -105,24 +105,26 @@
 }
 
 .text-sizing {
-  @apply text-[0.4rem]
-  sm:text-sm leading-[0.286rem];
+  @apply text-[0.6rem] text-white 
+  sm:text-sm
+  lg:text-xl
+  leading-[0.286rem];
 }
 
 .esc {
   @apply w-[6.4%] text-sm  whitespace-nowrap
-  text-gray-400 opacity-0
+  opacity-0
   text-sizing;
 }
 .quad-keys {
   @apply w-[25%] text-sm whitespace-nowrap 
-  text-gray-400 opacity-0
+  opacity-0
   text-sizing;
 }
 
 .main-keys {
   @apply w-[6.3%] text-lg whitespace-nowrap 
-  text-white opacity-0
+  opacity-0
   text-sizing;
 }
 
