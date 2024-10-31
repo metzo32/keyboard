@@ -63,22 +63,22 @@
 
 .key-container {
   @apply absolute top-0 left-0 w-full h-full z-20
-  pt-[3%] pb-[3%] pl-[2.7%] pr-[3.2%]
-  flex flex-col justify-between;
+  pt-[3.14%] pb-[3.0%] pl-[2.7%] pr-[3.2%]
+  flex flex-col 
 }
 
 .quad-key-row {
-  @apply flex flex-row w-[100%] h-[21.2%]
-  mb-[1.8%];
+  @apply flex flex-row w-[100%] h-[20.1%]
+  mb-[2.05%]
 }
 
 .key-main-container {
-  @apply w-[100%] h-[98%]
-  flex flex-col justify-evenly;
+  @apply w-[100%] h-[97%]
+  flex flex-col justify-evenly
 }
 
 .key-main-row {
-  @apply w-[100%] h-[19.3%]
+  @apply w-[100%] h-[19.4%]
   flex flex-row;
 }
 
@@ -87,7 +87,7 @@
 }
 
 .quad-container {
-  @apply w-[79.4%] ml-[6.3%]
+  @apply w-[79.4%] ml-[6.2%]
   flex flex-row justify-between;
 }
 
@@ -98,9 +98,10 @@
 
 .hoverEffect {
   @apply transition transform duration-200 ease-in
+  rounded-md
   hover:opacity-100
-  hover:scale-[130%]
-  hover:cursor-pointer;
+  hover:cursor-pointer
+  hover:bg-[#4693DA]/[0.5]
 }
 
 .text-sizing {
@@ -109,17 +110,10 @@
 }
 
 .esc {
-  @apply w-[6.2%] text-sm  whitespace-nowrap
+  @apply w-[6.4%] text-sm  whitespace-nowrap
   text-gray-400 opacity-0
   text-sizing;
 }
-
-.wheel {
-  @apply w-[6%] ml-[2.2%] text-sm rounded-full 
-  text-gray-400 opacity-0 hoverEffect
-  text-sizing;
-}
-
 .quad-keys {
   @apply w-[25%] text-sm whitespace-nowrap 
   text-gray-400 opacity-0
@@ -134,8 +128,18 @@
 
 .key-span {
   @apply top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
-  z-50   transition duration-200 ease-in;
+  z-50 transition duration-200 ease-in;
 }
+
+.wheel {
+  @apply w-[6%] ml-[2.2%] text-sm rounded-full 
+  text-gray-400 opacity-0
+  text-sizing
+  transition transform duration-200 ease-in
+  hover:opacity-100
+  hover:cursor-pointer
+}
+
 
 .test {
   @apply transition transform duration-200 ease-in
@@ -169,8 +173,9 @@
 }
 
 .knob {
-  @apply w-[10%] aspect-square
-  absolute top-[0%] right-[1%] transform translate-y-[-100%] z-10;
+  @apply
+  flex justify-center items-center border border-red-700
+  absolute top-[0%] right-[1%] transform translate-y-[-50%] origin-center z-10;
 }
 
 .knob-show {

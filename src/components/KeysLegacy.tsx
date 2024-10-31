@@ -2,11 +2,7 @@ import { useRef, useEffect, useState } from "react";
 import "../styles/styles.css";
 import { Knob } from "primereact/knob";
 import "primereact/resources/themes/lara-light-cyan/theme.css";
-import mainKeys, {
-  functionKeys,
-  escKey,
-  AudioType,
-} from "../assets/data/keyArray";
+import mainKeys, { functionKeys, escKey, AudioType } from "../assets/data/keyArray";
 
 import AAudio from "../assets/audio/A.mp3";
 import BAudio from "../assets/audio/B.mp3";
@@ -36,15 +32,13 @@ export default function Keys({
   const createAudioArray = (audioSource: string, count: number) =>
     Array.from({ length: count }, () => new Audio(audioSource));
 
-  const audioMap = useRef<{ [audioFileName in AudioType]: HTMLAudioElement[] }>(
-    {
-      A: createAudioArray(AAudio, 10),
-      B: createAudioArray(BAudio, 10),
-      C: createAudioArray(CAudio, 10),
-      D: createAudioArray(DAudio, 10),
-      E: createAudioArray(EAudio, 10),
-    }
-  );
+  const audioMap = useRef<{ [audioFileName in AudioType]: HTMLAudioElement[] }>({
+    A: createAudioArray(AAudio, 10),
+    B: createAudioArray(BAudio, 10),
+    C: createAudioArray(CAudio, 10),
+    D: createAudioArray(DAudio, 10),
+    E: createAudioArray(EAudio, 10),
+  });
 
   useEffect(() => {
     Object.values(audioMap.current).forEach((audioArray) =>
@@ -88,23 +82,15 @@ export default function Keys({
 
     const handleKeyDown = (event: KeyboardEvent) => {
       const pressedKey = event.key.toLowerCase();
-      const pressedLocation =
-        event.location === 1 ? "L" : event.location === 2 ? "R" : "";
-
-      if (pressedKey === "capslock" && !event.getModifierState("CapsLock"))
-        return;
+      if (pressedKey === "capslock" && !event.getModifierState("CapsLock")) return;
       const audioFile = findAudioFile(pressedKey);
 
       if (audioFile) {
         event.preventDefault();
         playHandler(audioFile);
 
-        // location이 있는 경우 왼쪽("L") 또는 오른쪽("R")으로 매핑
-        const locationSelector = pressedLocation
-          ? `[data-location="${pressedLocation}"]`
-          : "";
         const buttonElement = document.querySelector(
-          `button[data-code="${pressedKey}"]${locationSelector}`
+          `button[data-code="${pressedKey}"]`
         );
 
         if (buttonElement) {
@@ -116,16 +102,9 @@ export default function Keys({
 
     const handleKeyUp = (event: KeyboardEvent) => {
       const pressedKey = event.key.toLowerCase();
-      const pressedLocation =
-        event.location === 1 ? "L" : event.location === 2 ? "R" : "";
-
-      const locationSelector = pressedLocation
-        ? `[data-location="${pressedLocation}"]`
-        : "";
       const buttonElement = document.querySelector(
-        `button[data-code="${pressedKey}"]${locationSelector}`
+        `button[data-code="${pressedKey}"]`
       );
-
       if (buttonElement) {
         buttonElement.classList.remove("test");
         console.log(buttonElement, "제거");
@@ -152,11 +131,9 @@ export default function Keys({
         {escKey[0].map((esc) => (
           <button
             key={esc.code}
-            onMouseEnter={
-              mouseEnterOn ? () => playHandler(esc.audio) : undefined
-            }
+            onMouseEnter={mouseEnterOn ? () => playHandler(esc.audio) : undefined}
             onClick={onClickOn ? () => playHandler(esc.audio) : undefined}
-            className={`esc ${mouseEnterOn ? "hoverEffect" : ""}`}
+            className={`esc ${!typingOn ? "hoverEffect" : ""}`}
             data-code={esc.code.toLowerCase()}
           >
             <span className="key-span">{esc.label}</span>
@@ -168,7 +145,7 @@ export default function Keys({
             <div className="quad-row" key={rowIndex}>
               {row.map((label, labelIndex) => (
                 <button
-                  className={`quad-keys ${mouseEnterOn ? "hoverEffect" : ""}`}
+                  className={`quad-keys ${!typingOn ? "hoverEffect" : ""}`}
                   key={labelIndex}
                   onMouseEnter={
                     mouseEnterOn ? () => playHandler("A") : undefined
@@ -190,7 +167,6 @@ export default function Keys({
         {onLightOn && (
           <Knob
             value={knobValue}
-            width={2}
             min={0}
             max={70}
             showValue={false}
@@ -207,7 +183,7 @@ export default function Keys({
             {row.map((label, labelIndex) => (
               <button
                 className={`main-keys ${label.extraClass || ""} ${
-                  mouseEnterOn ? "hoverEffect" : ""
+                  !typingOn ? "hoverEffect" : ""
                 }`}
                 key={labelIndex}
                 onMouseEnter={
@@ -215,7 +191,6 @@ export default function Keys({
                 }
                 onClick={onClickOn ? () => playHandler(label.audio) : undefined}
                 data-code={label.code.toLowerCase()}
-                data-location={label.location || ""}
               >
                 <span className="key-span">{label.label}</span>
               </button>

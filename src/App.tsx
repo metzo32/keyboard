@@ -6,7 +6,8 @@ import KeysLegacy from "./components/KeysOriginal";
 import keyboardOff from "./assets/svg/keyboard_off.svg";
 import shadow from "./assets/svg/shadow.svg"
 import Keys from "./components/Keys";
-import Background from "./components/Background";
+import Description from "./components/Description";
+import MaskLED from "./components/MaskLED";
 import ModeButtons from "./components/ModeButtons";
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
 
   return (
     <div className="background">
+      
 
       <ModeButtons onButtonGroupChange={handleButtonGroupChange} />
       <div className="base">
@@ -74,7 +76,7 @@ function App() {
           style={brightnessStyle}
         />
         {lightOn ? (
-          <Background />
+          <MaskLED />
         ) : (
           <>
           <img src={keyboardOff} alt="keyboard" className="off" />
