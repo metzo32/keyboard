@@ -1,9 +1,9 @@
 import { useRef, useEffect } from "react";
-import AAudio from "../assets/audio/A.mp3";
-import BAudio from "../assets/audio/B.mp3";
-import CAudio from "../assets/audio/C.mp3";
-import DAudio from "../assets/audio/D.mp3";
-import EAudio from "../assets/audio/E.mp3";
+import AAudio from "../../assets/audio/A.mp3";
+import BAudio from "../../assets/audio/B.mp3";
+import CAudio from "../../assets/audio/C.mp3";
+import DAudio from "../../assets/audio/D.mp3";
+import EAudio from "../../assets/audio/E.mp3";
 import { AudioType } from "../../assets/data/keyArray";
 
 

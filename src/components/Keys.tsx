@@ -7,7 +7,7 @@ import mainKeys, {
   escKey,
   AudioType,
 } from "../assets/data/keyArray";
-import useAudioPlayer from "./hooks/AudioPlay";
+import useAudioPlayer from "../components/hooks/AudioPlay"
 
 
 interface KeysProps {
