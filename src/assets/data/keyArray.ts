@@ -1,10 +1,13 @@
 export type AudioType = "A" | "B" | "C" | "D" | "E";
 
+type LocationType = "L" | "R"
+
 interface Key {
   code: string;
   label: string;
   audio: AudioType;
   extraClass?: string;
+  location?: LocationType;
 }
 
 export const escKey: Key[][] = [[
@@ -84,7 +87,7 @@ const mainKeys: Key[][] = [
     { code: "pageDown", label: "PD", audio: "A", extraClass: "w-[6.25%]" },
   ],
   [
-    { code: "shift", label: "SHIFT", audio: "B", extraClass: "w-[14.7%]" },
+    { code: "shift", label: "SHIFT", audio: "B", extraClass: "w-[14.7%]", location: "L" },
     { code: "z", label: "Z", audio: "A" },
     { code: "x", label: "X", audio: "A" },
     { code: "c", label: "C", audio: "A" },
@@ -95,17 +98,17 @@ const mainKeys: Key[][] = [
     { code: ",", label: ",", audio: "A" },
     { code: ".", label: ".", audio: "A" },
     { code: "/", label: "/", audio: "D" },
-    { code: "shift", label: "SHIFT", audio: "B", extraClass: "w-[11%]" },
+    { code: "shift", label: "SHIFT", audio: "B", extraClass: "w-[11%]", location: "R" },
     { code: "arrowup", label: "↑", audio: "A" },
     { code: "end", label: "END", audio: "A", extraClass: "w-[6.25%]" },
   ],
   [
-    { code: "control", label: "CTRL", audio: "C", extraClass: "w-[8.3%]" },
+    { code: "control", label: "CTRL", audio: "C", extraClass: "w-[8.3%]", location: "L" },
     { code: "meta", label: "WIN", audio: "C", extraClass: "w-[7.7%]" },
     { code: "alt", label: "ALT", audio: "C", extraClass: "w-[7.7%]" },
     { code: " ", label: "SPACE", audio: "E", extraClass: "w-[39.2%]" },
     { code: "FN", label: "FN", audio: "C", extraClass: "w-[7.7%]" },
-    { code: "control", label: "CTRL", audio: "C", extraClass: "w-[7.8%] mr-[2.9%]" },
+    { code: "control", label: "CTRL", audio: "C", extraClass: "w-[7.8%] mr-[2.9%]", location: "R" },
     { code: "arrowleft", label: "←", audio: "A" },
     { code: "arrowdown", label: "↓", audio: "A", extraClass: "w-[6.1%]"},
     { code: "arrowright", label: "→", audio: "A", extraClass: "w-[6.25%]" },

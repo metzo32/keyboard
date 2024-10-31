@@ -107,7 +107,7 @@ export default function Keys({
       );
       if (buttonElement) {
         buttonElement.classList.remove("test");
-        console.log("test 클래스가 제거되었습니다.");
+        console.log(buttonElement, "제거");
       }
     };
 
