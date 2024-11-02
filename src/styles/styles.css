@@ -135,7 +135,7 @@
 
 .wheel {
   @apply w-[6%] ml-[2.2%] text-sm rounded-full 
-  text-gray-400 opacity-0
+  text-gray-800 opacity-0
   text-sizing
   transition transform duration-200 ease-in
   hover:opacity-100

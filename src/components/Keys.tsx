@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "../styles/styles.css";
 import { Knob } from "primereact/knob";
 import "primereact/resources/themes/lara-light-cyan/theme.css";
@@ -8,7 +8,6 @@ import mainKeys, {
   AudioType,
 } from "../assets/data/keyArray";
 import useAudioPlayer from "../components/hooks/AudioPlay"
-
 
 interface KeysProps {
   onLightToggle: () => void;
@@ -27,6 +26,7 @@ export default function Keys({
   onKnobChange,
   onLightOn,
 }: KeysProps) {
+
   const [knobValue, setKnobValue] = useState<number>(0);
   const { playHandler } = useAudioPlayer();
  
@@ -35,10 +35,6 @@ export default function Keys({
 
     const keyMap = new Map<string, AudioType>(
       mainKeys.flat().map((key) => [key.code, key.audio])
-    );
-
-    const codeToLabelMap = new Map<string, string>(
-      mainKeys.flat().map((elem) => [elem.code, elem.label])
     );
 
     function findAudioFile(audioFile: string) {
@@ -62,6 +58,7 @@ export default function Keys({
         const locationSelector = pressedLocation
           ? `[data-location="${pressedLocation}"]`
           : "";
+
         const buttonElement = document.querySelector(
           `button[data-code="${pressedKey}"]${locationSelector}`
         );
@@ -143,7 +140,7 @@ export default function Keys({
         </div>
 
         <button onClick={onLightToggle} className="wheel">
-          <span className="key-span">LED</span>
+          <span>LED</span>
         </button>
 
         {onLightOn && (

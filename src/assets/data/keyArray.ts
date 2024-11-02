@@ -104,10 +104,10 @@ const mainKeys: Key[][] = [
   ],
   [
     { code: "control", label: "CTRL", audio: "C", extraClass: "w-[8.3%]", location: "L" },
-    { code: "meta", label: "WIN", audio: "C", extraClass: "w-[7.7%]" },
-    { code: "alt", label: "ALT", audio: "C", extraClass: "w-[7.7%]" },
+    { code: "meta", label: "WIN", audio: "C", extraClass: "w-[7.7%]", location: "L" },
+    { code: "alt", label: "ALT", audio: "C", extraClass: "w-[7.7%]", location: "L" },
     { code: " ", label: "SPACE", audio: "E", extraClass: "w-[39.2%]" },
-    { code: "FN", label: "FN", audio: "C", extraClass: "w-[7.7%]" },
+    { code: "FN", label: "FN", audio: "C", extraClass: "w-[7.7%]", location: "L" },
     { code: "control", label: "CTRL", audio: "C", extraClass: "w-[7.8%] mr-[2.9%]", location: "R" },
     { code: "arrowleft", label: "←", audio: "A" },
     { code: "arrowdown", label: "↓", audio: "A", extraClass: "w-[6.1%]"},

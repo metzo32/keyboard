@@ -1,16 +1,9 @@
-import { useRef, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "../styles/styles.css";
 import { Knob } from "primereact/knob";
 import "primereact/resources/themes/lara-light-cyan/theme.css";
-import mainKeys from "../assets/data/keyArray";
-import { functionKeys } from "../assets/data/keyArray";
-import { AudioType } from "../assets/data/keyArray";
-
-import AAudio from "../assets/audio/A.mp3";
-import BAudio from "../assets/audio/B.mp3";
-import CAudio from "../assets/audio/C.mp3";
-import DAudio from "../assets/audio/D.mp3";
-import EAudio from "../assets/audio/E.mp3";
+import mainKeys, { functionKeys, escKey, AudioType } from "../assets/data/keyArray";
+import useAudioPlayer from "../components/hooks/AudioPlay";
 
 interface KeysProps {
   onLightToggle: () => void;
@@ -21,7 +14,7 @@ interface KeysProps {
   onLightOn: boolean;
 }
 
-export default function KeysLegacy({
+export default function Keys({
   onLightToggle,
   typingOn,
   onClickOn,
@@ -31,95 +24,94 @@ export default function KeysLegacy({
 }: KeysProps) {
   const [knobValue, setKnobValue] = useState<number>(0);
 
-  // 오디오 객체 배열 생성 함수
-  const createAudioArray = (audioSource: string, count: number) => // 파일 경로, 생성할 객체 수
-    Array.from({ length: count }, () => new Audio(audioSource));
-                //유사배열 객체
+  const { playHandler } = useAudioPlayer();
+ 
 
-  // 각 오디오 타입별로 미리 10개의 오디오 객체 생성하여 A~E에 객체로 저장
-  // A~E (key in AudioType)을 각가기 key로 가지는 HTMLAudioElement로 이루어진 배열
-  const audioMap = useRef<{ [audioFileName in AudioType]: HTMLAudioElement[] }>({
-    A: createAudioArray(AAudio, 20),
-    B: createAudioArray(BAudio, 10),
-    C: createAudioArray(CAudio, 10),
-    D: createAudioArray(DAudio, 10),
-    E: createAudioArray(EAudio, 10),
-  });
+  // const createAudioArray = (audioSource: string, count: number) =>
+  //   Array.from({ length: count }, () => new Audio(audioSource));
 
-  // 현재 재생할 복제본의 인덱스를 저장할 객체
-  const audioIndex = useRef<{ [audioFileName in AudioType]: number }>({
-    A: 0,
-    B: 0,
-    C: 0,
-    D: 0,
-    E: 0,
-  });
+  // const audioMap = useRef<{ [audioFileName in AudioType]: HTMLAudioElement[] }>({
+  //   A: createAudioArray(AAudio, 10),
+  //   B: createAudioArray(BAudio, 10),
+  //   C: createAudioArray(CAudio, 10),
+  //   D: createAudioArray(DAudio, 10),
+  //   E: createAudioArray(EAudio, 10),
+  // });
 
-  // 컴포넌트 마운트 시 미리 오디오 파일 로드
+  // useEffect(() => {
+  //   Object.values(audioMap.current).forEach((audioArray) =>
+  //     audioArray.forEach((audio) => audio.load())
+  //   );
+  // }, []);
+
+  // const audioIndex = useRef<{ [audioFileName in AudioType]: number }>({
+  //   A: 0,
+  //   B: 0,
+  //   C: 0,
+  //   D: 0,
+  //   E: 0,
+  // });
+
+  // const playHandler = (audio: AudioType) => {
+  //   const audioArray = audioMap.current[audio];
+  //   const index = audioIndex.current[audio];
+
+  //   const audioElement = audioArray[index];
+  //   audioElement.currentTime = 0;
+  //   audioElement.play();
+
+  //   audioIndex.current[audio] = (index + 1) % audioArray.length;
+  // };
+
   useEffect(() => {
-    Object.values(audioMap.current).forEach((audioArray) =>
-      audioArray.forEach((audio) => audio.load())
+    if (!typingOn) return;
+
+    const keyMap = new Map<string, AudioType>(
+      mainKeys.flat().map((key) => [key.code, key.audio])
     );
-  }, []);
 
-  // 오디오 재생
-  const playHandler = (audio: AudioType) => {
-    const audioArray = audioMap.current[audio];
-    const index = audioIndex.current[audio];
-
-    // 현재 인덱스에 해당하는 오디오 객체 재생
-    const audioElement = audioArray[index];
-    audioElement.currentTime = 0; // 초기화
-    audioElement.play();
-
-    // 인덱스 순환하며 다음 오디오 재생
-    audioIndex.current[audio] = (index + 1) % audioArray.length;
-  };
-
-  useEffect(() => {
-    if (!typingOn) return; //타이핑 모드에서만 실행
-
-    const specialKeyMap: { [key: string]: AudioType } = {
-      //데이터의 label과 실제 값이 다른 키
-      " ": "E",
-      escape: "B",
-      backspace: "A",
-      enter: "B",
-      tab: "D",
-      capslock: "D",
-      arrowup: "A",
-      arrowdown: "A",
-      arrowleft: "A",
-      arrowright: "A",
-      control: "C",
-      meta: "C",
-      alt: "C",
-      fn: "C",
-      "`": "A",
-      "=": "A",
-    };
-
-    //실제 키 이름과 맞추기 ---> mainKeys에 specialKeyMap를 더하기
-    const keyMap = mainKeys.flat().reduce((accumulator, currentValue) => {
-      const keyLabel = currentValue.label.toLowerCase(); //소문자만 인식됨. 각 키의 실제 이름
-      accumulator[keyLabel] = currentValue.audio;
-      return accumulator;
-    }, specialKeyMap); //초기값으로 지정했기 때문에 accumulator는 specialKeyMap를 갖고 출발
+    function findAudioFile(audioFile: string) {
+      return keyMap.get(audioFile);
+    }
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      const keyName = event.key.toLowerCase();  //현재 눌린 키
-      const audioType = keyMap[keyName];
+      const pressedKey = event.key.toLowerCase();
 
-      if (audioType) {
-        event.preventDefault(); //원래 이 키의 기능 방지
-        playHandler(audioType);
+      if (pressedKey === "capslock" && !event.getModifierState("CapsLock")) return;
+      const audioFile = findAudioFile(pressedKey);
+
+      if (audioFile) {
+        event.preventDefault();
+        playHandler(audioFile);
+
+        const buttonElement = document.querySelector(
+          `button[data-code="${pressedKey}"]`
+        );
+
+        if (buttonElement) {
+          buttonElement.classList.add("test");
+          console.log(buttonElement, "추가");
+        }
+      }
+    };
+
+    const handleKeyUp = (event: KeyboardEvent) => {
+      const pressedKey = event.key.toLowerCase();
+      const buttonElement = document.querySelector(
+        `button[data-code="${pressedKey}"]`
+      );
+      if (buttonElement) {
+        buttonElement.classList.remove("test");
+        console.log("test 클래스가 제거되었습니다.");
       }
     };
 
     document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("keyup", handleKeyUp);
 
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("keyup", handleKeyUp);
     };
   }, [typingOn]);
 
@@ -131,27 +123,32 @@ export default function KeysLegacy({
   return (
     <div className="key-container">
       <div className="quad-key-row">
-        <button
-          onMouseEnter={mouseEnterOn ? () => playHandler("A") : undefined}
-          onClick={onClickOn ? () => playHandler("A") : undefined}
-          className={`esc ${!typingOn ? "hoverEffect" : ""}`}
-        >
-          <span className="key-span">ESC</span>
-        </button>
+        {escKey[0].map((esc) => (
+          <button
+            key={esc.code}
+            onMouseEnter={mouseEnterOn ? () => playHandler(esc.audio) : undefined}
+            onClick={onClickOn ? () => playHandler(esc.audio) : undefined}
+            className={`esc ${!typingOn ? "hoverEffect" : ""}`}
+            data-code={esc.code.toLowerCase()}
+          >
+            <span className="key-span">{esc.label}</span>
+          </button>
+        ))}
 
-        <div className="quad-container ">
+        <div className="quad-container">
           {functionKeys.map((row, rowIndex) => (
             <div className="quad-row" key={rowIndex}>
-              {row.map((key) => (
+              {row.map((label, labelIndex) => (
                 <button
                   className={`quad-keys ${!typingOn ? "hoverEffect" : ""}`}
-                  key={key}
+                  key={labelIndex}
                   onMouseEnter={
                     mouseEnterOn ? () => playHandler("A") : undefined
                   }
                   onClick={onClickOn ? () => playHandler("A") : undefined}
+                  data-code={label.code.toLowerCase()}
                 >
-                  <span className="key-span">{key}</span>
+                  <span className="key-span">{label.label}</span>
                 </button>
               ))}
             </div>
@@ -162,17 +159,17 @@ export default function KeysLegacy({
           <span className="key-span">LED</span>
         </button>
 
-        {onLightOn ? (
+        {onLightOn && (
           <Knob
             value={knobValue}
             min={0}
             max={70}
             showValue={false}
             onChange={handleKnobChange}
-            strokeWidth={5}
+            strokeWidth={8}
             className={`knob ${onLightOn ? "knob-show" : "knob-hide"}`}
           />
-        ) : null}
+        )}
       </div>
 
       <div className="key-main-container">
@@ -180,12 +177,15 @@ export default function KeysLegacy({
           <div className="key-main-row" key={rowIndex}>
             {row.map((label, labelIndex) => (
               <button
+                className={`main-keys ${label.extraClass || ""} ${
+                  !typingOn ? "hoverEffect" : ""
+                }`}
+                key={labelIndex}
                 onMouseEnter={
                   mouseEnterOn ? () => playHandler(label.audio) : undefined
                 }
                 onClick={onClickOn ? () => playHandler(label.audio) : undefined}
-                className={`main-keys ${label.extraClass || ""} ${ !typingOn ? "hoverEffect" : ""}`}
-                key={labelIndex}
+                data-code={label.code.toLowerCase()}
               >
                 <span className="key-span">{label.label}</span>
               </button>
