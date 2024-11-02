@@ -4,7 +4,8 @@ import "./styles/styles.css";
 import keyboard from "./assets/svg/keyboard_base.svg";
 import KeysLegacy from "./components/KeysOriginal";
 import keyboardOff from "./assets/svg/keyboard_off.svg";
-import shadow from "./assets/svg/shadow.svg"
+import shadow from "./assets/svg/shadow.svg";
+import deactivate from "./assets/svg/deactivate.svg";
 import Keys from "./components/Keys";
 import Description from "./components/Description";
 import MaskLED from "./components/MaskLED";
@@ -42,18 +43,16 @@ function App() {
   };
 
   const brightnessStyle = useMemo(() => {
-    return { filter: lightOn ? `brightness(${100 - knobValue}%)` : "brightness(100%)" };
+    return {
+      filter: lightOn ? `brightness(${100 - knobValue}%)` : "brightness(100%)",
+    };
   }, [lightOn, knobValue]);
-
-
 
   return (
     <div className="background">
-      
-
       <ModeButtons onButtonGroupChange={handleButtonGroupChange} />
       <div className="base">
-        <img src={shadow} alt="shadow" className="base-shadow"/>
+        <img src={shadow} alt="shadow" className="base-shadow" />
         <Keys
           onLightToggle={lightHandler}
           typingOn={typingOn}
@@ -75,12 +74,18 @@ function App() {
           className="keyboard"
           style={brightnessStyle}
         />
+
+        {typingOn ? (
+          <img src={deactivate} alt="deactivate" className="deactivate" />
+        ) : (
+          <></>
+        )}
+
         {lightOn ? (
           <MaskLED />
         ) : (
           <>
-          <img src={keyboardOff} alt="keyboard" className="off" />
-
+            <img src={keyboardOff} alt="keyboard" className="off" />
           </>
         )}
       </div>

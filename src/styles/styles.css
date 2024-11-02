@@ -53,8 +53,9 @@
   opacity-60;
 }
 
-.on {
-  @apply absolute z-10 w-screen h-auto;
+.deactivate {
+  @apply absolute z-10 w-screen h-auto
+  opacity-40;
 }
 
 .off {

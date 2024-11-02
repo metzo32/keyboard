@@ -7,7 +7,7 @@ import mainKeys, {
   escKey,
   AudioType,
 } from "../assets/data/keyArray";
-import useAudioPlayer from "../components/hooks/AudioPlay"
+import useAudioPlayer from "../components/hooks/AudioPlay";
 
 interface KeysProps {
   onLightToggle: () => void;
@@ -26,10 +26,9 @@ export default function Keys({
   onKnobChange,
   onLightOn,
 }: KeysProps) {
-
   const [knobValue, setKnobValue] = useState<number>(0);
   const { playHandler } = useAudioPlayer();
- 
+
   useEffect(() => {
     if (!typingOn) return;
 
@@ -45,22 +44,38 @@ export default function Keys({
       const pressedKey = event.key.toLowerCase();
       const pressedLocation =
         event.location === 1 ? "L" : event.location === 2 ? "R" : "";
-      console.log(pressedKey)
-      if (pressedKey === "capslock" && !event.getModifierState("CapsLock"))
-        return;
-      const audioFile = findAudioFile(pressedKey);
 
+      if (pressedKey === "capslock") {
+        // CapsLock이 활성화된 상태가 아니라면 return
+        if (!event.getModifierState("CapsLock")) return;
+
+        const audioFile = findAudioFile(pressedKey);
+        if (audioFile) {
+          playHandler(audioFile); // CapsLock일 때도 오디오 재생
+        }
+
+        const buttonElement = document.querySelector(
+          `button[data-code="capslock"]`
+        );
+        if (buttonElement) {
+          buttonElement.classList.add("test");
+
+          setTimeout(() => {
+            buttonElement.classList.remove("test");
+          }, 150);
+        }
+        return; // CapsLock의 경우 여기서 종료
+      }
+
+      const audioFile = findAudioFile(pressedKey);
       if (audioFile) {
         event.preventDefault();
         playHandler(audioFile);
 
-        // location이 있는 경우 왼쪽("L") 또는 오른쪽("R")으로 매핑
         const locationSelector = pressedLocation
           ? `[data-location="${pressedLocation}"]`
           : "";
-
         const selectedKey = pressedKey === "\\" ? "\\\\" : pressedKey;
-
 
         const buttonElement = document.querySelector(
           `button[data-code="${selectedKey}"]${locationSelector}`
@@ -68,7 +83,6 @@ export default function Keys({
 
         if (buttonElement) {
           buttonElement.classList.add("test");
-          console.log(buttonElement, "추가");
         }
       }
     };
@@ -90,7 +104,6 @@ export default function Keys({
 
       if (buttonElement) {
         buttonElement.classList.remove("test");
-        console.log(buttonElement, "제거");
       }
     };
 
