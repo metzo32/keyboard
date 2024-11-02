@@ -105,7 +105,7 @@
 }
 
 .text-sizing {
-  @apply text-[0.6rem] text-white 
+  @apply text-[0.6rem]
   sm:text-sm
   lg:text-xl
   leading-[0.286rem];
@@ -113,18 +113,18 @@
 
 .esc {
   @apply w-[6.4%] text-sm  whitespace-nowrap
-  opacity-0
+  opacity-0  text-gray-200
   text-sizing;
 }
 .quad-keys {
   @apply w-[25%] text-sm whitespace-nowrap 
-  opacity-0
+  opacity-0  text-gray-200
   text-sizing;
 }
 
 .main-keys {
   @apply w-[6.3%] text-lg whitespace-nowrap 
-  opacity-0
+  opacity-0  text-white 
   text-sizing;
 }
 
@@ -135,8 +135,8 @@
 
 .wheel {
   @apply w-[6%] ml-[2.2%] text-sm rounded-full 
-  text-gray-800 opacity-0
-  text-sizing
+  opacity-0
+  text-sizing text-gray-400
   transition transform duration-200 ease-in
   hover:opacity-100
   hover:cursor-pointer

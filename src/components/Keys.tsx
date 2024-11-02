@@ -45,7 +45,7 @@ export default function Keys({
       const pressedKey = event.key.toLowerCase();
       const pressedLocation =
         event.location === 1 ? "L" : event.location === 2 ? "R" : "";
-
+      console.log(pressedKey)
       if (pressedKey === "capslock" && !event.getModifierState("CapsLock"))
         return;
       const audioFile = findAudioFile(pressedKey);
@@ -59,8 +59,11 @@ export default function Keys({
           ? `[data-location="${pressedLocation}"]`
           : "";
 
+        const selectedKey = pressedKey === "\\" ? "\\\\" : pressedKey;
+
+
         const buttonElement = document.querySelector(
-          `button[data-code="${pressedKey}"]${locationSelector}`
+          `button[data-code="${selectedKey}"]${locationSelector}`
         );
 
         if (buttonElement) {
@@ -78,8 +81,11 @@ export default function Keys({
       const locationSelector = pressedLocation
         ? `[data-location="${pressedLocation}"]`
         : "";
+
+      const selectedKey = pressedKey === "\\" ? "\\\\" : pressedKey;
+
       const buttonElement = document.querySelector(
-        `button[data-code="${pressedKey}"]${locationSelector}`
+        `button[data-code="${selectedKey}"]${locationSelector}`
       );
 
       if (buttonElement) {
