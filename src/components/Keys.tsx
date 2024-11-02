@@ -131,7 +131,11 @@ export default function Keys({
               mouseEnterOn ? () => playHandler(esc.audio) : undefined
             }
             onClick={onClickOn ? () => playHandler(esc.audio) : undefined}
-            className={`esc ${mouseEnterOn ? "hoverEffect" : ""}`}
+            className={`esc 
+               ${typingOn ? "cursor-default" : ""}
+                ${onClickOn ? "clickEffect" : ""}
+                ${mouseEnterOn ? "hoverEffect" : ""}
+            `}
             data-code={esc.code.toLowerCase()}
           >
             <span className="key-span">{esc.label}</span>
@@ -143,7 +147,11 @@ export default function Keys({
             <div className="quad-row" key={rowIndex}>
               {row.map((label, labelIndex) => (
                 <button
-                  className={`quad-keys ${mouseEnterOn ? "hoverEffect" : ""}`}
+                  className={`quad-keys 
+                    ${typingOn ? "cursor-default" : ""}
+                    ${onClickOn ? "clickEffect" : ""}
+                    ${mouseEnterOn ? "hoverEffect" : ""}
+                  `}
                   key={labelIndex}
                   onMouseEnter={
                     mouseEnterOn ? () => playHandler("A") : undefined
@@ -181,9 +189,11 @@ export default function Keys({
           <div className="key-main-row" key={rowIndex}>
             {row.map((label, labelIndex) => (
               <button
-                className={`main-keys ${label.extraClass || ""} ${
-                  mouseEnterOn ? "hoverEffect" : ""
-                }`}
+                className={`main-keys 
+                  ${label.extraClass || ""} 
+                  ${onClickOn ? "clickEffect" : ""}
+                  ${mouseEnterOn ? "hoverEffect" : ""}
+                `}
                 key={labelIndex}
                 onMouseEnter={
                   mouseEnterOn ? () => playHandler(label.audio) : undefined

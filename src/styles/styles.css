@@ -54,12 +54,13 @@
 }
 
 .deactivate {
-  @apply absolute z-10 w-screen h-auto
+  @apply absolute z-0 w-screen h-auto
   opacity-40;
 }
 
 .off {
-  @apply absolute z-10 w-screen h-auto;
+  @apply absolute z-10 w-screen h-auto
+  pointer-events-none;
 }
 
 .key-container {
@@ -103,6 +104,16 @@
   hover:opacity-100
   hover:cursor-pointer
   hover:bg-[#4693DA]/[0.5]
+  hover:text-white
+}
+
+.clickEffect {
+  @apply transition transform duration-200 ease-in
+  rounded-md
+  hover:opacity-100
+  hover:cursor-pointer
+active:bg-[#4693DA]/[0.5]
+active:text-white
 }
 
 .text-sizing {
@@ -114,12 +125,12 @@
 
 .esc {
   @apply w-[6.4%] text-sm  whitespace-nowrap
-  opacity-0  text-gray-200
+  opacity-0  text-gray-400
   text-sizing;
 }
 .quad-keys {
   @apply w-[25%] text-sm whitespace-nowrap 
-  opacity-0  text-gray-200
+  opacity-0  text-gray-400
   text-sizing;
 }
 
