@@ -25,6 +25,7 @@ export default function Keys({
   mouseEnterOn,
   onKnobChange,
   onLightOn,
+  purpleMode,
 }: KeysProps) {
   const [knobValue, setKnobValue] = useState<number>(0);
   const { playHandler } = useAudioPlayer();
@@ -123,7 +124,7 @@ export default function Keys({
 
   return (
     <div className="key-container">
-      <div className="quad-key-row">
+      <div className="key-top-container">
         {escKey[0].map((esc) => (
           <button
             key={esc.code}
@@ -132,7 +133,8 @@ export default function Keys({
             }
             onClick={onClickOn ? () => playHandler(esc.audio) : undefined}
             className={`esc 
-               ${typingOn ? "cursor-default" : ""}
+                ${purpleMode ? "" : ""}
+                ${typingOn ? "cursor-default" : ""}
                 ${onClickOn ? "clickEffect" : ""}
                 ${mouseEnterOn ? "hoverEffect" : ""}
             `}

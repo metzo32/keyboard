@@ -7,6 +7,11 @@
   @apply w-full h-auto;
 }
 
+.keyboard-purple {
+  @apply w-full h-auto absolute z-10
+}
+
+
 .button {
   @apply border-2 border-white
   flex justify-center items-center
@@ -31,11 +36,6 @@
   hover:bg-white;
 }
 
-.clickEffect {
-  @apply transition-transform duration-200 ease-in-out 
-  inline-block
-  group-active:scale-[180%];
-}
 
 .buttons-container {
   @apply min-w-[150px] w-[50%] flex flex-row justify-between mb-[1.5%];
@@ -54,8 +54,8 @@
 }
 
 .deactivate {
-  @apply absolute z-0 w-screen h-auto
-  opacity-40;
+  @apply absolute z-20 w-screen h-auto
+  opacity-40 pointer-events-none;
 }
 
 .off {
@@ -69,7 +69,7 @@
   flex flex-col 
 }
 
-.quad-key-row {
+.key-top-container {
   @apply flex flex-row w-[100%] h-[20.1%]
   mb-[2.05%]
 }
@@ -114,7 +114,9 @@
   hover:cursor-pointer
 active:bg-[#4693DA]/[0.5]
 active:text-white
+  group-active:scale-[180%];
 }
+
 
 .text-sizing {
   @apply text-[0.6rem]
@@ -200,6 +202,11 @@ active:text-white
   animation: slideOut 0.3s ease forwards;
 }
 
+.color-button {
+  @apply w-[4em] h-[4em] border-2 border-white rounded-full
+  overflow-hidden
+}
+
 /* 배경 관련 */
 @keyframes infiniteFlow {
   0% {
@@ -211,7 +218,7 @@ active:text-white
 }
 
 .bg-gradient-infinite {
-  @apply absolute inset-0 w-full h-full z-0
+  @apply absolute inset-0 w-full h-full z-10
   bg-infinite-gradient bg-200% animate-infiniteFlow
   bg-blend-hard-light;
 }

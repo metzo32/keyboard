@@ -2,7 +2,7 @@
 import { useState, useMemo } from "react";
 import "./styles/styles.css";
 import keyboard from "./assets/svg/keyboard_base.svg";
-import KeysLegacy from "./components/KeysOriginal";
+import purple from "./assets/svg/keyboard_purple.svg";
 import keyboardOff from "./assets/svg/keyboard_off.svg";
 import shadow from "./assets/svg/shadow.svg";
 import deactivate from "./assets/svg/deactivate.svg";
@@ -17,6 +17,7 @@ function App() {
   const [onClickOn, setOnClickOn] = useState<boolean>(false);
   const [mouseEnterOn, setMouseEnterOn] = useState<boolean>(false);
   const [knobValue, setKnobValue] = useState<number>(0);
+  const [purpleMode, setPurpleMode] = useState<boolean>(false);
 
   const handleKnobChange = (value: number) => {
     setKnobValue(value);
@@ -42,6 +43,10 @@ function App() {
     setLightOn(!lightOn);
   };
 
+  const colorHandler = () => {
+    setPurpleMode(!purpleMode);
+  };
+
   const brightnessStyle = useMemo(() => {
     return {
       filter: lightOn ? `brightness(${100 - knobValue}%)` : "brightness(100%)",
@@ -50,7 +55,11 @@ function App() {
 
   return (
     <div className="background">
-      <ModeButtons onButtonGroupChange={handleButtonGroupChange} />
+      <Description />
+      <ModeButtons
+        onButtonGroupChange={handleButtonGroupChange}
+        onPurpleToggle={colorHandler}
+      />
       <div className="base">
         <img src={shadow} alt="shadow" className="base-shadow" />
         <Keys
@@ -61,13 +70,18 @@ function App() {
           onKnobChange={handleKnobChange}
           onLightOn={lightOn}
         />
-        {/* <KeysLegacy
-         onLightToggle={lightHandler}
-         typingOn={typingOn}
-         onClickOn={onClickOn}
-         mouseEnterOn={mouseEnterOn}
-         onKnobChange={handleKnobChange}
-         onLightOn={lightOn}/> */}
+
+        {purpleMode ? (
+          <img
+            src={purple}
+            alt="keyboard"
+            className="keyboard-purple"
+            style={brightnessStyle}
+          />
+        ) : (
+          <></>
+        )}
+
         <img
           src={keyboard}
           alt="keyboard"
