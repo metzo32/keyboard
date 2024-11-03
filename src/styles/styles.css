@@ -1,3 +1,4 @@
+
 .background {
   @apply w-screen h-screen flex flex-col justify-center items-center
   bg-gray-600;
@@ -11,19 +12,35 @@
   @apply w-full h-auto absolute z-10
 }
 
-
-.button {
+.menu-button {
   @apply border-2 border-white
   flex justify-center items-center
   rounded-lg
+  bg-gray-600
   text-base
-  w-[20%]
+  drop-shadow-lg
+  w-[10%]
   aspect-[2/1]
 
-  md:w-[15%] md:rounded-lg md:text-xl
-  lg:w-[15%] lg:rounded-2xl lg:text-2xl
+  md:w-[12%] md:rounded-lg md:text-xl
+  lg:w-[10%] lg:rounded-2xl lg:text-2xl
 
   transition-colors duration-200 ease-in;
+}
+
+.info-bg {
+  @apply w-screen h-screen fixed top-0 right-0 z-50
+  bg-black bg-opacity-80
+  flex justify-center items-center
+}
+
+.info-container {
+  @apply text-white border-2 border-white
+  rounded-xl p-10
+ bg-white bg-opacity-70
+   w-[50%]
+   text-sizing
+   relative
 }
 
 .selected {
@@ -36,9 +53,9 @@
   hover:bg-white;
 }
 
-
 .buttons-container {
-  @apply min-w-[150px] w-[50%] flex flex-row justify-between mb-[1.5%];
+  @apply min-w-[150px] w-[80%] flex flex-row justify-between items-end
+  mb-[1.5%] relative;
 }
 
 .base {
@@ -103,7 +120,10 @@
   rounded-md
   hover:opacity-100
   hover:cursor-pointer
-  hover:bg-[#4693DA]/[0.5]
+  /* hover:bg-[#4693DA]/[0.5] */
+  hover:bg-[#42196a]/50
+
+  mix-blend-difference
   hover:text-white
 }
 
@@ -116,7 +136,6 @@ active:bg-[#4693DA]/[0.5]
 active:text-white
   group-active:scale-[180%];
 }
-
 
 .text-sizing {
   @apply text-[0.6rem]
@@ -155,7 +174,6 @@ active:text-white
   hover:opacity-100
   hover:cursor-pointer
 }
-
 
 .test {
   @apply transition transform duration-200 ease-in
@@ -203,9 +221,60 @@ active:text-white
 }
 
 .color-button {
-  @apply w-[4em] h-[4em] border-2 border-white rounded-full
+  @apply w-[3em] h-[3em] border-2 border-white rounded-full
   overflow-hidden
 }
+
+.info-button {
+  @apply border-2 border-white rounded-full p-1
+  flex justify-center items-center
+  text-white
+  overflow-hidden
+
+  transition-colors duration-200 ease-in
+
+  hover:bg-white
+  hover:text-black
+}
+
+.close-button {
+  @apply border-2 border-white rounded-full p-1
+  absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2
+  flex justify-center items-center
+  bg-gray-300
+  text-white
+  overflow-hidden
+  text-lg
+
+  transition-colors duration-200 ease-in
+
+  hover:bg-white
+  hover:text-black
+}
+
+.icons {
+  @apply text-3xl
+}
+
+.color-toggle-bar {
+ @apply w-[50px] h-[20px] relative 
+  border-2 border-white
+  rounded-full 
+  drop-shadow-lg
+  cursor-pointer
+  transition-colors duration-300
+}
+
+.color-toggle-circle {
+  @apply w-[30px] h-[30px] 
+
+  rounded-full 
+  absolute top-1/2 transform -translate-y-1/2 
+  drop-shadow-lg
+  cursor-pointer
+  transition duration-300
+}
+
 
 /* 배경 관련 */
 @keyframes infiniteFlow {

@@ -7,7 +7,6 @@ import keyboardOff from "./assets/svg/keyboard_off.svg";
 import shadow from "./assets/svg/shadow.svg";
 import deactivate from "./assets/svg/deactivate.svg";
 import Keys from "./components/Keys";
-import Description from "./components/Description";
 import MaskLED from "./components/MaskLED";
 import ModeButtons from "./components/ModeButtons";
 
@@ -55,7 +54,6 @@ function App() {
 
   return (
     <div className="background">
-      <Description />
       <ModeButtons
         onButtonGroupChange={handleButtonGroupChange}
         onPurpleToggle={colorHandler}

@@ -3,6 +3,8 @@ import { FaKeyboard } from "react-icons/fa";
 import { GiArrowCursor } from "react-icons/gi";
 import { PiMouseLeftClickFill } from "react-icons/pi";
 import ColorButton from "./ColorButton";
+import InfoButton from "./InfoButton";
+
 
 interface ButtonGroupProps {
   onButtonGroupChange: (index: number) => void;
@@ -20,13 +22,13 @@ const ButtonGroup = ({ onButtonGroupChange, onPurpleToggle  }: ButtonGroupProps)
   const buttons = [<FaKeyboard />, <PiMouseLeftClickFill />, <GiArrowCursor />];
 
   return (
-    <div className="buttons-container border border-red-600 w-[80%]">
+    <div className="buttons-container">
       <ColorButton onPurpleToggle={onPurpleToggle} />
 
       {buttons.map((button, index) => (
         <button
           key={index}
-          className={`group button
+          className={`group menu-button
             ${selectedButton === index ? "selected" : "unselected"}`}
           onClick={() => handleButtonClick(index)}
         >
@@ -34,6 +36,8 @@ const ButtonGroup = ({ onButtonGroupChange, onPurpleToggle  }: ButtonGroupProps)
           <div className="button-bg" />
         </button>
       ))}
+
+      <InfoButton/>
     </div>
   );
 };

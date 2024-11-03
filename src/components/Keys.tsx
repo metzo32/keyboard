@@ -192,7 +192,8 @@ export default function Keys({
             {row.map((label, labelIndex) => (
               <button
                 className={`main-keys 
-                  ${label.extraClass || ""} 
+                  ${label.extraClass || ""}
+                  ${typingOn ? "cursor-default" : ""}
                   ${onClickOn ? "clickEffect" : ""}
                   ${mouseEnterOn ? "hoverEffect" : ""}
                 `}
