@@ -20,17 +20,17 @@
 .menu-button {
   @apply border-2 border-white
   flex justify-center items-center
-  rounded-lg
+  rounded-full
   bg-gray-600
   text-base
   drop-shadow-lg
-  w-[10%]
+  w-[50px]
   aspect-[2/1]
 
-  md:w-[12%] md:rounded-lg md:text-xl
-  lg:w-[10%] lg:rounded-2xl lg:text-2xl
+  sm:w-[70px] sm:text-xl
+  lg:w-[100px] lg:text-2xl
 
-  transition-colors duration-200 ease-in;
+  transition duration-200 ease-out;
 }
 
 .info-bg {
@@ -73,6 +73,8 @@
 .buttons-container {
   @apply min-w-[150px] w-[80%] flex flex-row justify-between items-end
   mb-[1.5%] relative
+
+  md:items-end
 }
 
 .base {
@@ -88,12 +90,12 @@
 }
 
 .deactivate {
-  @apply  absolute z-20 w-full h-auto
+  @apply absolute z-20 w-full h-auto
   opacity-40 pointer-events-none;
 }
 
 .off {
-  @apply absolute z-10 w-screen h-auto
+  @apply absolute z-10 w-full h-auto
   pointer-events-none;
 }
 
@@ -155,25 +157,25 @@ active:text-white
 }
 
 .text-sizing {
-  @apply text-[0.4rem]
-  sm:text-sm
-  lg:text-xl
+  @apply text-[0.6rem] leading-[0.7rem]
+  sm:text-sm sm:leading-5
+  lg:text-xl lg:leading-7
 }
 
 .esc {
   @apply w-[6.4%] text-sm  whitespace-nowrap
-  opacity-100  text-gray-400
+  opacity-0  text-gray-400
   text-sizing;
 }
 .quad-keys {
   @apply w-[25%] text-sm whitespace-nowrap 
-  opacity-100 
+  opacity-0 
   text-sizing;
 }
 
 .main-keys {
   @apply w-[6.3%] text-lg whitespace-nowrap
-  opacity-100  text-white 
+  opacity-0  text-white 
   text-sizing;
 }
 
@@ -184,7 +186,7 @@ active:text-white
 
 .wheel {
   @apply w-[6%] ml-[2.2%] text-sm rounded-full 
-  opacity-100
+  opacity-0
   text-sizing text-gray-400
   transition transform duration-200 ease-in
   hover:opacity-100
@@ -242,15 +244,19 @@ active:text-white
 }
 
 .info-button {
-  @apply border-2 border-white rounded-full p-1
+  @apply w-[20px] aspect-square border-2 border-white rounded-full p-1 ml-[10px]
   flex justify-center items-center
   text-white
+  bg-gray-600
   overflow-hidden
+  drop-shadow-lg
 
-  transition-colors duration-200 ease-in
+  transition duration-200 ease-out
 
   hover:bg-white
   hover:text-black
+
+  md:w-[30px] md:ml-[20px]
 }
 
 .close-button {
@@ -273,28 +279,28 @@ active:text-white
 }
 
 .color-toggle-bar {
- @apply w-[30px] h-[12px] relative ml-[12px]
+ @apply w-[30px] h-[12px] relative ml-[12px] mb-[4px]
   border-2 border-white
   rounded-full 
   drop-shadow-lg
   cursor-pointer
   transition-colors duration-300
 
-  md:w-[50px] 
-  md:h-[20px] 
+  sm:w-[40px] sm:h-[16px]
+  md:w-[50px] md:h-[20px] 
 }
 
 .color-toggle-circle {
   @apply 
-  w-[18px] h-[18px] 
+  w-[18px] aspect-square
   rounded-full 
   absolute top-1/2 transform -translate-y-1/2 
   drop-shadow-lg
   cursor-pointer
   transition duration-300
 
-  md:w-[30px] 
-  md:h-[30px] 
+  sm:w-[24px]
+  md:w-[30px]
 }
 
 

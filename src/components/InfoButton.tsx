@@ -10,16 +10,15 @@ export default function InfoButton() {
   };
 
   const closeInfoMenu = () => {
-    setShowInfo(false)
-  }
-  
- 
+    setShowInfo(false);
+  };
+
   return (
-    <div>
-    <button className="info-button" onClick={handleInfoMenu}>
-      <BiQuestionMark className="icons"/>
-    </button>
-        {showInfo ? <Description onClose={closeInfoMenu}/> : <></>}
-    </div>
+    <>
+      <button className="info-button" onClick={handleInfoMenu}>
+        <BiQuestionMark className="icons" />
+      </button>
+      {showInfo ? <Description onClose={closeInfoMenu} /> : <></>}
+    </>
   );
 }

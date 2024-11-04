@@ -18,9 +18,6 @@ module.exports = {
           "0%": { "background-position": "200% 0" },
           "100%": { "background-position": "0% 0" },
         },
-        borderRadius: {
-          "custom-radius": "3.3% 7.2%", 
-        },
       },
     },
   },

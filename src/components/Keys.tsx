@@ -135,8 +135,8 @@ export default function Keys({
             onClick={onClickOn ? () => playHandler(esc.audio) : undefined}
             className={`esc 
                 ${typingOn ? "cursor-default" : ""}
-                ${onClickOn ? `clickEffect ${purpleMode ? "active:bg-[#431381]/[0.5]" : "active:bg-[#2069c1]/[0.5]"}` : ""}
-                ${mouseEnterOn ? `hoverEffect ${purpleMode ? " hover:bg-[#431381]/50" : "hover:bg-[#2069c1]/[0.5]"}` : ""}
+                ${onClickOn ? `clickEffect ${purpleMode ? "active:bg-[#431381]/[0.5] hover:bg-[#431381]/[0.2]" : "active:bg-[#2069c1]/[0.5] hover:bg-[#2069c1]/[0.2]"}` : ""}
+                ${mouseEnterOn ? `hoverEffect ${purpleMode ? " hover:bg-[#431381]/[0.5]" : "hover:bg-[#2069c1]/[0.5]"}` : ""}
             `}
             data-code={esc.code.toLowerCase()}
           >
@@ -152,8 +152,8 @@ export default function Keys({
                   className={`quad-keys 
                     ${purpleMode ? "text-white" : "text-gray-400"}
                     ${typingOn ? "cursor-default" : ""}
-                    ${onClickOn ? `clickEffect ${purpleMode ? "active:bg-[#431381]/[0.5]" : "active:bg-[#2069c1]/[0.5]"}` : ""}
-                    ${mouseEnterOn ? `hoverEffect ${purpleMode ? " hover:bg-[#431381]/50" : "hover:bg-[#2069c1]/[0.5]"}` : ""}
+                    ${onClickOn ? `clickEffect ${purpleMode ? "active:bg-[#431381]/[0.5] hover:bg-[#431381]/[0.2]" : "active:bg-[#2069c1]/[0.5] hover:bg-[#2069c1]/[0.2]"}` : ""}
+                    ${mouseEnterOn ? `hoverEffect ${purpleMode ? " hover:bg-[#431381]/[0.5]" : "hover:bg-[#2069c1]/[0.5]"}` : ""}
                   `}
                   key={labelIndex}
                   onMouseEnter={
@@ -195,8 +195,8 @@ export default function Keys({
                 className={`main-keys 
                   ${label.extraClass || ""}
                   ${typingOn ? "cursor-default" : ""}
-                  ${onClickOn ? `clickEffect ${purpleMode ? "active:bg-[#431381]/[0.5]" : "active:bg-[#2069c1]/[0.5]"}` : ""}
-                  ${mouseEnterOn ? `hoverEffect ${purpleMode ? " hover:bg-[#431381]/50" : "hover:bg-[#2069c1]/[0.5]"}` : ""}
+                  ${onClickOn ? `clickEffect ${purpleMode ? "active:bg-[#431381]/[0.5] hover:bg-[#431381]/[0.2]" : "active:bg-[#2069c1]/[0.5] hover:bg-[#2069c1]/[0.2]"}` : ""}
+                  ${mouseEnterOn ? `hoverEffect ${purpleMode ? " hover:bg-[#431381]/[0.5]" : "hover:bg-[#2069c1]/[0.5]"}` : ""}
                 `}
                 key={labelIndex}
                 onMouseEnter={

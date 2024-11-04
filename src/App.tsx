@@ -78,7 +78,7 @@ function App() {
             style={brightnessStyle}
           />
         ) : (
-          <></>
+          null
         )}
 
         <img
@@ -91,7 +91,7 @@ function App() {
         {typingOn ? (
           <img src={deactivate} alt="deactivate" className="deactivate" />
         ) : (
-          <></>
+          null
         )}
 
         {lightOn ? (
