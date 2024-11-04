@@ -6,7 +6,7 @@
 
 .background {
   @apply min-w-[320px] w-screen h-screen flex flex-col justify-center items-center
-  bg-gray-600;
+  bg-gray-600 select-none;
 }
 
 .keyboard {
@@ -19,15 +19,14 @@
 
 .menu-button {
   @apply border-2 border-white
+  w-[60px]
+  aspect-[2/1]
   flex justify-center items-center
   rounded-full
   bg-gray-600
   text-base
   drop-shadow-lg
-  w-[50px]
-  aspect-[2/1]
 
-  sm:w-[70px] sm:text-xl
   lg:w-[100px] lg:text-2xl
 
   transition duration-200 ease-out;
@@ -35,17 +34,17 @@
 
 .info-bg {
   @apply w-screen h-screen fixed top-0 right-0 z-50
-  bg-black bg-opacity-80
-  flex justify-center items-center
+  bg-black bg-opacity-80 
+  flex flex-col justify-center items-center
 }
 
 .info-container {
   @apply text-white border-2 border-white
-  rounded-xl p-[5%]
+  w-[40%] aspect-[1/1]
+  flex flex-row justify-center items-center
+  rounded-xl p-[20px]
  bg-white bg-opacity-70
-   w-[40%] aspect-[1/1]
    relative
-
    md:w-[50%]
    md:aspect-auto
 }
@@ -56,7 +55,7 @@
   flex flex-col justify-center
 }
 
-.info-li {
+.info-text {
   @apply text-sizing
 }
 
@@ -71,8 +70,8 @@
 }
 
 .buttons-container {
-  @apply min-w-[150px] w-[80%] flex flex-row justify-between items-end
-  mb-[1.5%] relative
+  @apply min-w-[150px] w-[80%] h-[6%] flex flex-row justify-between items-end
+ relative border border-red-600
 
   md:items-end
 }
@@ -139,11 +138,8 @@
   rounded-md
   hover:opacity-100
   hover:cursor-pointer
-  /* hover:bg-[#4693DA]/[0.5] */
-  /* hover:bg-[#42196a]/50 */
-
-  mix-blend-difference
   hover:text-white
+  hover:scale-[120%];
 }
 
 .clickEffect {
@@ -151,9 +147,7 @@
   rounded-md
   hover:opacity-100
   hover:cursor-pointer
-/* active:bg-[#4693DA]/[0.5] */
-active:text-white
-  group-active:scale-[180%];
+  active:scale-[120%];
 }
 
 .text-sizing {
@@ -193,12 +187,11 @@ active:text-white
   hover:cursor-pointer
 }
 
-.test {
+.typed {
   @apply transition transform duration-200 ease-in
-  /* bg-[#4693DA]/[0.5] */
-  opacity-100
+  opacity-70
   backdrop-blur-2xl 
-  mix-blend-multiply;
+  scale-[120%];
 }
 
 
@@ -256,7 +249,7 @@ active:text-white
   hover:bg-white
   hover:text-black
 
-  md:w-[30px] md:ml-[20px]
+  lg:w-[35px] lg:ml-[20px]
 }
 
 .close-button {
@@ -274,20 +267,43 @@ active:text-white
   hover:text-black
 }
 
+.link-button {
+  @apply border-2 border-white
+  w-[30px] h-[30px] p-2
+  text-sm
+  absolute top-1/2 right-0 transform -translate-y-1/2 z-40
+  flex justify-center items-center
+  rounded-full
+  bg-gray-600
+  drop-shadow-lg
+  text-sizing text-white
+  transition-all duration-200 ease-out
+
+  hover:aspect-[2/1]
+  hover:w-[60px]
+  hover:bg-white hover:text-black
+
+  lg:w-[50px] lg:h-[50px]
+  lg:hover:w-[100px]
+}
+
+
 .icons {
   @apply text-2xl
 }
 
 .color-toggle-bar {
- @apply w-[30px] h-[12px] relative ml-[12px] mb-[4px]
+ @apply 
+ w-[30px] h-[12px] 
+ relative ml-[12px] mb-[4px]
   border-2 border-white
   rounded-full 
   drop-shadow-lg
   cursor-pointer
   transition-colors duration-300
 
-  sm:w-[40px] sm:h-[16px]
-  md:w-[50px] md:h-[20px] 
+  /* sm:w-[40px] sm:h-[16px] */
+  lg:w-[50px] lg:h-[20px] 
 }
 
 .color-toggle-circle {
@@ -299,8 +315,8 @@ active:text-white
   cursor-pointer
   transition duration-300
 
-  sm:w-[24px]
-  md:w-[30px]
+  /* sm:w-[24px] */
+  lg:w-[30px]
 }
 
 
@@ -327,11 +343,23 @@ active:text-white
   mask-repeat: no-repeat;
   mask-position: center;
 }
-
 .mask-color {
   -webkit-mask-image: url("../assets/svg/color-mask.svg");
   mask-image: url("../assets/svg/color-mask.svg");
   mask-size: cover;
   mask-repeat: no-repeat;
-  mask-position: center;
+  mask-position: left; /* 기본 위치를 왼쪽으로 설정 */
 }
+
+.mask-move-right {
+  mask-position: 100% 0; /* `purpleMode`가 true일 때 오른쪽으로 이동 */
+}
+
+
+
+/* .mask-color {
+  background-image: url("../assets/svg/color_mask.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+} */

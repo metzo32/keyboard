@@ -1,5 +1,6 @@
 import "../styles/styles.css";
 import { IoClose } from "react-icons/io5";
+import { IoMdInformationCircleOutline } from "react-icons/io";
 
 interface DescriptionProps {
   onClose: () => void;
@@ -8,34 +9,29 @@ interface DescriptionProps {
 export default function Description({ onClose }: DescriptionProps) {
   return (
     <div className="info-bg">
-      <div className="info-container">
+      <div className="info-container mb-9">
+        <IoMdInformationCircleOutline size={20}/>
+        <p className="info-text"> 사용 중인 키보드의 배열에 따라 다르게 동작하는 것처럼 보일 수
+        있습니다.</p>
+        <button 
+      className="close-button"
+      onClick={onClose}
+      >
+        <IoClose className="icons"/>
+      </button>
+        </div>
 
+
+        <div className="info-container">
+        <IoMdInformationCircleOutline/>
+          <p className="info-text">브라우저 정책에 따라 타이핑 모드에서 ESC 와 Function 키는 지원하지
+          않습니다.</p>
       <button 
       className="close-button"
       onClick={onClose}
       >
         <IoClose className="icons"/>
       </button>
-
-        <ul className="info-ul">
-          <li className="info-li">
-            사용 중인 키보드의 배열에 따라 다르게 동작하는 것처럼 보일 수
-            있습니다.
-          </li>
-          <li className="info-li">
-            브라우저 정책에 따라 타이핑 모드에서 ESC 와 Function 키는 지원하지
-            않습니다.
-          </li>
-          {/* <li>
-            <a
-              href="https://smartstore.naver.com/dfshop1/products/10311254657?NaPm=ct%3Dm30wxxdy%7Cci%3Dcheckout%7Ctr%3Drete%7Ctrx%3Dnull%7Chk%3Dcdd72202dec441c8eb2f76b854f5c95026826df8"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              구매 링크
-            </a>
-          </li> */}
-        </ul>
       </div>
     </div>
   );

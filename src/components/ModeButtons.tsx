@@ -28,7 +28,7 @@ const ButtonGroup = ({ onButtonGroupChange, onPurpleToggle  }: ButtonGroupProps)
       {buttons.map((button, index) => (
         <button
           key={index}
-          className={`group menu-button
+          className={`menu-button
             ${selectedButton === index ? "selected" : "unselected"}`}
           onClick={() => handleButtonClick(index)}
         >

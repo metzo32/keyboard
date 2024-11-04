@@ -60,10 +60,10 @@ export default function Keys({
           `button[data-code="capslock"]`
         );
         if (buttonElement) {
-          buttonElement.classList.add("test");
+          buttonElement.classList.add("typed");
 
           setTimeout(() => {
-            buttonElement.classList.remove("test");
+            buttonElement.classList.remove("typed");
           }, 150);
         }
         return; // CapsLock의 경우 여기서 종료
@@ -84,7 +84,7 @@ export default function Keys({
         );
 
         if (buttonElement) {
-          buttonElement.classList.add("test");
+          buttonElement.classList.add("typed");
         }
       }
     };
@@ -105,7 +105,7 @@ export default function Keys({
       );
 
       if (buttonElement) {
-        buttonElement.classList.remove("test");
+        buttonElement.classList.remove("typed");
       }
     };
 

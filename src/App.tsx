@@ -9,6 +9,7 @@ import deactivate from "./assets/svg/deactivate.svg";
 import Keys from "./components/Keys";
 import MaskLED from "./components/MaskLED";
 import ModeButtons from "./components/ModeButtons";
+import { BiPurchaseTag } from "react-icons/bi";
 
 function App() {
   const [lightOn, setLightOn] = useState<boolean>(false);
@@ -54,6 +55,7 @@ function App() {
 
   return (
     <div className="background">
+      <div className="flex flex-col justify-between items-center border border-green-700 w-full aspect-[16/8]">
       <ModeButtons
         onButtonGroupChange={handleButtonGroupChange}
         onPurpleToggle={colorHandler}
@@ -81,14 +83,12 @@ function App() {
           null
         )} */}
 
-
-          <img
-            src={purple}
-            alt="keyboard"
-            className={`keyboard-purple mask-color ${purpleMode ? "" : ""}`}
-            style={brightnessStyle}
-          />
-     
+        <img
+          src={purple}
+          alt="keyboard"
+          className={`keyboard-purple ${purpleMode ? "" : "mask-color"}`}
+          style={brightnessStyle}
+        />
 
         <img
           src={keyboard}
@@ -99,9 +99,7 @@ function App() {
 
         {typingOn ? (
           <img src={deactivate} alt="deactivate" className="deactivate" />
-        ) : (
-          null
-        )}
+        ) : null}
 
         {lightOn ? (
           <MaskLED />
@@ -110,6 +108,21 @@ function App() {
             <img src={keyboardOff} alt="keyboard" className="off" />
           </>
         )}
+      </div>
+
+      <div className="buttons-container">
+        <a
+          href="https://smartstore.naver.com/dfshop1/products/10311254657?NaPm=ct%3Dm30wxxdy%7Cci%3Dcheckout%7Ctr%3Drete%7Ctrx%3Dnull%7Chk%3Dcdd72202dec441c8eb2f76b854f5c95026826df8"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="link-button group"
+        >
+          <BiPurchaseTag className="icons block group-hover:hidden" />
+          <span className="hidden group-hover:block whitespace-nowrap lg:text-base text-sm">
+            구매 링크
+          </span>
+        </a>
+      </div>
       </div>
     </div>
   );
