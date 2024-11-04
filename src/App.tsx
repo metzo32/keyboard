@@ -67,6 +67,7 @@ function App() {
           mouseEnterOn={mouseEnterOn}
           onKnobChange={handleKnobChange}
           onLightOn={lightOn}
+          purpleMode={purpleMode}
         />
 
         {purpleMode ? (

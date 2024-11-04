@@ -1,6 +1,11 @@
+*,
+*::before,
+*::after {
+  @apply box-border;
+}
 
 .background {
-  @apply w-screen h-screen flex flex-col justify-center items-center
+  @apply min-w-[320px] w-screen h-screen flex flex-col justify-center items-center
   bg-gray-600;
 }
 
@@ -67,7 +72,7 @@
 
 .buttons-container {
   @apply min-w-[150px] w-[80%] flex flex-row justify-between items-end
-  mb-[1.5%] relative;
+  mb-[1.5%] relative
 }
 
 .base {
@@ -83,7 +88,7 @@
 }
 
 .deactivate {
-  @apply absolute z-20 w-screen h-auto
+  @apply  absolute z-20 w-full h-auto
   opacity-40 pointer-events-none;
 }
 
@@ -133,7 +138,7 @@
   hover:opacity-100
   hover:cursor-pointer
   /* hover:bg-[#4693DA]/[0.5] */
-  hover:bg-[#42196a]/50
+  /* hover:bg-[#42196a]/50 */
 
   mix-blend-difference
   hover:text-white
@@ -144,31 +149,31 @@
   rounded-md
   hover:opacity-100
   hover:cursor-pointer
-active:bg-[#4693DA]/[0.5]
+/* active:bg-[#4693DA]/[0.5] */
 active:text-white
   group-active:scale-[180%];
 }
 
 .text-sizing {
-  @apply text-[0.6rem]
+  @apply text-[0.4rem]
   sm:text-sm
   lg:text-xl
 }
 
 .esc {
   @apply w-[6.4%] text-sm  whitespace-nowrap
-  opacity-0  text-gray-400
+  opacity-100  text-gray-400
   text-sizing;
 }
 .quad-keys {
   @apply w-[25%] text-sm whitespace-nowrap 
-  opacity-0  text-gray-400
+  opacity-100 
   text-sizing;
 }
 
 .main-keys {
-  @apply w-[6.3%] text-lg whitespace-nowrap 
-  opacity-0  text-white 
+  @apply w-[6.3%] text-lg whitespace-nowrap
+  opacity-100  text-white 
   text-sizing;
 }
 
@@ -179,7 +184,7 @@ active:text-white
 
 .wheel {
   @apply w-[6%] ml-[2.2%] text-sm rounded-full 
-  opacity-0
+  opacity-100
   text-sizing text-gray-400
   transition transform duration-200 ease-in
   hover:opacity-100
