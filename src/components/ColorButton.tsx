@@ -5,19 +5,27 @@ interface ColorButtonProps {
 }
 
 export default function ColorButton({ onPurpleToggle }: ColorButtonProps) {
-    const [toggle, setToggle] = useState(false)
+  const [toggle, setToggle] = useState(false);
 
-    const handleToggle = () => {
-        onPurpleToggle()
-        setToggle(!toggle)
-    }
-    
+  const handleToggle = () => {
+    onPurpleToggle();
+    setToggle(!toggle);
+  };
+
   return (
     <div className="" onClick={handleToggle}>
-      <div className={`color-toggle-bar
-        ${toggle ? "bg-blue-500" : "bg-[#8258ab]"}`}>
-        <div className={`color-toggle-circle 
-            ${toggle ? "right-0 translate-x-1/2 bg-[#9fd8ff]" : "left-0 -translate-x-1/2 bg-[#c8b7d8]"}`} />
+      <div
+        className={`color-toggle-bar
+        ${toggle ? "bg-blue-500" : "bg-[#8258ab]"}`}
+      >
+        <div
+          className={`color-toggle-circle 
+            ${
+              toggle
+                ? "right-0 translate-x-1/2 bg-[#9fd8ff]"
+                : "left-0 -translate-x-1/2 bg-[#c8b7d8]"
+            }`}
+        />
       </div>
     </div>
   );

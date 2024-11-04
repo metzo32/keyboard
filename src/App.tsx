@@ -70,7 +70,7 @@ function App() {
           purpleMode={purpleMode}
         />
 
-        {purpleMode ? (
+        {/* {purpleMode ? (
           <img
             src={purple}
             alt="keyboard"
@@ -79,7 +79,16 @@ function App() {
           />
         ) : (
           null
-        )}
+        )} */}
+
+
+          <img
+            src={purple}
+            alt="keyboard"
+            className={`keyboard-purple mask-color ${purpleMode ? "" : ""}`}
+            style={brightnessStyle}
+          />
+     
 
         <img
           src={keyboard}

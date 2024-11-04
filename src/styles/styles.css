@@ -169,7 +169,7 @@ active:text-white
 }
 .quad-keys {
   @apply w-[25%] text-sm whitespace-nowrap 
-  opacity-0 
+  opacity-0 text-white
   text-sizing;
 }
 
@@ -195,7 +195,7 @@ active:text-white
 
 .test {
   @apply transition transform duration-200 ease-in
-  bg-[#4693DA]/[0.5]
+  /* bg-[#4693DA]/[0.5] */
   opacity-100
   backdrop-blur-2xl 
   mix-blend-multiply;
@@ -320,9 +320,17 @@ active:text-white
   bg-blend-hard-light;
 }
 
-.mask-keyboard {
+.mask-led {
   -webkit-mask-image: url("../assets/svg/keyboard_on.svg");
   mask-image: url("../assets/svg/keyboard_on.svg");
+  mask-size: cover;
+  mask-repeat: no-repeat;
+  mask-position: center;
+}
+
+.mask-color {
+  -webkit-mask-image: url("../assets/svg/color-mask.svg");
+  mask-image: url("../assets/svg/color-mask.svg");
   mask-size: cover;
   mask-repeat: no-repeat;
   mask-position: center;

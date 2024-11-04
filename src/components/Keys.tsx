@@ -135,8 +135,24 @@ export default function Keys({
             onClick={onClickOn ? () => playHandler(esc.audio) : undefined}
             className={`esc 
                 ${typingOn ? "cursor-default" : ""}
-                ${onClickOn ? `clickEffect ${purpleMode ? "active:bg-[#431381]/[0.5] hover:bg-[#431381]/[0.2]" : "active:bg-[#2069c1]/[0.5] hover:bg-[#2069c1]/[0.2]"}` : ""}
-                ${mouseEnterOn ? `hoverEffect ${purpleMode ? " hover:bg-[#431381]/[0.5]" : "hover:bg-[#2069c1]/[0.5]"}` : ""}
+                ${
+                  onClickOn
+                    ? `clickEffect ${
+                        purpleMode
+                          ? "active:bg-custom-purple-50 hover:bg-custom-purple-20"
+                          : "active:bg-custom-blue-50 hover:bg-custom-blue-20"
+                      }`
+                    : ""
+                }
+                ${
+                  mouseEnterOn
+                    ? `hoverEffect ${
+                        purpleMode
+                          ? " hover:bg-custom-purple-50"
+                          : "hover:bg-custom-blue-50"
+                      }`
+                    : ""
+                }
             `}
             data-code={esc.code.toLowerCase()}
           >
@@ -150,10 +166,25 @@ export default function Keys({
               {row.map((label, labelIndex) => (
                 <button
                   className={`quad-keys 
-                    ${purpleMode ? "text-white" : "text-gray-400"}
                     ${typingOn ? "cursor-default" : ""}
-                    ${onClickOn ? `clickEffect ${purpleMode ? "active:bg-[#431381]/[0.5] hover:bg-[#431381]/[0.2]" : "active:bg-[#2069c1]/[0.5] hover:bg-[#2069c1]/[0.2]"}` : ""}
-                    ${mouseEnterOn ? `hoverEffect ${purpleMode ? " hover:bg-[#431381]/[0.5]" : "hover:bg-[#2069c1]/[0.5]"}` : ""}
+                    ${
+                      onClickOn
+                        ? `clickEffect ${
+                            purpleMode
+                              ? "active:bg-custom-purple-50 hover:bg-custom-purple-20"
+                              : "active:bg-custom-blue-50 hover:bg-custom-blue-20"
+                          }`
+                        : ""
+                    }
+                    ${
+                      mouseEnterOn
+                        ? `hoverEffect ${
+                            purpleMode
+                              ? " hover:bg-custom-purple-50"
+                              : "hover:bg-custom-blue-50"
+                          }`
+                        : ""
+                    }
                   `}
                   key={labelIndex}
                   onMouseEnter={
@@ -194,9 +225,33 @@ export default function Keys({
               <button
                 className={`main-keys 
                   ${label.extraClass || ""}
-                  ${typingOn ? "cursor-default" : ""}
-                  ${onClickOn ? `clickEffect ${purpleMode ? "active:bg-[#431381]/[0.5] hover:bg-[#431381]/[0.2]" : "active:bg-[#2069c1]/[0.5] hover:bg-[#2069c1]/[0.2]"}` : ""}
-                  ${mouseEnterOn ? `hoverEffect ${purpleMode ? " hover:bg-[#431381]/[0.5]" : "hover:bg-[#2069c1]/[0.5]"}` : ""}
+                  ${
+                    typingOn
+                      ? `cursor-default ${
+                          purpleMode
+                            ? "bg-custom-purple-50"
+                            : "bg-custom-blue-50"
+                        }`
+                      : ""
+                  }
+                  ${
+                    onClickOn
+                      ? `clickEffect ${
+                          purpleMode
+                            ? "active:bg-custom-purple-50 hover:bg-custom-purple-20"
+                            : "active:bg-custom-blue-50 hover:bg-custom-blue-20"
+                        }`
+                      : ""
+                  }
+                  ${
+                    mouseEnterOn
+                      ? `hoverEffect ${
+                          purpleMode
+                            ? " hover:bg-custom-purple-50"
+                            : "hover:bg-custom-blue-50"
+                        }`
+                      : ""
+                  }
                 `}
                 key={labelIndex}
                 onMouseEnter={
