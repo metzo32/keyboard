@@ -55,24 +55,24 @@ function App() {
 
   return (
     <div className="background">
-      <div className="flex flex-col justify-between items-center border border-green-700 w-full aspect-[16/8]">
-      <ModeButtons
-        onButtonGroupChange={handleButtonGroupChange}
-        onPurpleToggle={colorHandler}
-      />
-      <div className="base">
-        <img src={shadow} alt="shadow" className="base-shadow" />
-        <Keys
-          onLightToggle={lightHandler}
-          typingOn={typingOn}
-          onClickOn={onClickOn}
-          mouseEnterOn={mouseEnterOn}
-          onKnobChange={handleKnobChange}
-          onLightOn={lightOn}
-          purpleMode={purpleMode}
+     
+        <div className="base">
+        <ModeButtons
+          onButtonGroupChange={handleButtonGroupChange}
+          onPurpleToggle={colorHandler}
         />
+          <img src={shadow} alt="shadow" className="base-shadow" />
+          <Keys
+            onLightToggle={lightHandler}
+            typingOn={typingOn}
+            onClickOn={onClickOn}
+            mouseEnterOn={mouseEnterOn}
+            onKnobChange={handleKnobChange}
+            onLightOn={lightOn}
+            purpleMode={purpleMode}
+          />
 
-        {/* {purpleMode ? (
+          {/* {purpleMode ? (
           <img
             src={purple}
             alt="keyboard"
@@ -83,47 +83,45 @@ function App() {
           null
         )} */}
 
-        <img
-          src={purple}
-          alt="keyboard"
-          className={`keyboard-purple ${purpleMode ? "" : "mask-color"}`}
-          style={brightnessStyle}
-        />
+          <img
+            src={purple}
+            alt="keyboard"
+            className={`keyboard-purple ${purpleMode ? "" : "mask-color"}`}
+            style={brightnessStyle}
+          />
 
-        <img
-          src={keyboard}
-          alt="keyboard"
-          className="keyboard"
-          style={brightnessStyle}
-        />
+          <img
+            src={keyboard}
+            alt="keyboard"
+            className="keyboard"
+            style={brightnessStyle}
+          />
 
-        {typingOn ? (
-          <img src={deactivate} alt="deactivate" className="deactivate" />
-        ) : null}
+          {typingOn ? (
+            <img src={deactivate} alt="deactivate" className="deactivate" />
+          ) : null}
 
-        {lightOn ? (
-          <MaskLED />
-        ) : (
-          <>
-            <img src={keyboardOff} alt="keyboard" className="off" />
-          </>
-        )}
-      </div>
+          {lightOn ? (
+            <MaskLED />
+          ) : (
+            <>
+              <img src={keyboardOff} alt="keyboard" className="off" />
+            </>
+          )}
 
-      <div className="buttons-container">
-        <a
-          href="https://smartstore.naver.com/dfshop1/products/10311254657?NaPm=ct%3Dm30wxxdy%7Cci%3Dcheckout%7Ctr%3Drete%7Ctrx%3Dnull%7Chk%3Dcdd72202dec441c8eb2f76b854f5c95026826df8"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="link-button group"
-        >
-          <BiPurchaseTag className="icons block group-hover:hidden" />
-          <span className="hidden group-hover:block whitespace-nowrap lg:text-base text-sm">
-            구매 링크
-          </span>
-        </a>
-      </div>
-      </div>
+          <a
+            href="https://smartstore.naver.com/dfshop1/products/10311254657?NaPm=ct%3Dm30wxxdy%7Cci%3Dcheckout%7Ctr%3Drete%7Ctrx%3Dnull%7Chk%3Dcdd72202dec441c8eb2f76b854f5c95026826df8"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="link-button group"
+          >
+            <BiPurchaseTag className="icons block group-hover:hidden" />
+            <span className="hidden group-hover:block whitespace-nowrap lg:text-base text-sm">
+              구매 링크
+            </span>
+          </a>
+        </div>
+
     </div>
   );
 }

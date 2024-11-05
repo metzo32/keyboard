@@ -19,13 +19,17 @@
 
 .menu-button {
   @apply border-2 border-white
-  w-[60px]
-  aspect-[2/1]
+  w-[30px]
+  aspect-square
+  
   flex justify-center items-center
   rounded-full
   bg-gray-600
   text-base
   drop-shadow-lg
+
+  custom-sm:w-[60px]
+  custom-sm:aspect-[2/1]
 
   lg:w-[100px] lg:text-2xl
 
@@ -70,8 +74,8 @@
 }
 
 .buttons-container {
-  @apply min-w-[150px] w-[80%] h-[6%] flex flex-row justify-between items-end
- relative border border-red-600
+  @apply min-w-[150px] w-[80%] h-[30px] flex flex-row justify-between items-end
+  absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-[150%] z-40
 
   md:items-end
 }
@@ -271,7 +275,7 @@
   @apply border-2 border-white
   w-[30px] h-[30px] p-2
   text-sm
-  absolute top-1/2 right-0 transform -translate-y-1/2 z-40
+  absolute bottom-0 right-0 transform translate-y-[150%] z-40
   flex justify-center items-center
   rounded-full
   bg-gray-600

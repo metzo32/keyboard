@@ -32,6 +32,9 @@ module.exports = {
           50: 'rgba(30, 128, 233, 0.5)', // 50% 투명도
         },
       },
+      screens: {
+        'custom-sm': '480px',
+      },
     },
   },
 
