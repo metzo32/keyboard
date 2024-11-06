@@ -7,43 +7,66 @@ interface DescriptionProps {
   onClose: () => void;
 }
 
+interface InfoTextProps {
+  id: number;
+  text: string;
+}
+
 export default function Description({ onClose }: DescriptionProps) {
-  const [messages, setMessages] = useState([
-    "사용 중인 키보드의 배열에 따라 다르게 동작하는 것처럼 보일 수 있습니다.",
-    "브라우저 정책에 따라 타이핑 모드에서 ESC 와 Function 키는 지원하지 않습니다.",
+  const [messages, setMessages] = useState<InfoTextProps[]>([
+    {
+      id: 1,
+      text: "사용 중인 키보드의 배열에 따라 다르게 동작하는 것처럼 보일 수 있습니다.",
+    },
+    {
+      id: 2,
+      text: "브라우저 정책에 따라 타이핑 모드에서 ESC 와 Function 키는 지원하지 않습니다.",
+    },
   ]);
+  const [removedIds, setRemovedIds] = useState<Set<number>>(new Set());
 
-  // 개별 메시지 닫기
-  const handleCloseMessage = (index: number) => {
-    const updatedMessages = messages.filter((_, i) => i !== index); // 해당 메시지 삭제
-    setMessages(updatedMessages);
+  const handleCloseMessage = (id: number) => {
+    setRemovedIds((prev) => new Set(prev).add(id));
 
-    if (updatedMessages.length === 0) {
-      onClose(); // 모든 메시지가 닫히면 전체 닫기
-    }
+    setTimeout(() => {
+      const updatedMessages = messages.filter((message) => message.id !== id);
+      setMessages(updatedMessages);
+
+      if (updatedMessages.length === 0) {
+        const background = document.querySelector(".info-bg");
+        background?.classList.add("info-close");
+        setTimeout(() => {
+          background?.classList.remove("info-close");
+          onClose();
+        }, 1000);
+      }
+    }, 500);
   };
 
-  // 내일 할일은 info-container 정리, 닫기 애니메이션 추가
   return (
     <div className="info-bg">
-      {messages.map((message, index) => (
-        <div key={index} className="info-container">
-
-            <div className="info-icon-box">
-          <IoMdInformationCircleOutline className="info-icon" />
-          </div>
-          <p className="info-text">{message}</p>
-
-          <button
-            className="close-button"
-            onClick={() => handleCloseMessage(index)}
+      <div className="resizable-container">
+        {messages.map((message) => (
+          <div
+            key={message.id}
+            className={`info-container ${
+              removedIds.has(message.id) ? "info-remove" : ""
+            }`}
           >
-          
+            <div className="info-icon-box">
+              <IoMdInformationCircleOutline className="info-icon" />
+            </div>
+            <p className="info-text">{message.text}</p>
+
+            <button
+              className="close-button"
+              onClick={() => handleCloseMessage(message.id)}
+            >
               <IoClose className="close-icon" />
-          
-          </button>
-        </div>
-      ))}
+            </button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

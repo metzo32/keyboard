@@ -23,7 +23,7 @@ module.exports = {
       colors: {
         'custom-purple': {
           DEFAULT: '#431381', 
-          20: 'rgba(67, 19, 129, 0.2)', // 0% 투명도
+          20: 'rgba(67, 19, 129, 0.2)', // 20% 투명도
           50: 'rgba(67, 19, 129, 0.5)', // 50% 투명도
         },
         'custom-blue': {

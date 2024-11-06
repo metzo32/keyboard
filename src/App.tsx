@@ -63,57 +63,57 @@ function App() {
   }, [lightOn, knobValue]);
 
   return (
-    <div className="background">
+    <>
+      <div className="background">
+        {showInfo ? <Description onClose={closeInfoMenu} /> : null}
 
-      {showInfo ? <Description onClose={closeInfoMenu} /> : null}
+        <div className="base">
+          <ModeButtons
+            onButtonGroupChange={handleButtonGroupChange}
+            onPurpleToggle={colorHandler}
+            onInfoToggle={handleInfoMenu}
+          />
 
-      <div className="base">
-        <ModeButtons
-          onButtonGroupChange={handleButtonGroupChange}
-          onPurpleToggle={colorHandler}
-          onInfoToggle={handleInfoMenu}
-        />
+          <img src={shadow} alt="shadow" className="base-shadow" />
 
-        <img src={shadow} alt="shadow" className="base-shadow" />
+          <Keys
+            onLightToggle={lightHandler}
+            typingOn={typingOn}
+            onClickOn={onClickOn}
+            mouseEnterOn={mouseEnterOn}
+            onKnobChange={handleKnobChange}
+            onLightOn={lightOn}
+            purpleMode={purpleMode}
+          />
 
-        <Keys
-          onLightToggle={lightHandler}
-          typingOn={typingOn}
-          onClickOn={onClickOn}
-          mouseEnterOn={mouseEnterOn}
-          onKnobChange={handleKnobChange}
-          onLightOn={lightOn}
-          purpleMode={purpleMode}
-        />
+          <img
+            src={purple}
+            alt="keyboard"
+            className={`keyboard-purple ${purpleMode ? "visible" : ""}`}
+            style={brightnessStyle}
+          />
 
-        <img
-          src={purple}
-          alt="keyboard"
-          className={`keyboard-purple ${purpleMode ? "visible" : ""}`}
-          style={brightnessStyle}
-        />
+          <img
+            src={keyboard}
+            alt="keyboard"
+            className="keyboard-blue"
+            style={brightnessStyle}
+          />
 
-        <img
-          src={keyboard}
-          alt="keyboard"
-          className="keyboard-blue"
-          style={brightnessStyle}
-        />
+          {typingOn ? (
+            <img src={deactivate} alt="deactivate" className="deactivate" />
+          ) : null}
 
-        {typingOn ? (
-          <img src={deactivate} alt="deactivate" className="deactivate" />
-        ) : null}
+          {lightOn ? (
+            <MaskLED />
+          ) : (
+            <img src={keyboardOff} alt="keyboard" className="off" />
+          )}
 
-        {lightOn ? (
-          <MaskLED />
-        ) : (
-          <img src={keyboardOff} alt="keyboard" className="off" />
-        )}
-
-        <LinkButton />
-
+          <LinkButton />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

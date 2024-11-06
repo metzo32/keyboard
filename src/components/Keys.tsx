@@ -123,6 +123,10 @@ export default function Keys({
     onKnobChange(e.value);
   };
 
+  const handleKnobWidth = () => {
+    
+  }
+
   return (
     <div className="key-container">
       <div className="key-top-container">
@@ -207,7 +211,7 @@ export default function Keys({
         {onLightOn && (
           <Knob
             value={knobValue}
-            width={2}
+            width={handleKnobWidth}
             min={0}
             max={70}
             showValue={false}
