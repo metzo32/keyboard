@@ -1,4 +1,3 @@
-// import './App.css'
 import { useState, useMemo } from "react";
 import "./styles/styles.css";
 import keyboard from "./assets/svg/keyboard_base.svg";
@@ -60,20 +59,23 @@ function App() {
   const brightnessStyle = useMemo(() => {
     return {
       filter: lightOn ? `brightness(${100 - knobValue}%)` : "brightness(100%)",
-      // transition: "filter 1s ease-in-out",
     };
   }, [lightOn, knobValue]);
 
   return (
     <div className="background">
+
       {showInfo ? <Description onClose={closeInfoMenu} /> : null}
+
       <div className="base">
         <ModeButtons
           onButtonGroupChange={handleButtonGroupChange}
           onPurpleToggle={colorHandler}
           onInfoToggle={handleInfoMenu}
         />
+
         <img src={shadow} alt="shadow" className="base-shadow" />
+
         <Keys
           onLightToggle={lightHandler}
           typingOn={typingOn}
@@ -109,6 +111,7 @@ function App() {
         )}
 
         <LinkButton />
+
       </div>
     </div>
   );
