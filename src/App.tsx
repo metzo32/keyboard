@@ -60,6 +60,7 @@ function App() {
   const brightnessStyle = useMemo(() => {
     return {
       filter: lightOn ? `brightness(${100 - knobValue}%)` : "brightness(100%)",
+      // transition: "filter 1s ease-in-out",
     };
   }, [lightOn, knobValue]);
 
@@ -93,7 +94,7 @@ function App() {
         <img
           src={keyboard}
           alt="keyboard"
-          className="keyboard"
+          className="keyboard-blue"
           style={brightnessStyle}
         />
 

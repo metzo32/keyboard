@@ -9,8 +9,9 @@
   bg-gray-600 select-none;
 }
 
-.keyboard {
+.keyboard-blue {
   @apply w-full h-auto;
+  transition: clip-path 0.5s ease-in-out, filter 1s ease-in-out; 
 }
 
 .keyboard-purple {
@@ -346,23 +347,11 @@
 }
 
 .mask-led {
-  -webkit-mask-image: url("../assets/svg/keyboard_on.svg");
-  mask-image: url("../assets/svg/keyboard_on.svg");
+  -webkit-mask-image: url("../assets/svg/keyboard_off.svg");
+  mask-image: url("../assets/svg/keyboard_off.svg");
   mask-size: cover;
   mask-repeat: no-repeat;
   mask-position: center;
-}
-.mask-color {
-  -webkit-mask-image: url("../assets/svg/color-mask.svg");
-  mask-image: url("../assets/svg/color-mask.svg");
-  mask-size: cover;
-  mask-repeat: no-repeat;
-  mask-position: left; /* 기본 위치를 왼쪽으로 설정 */
-  transition: mask-position 0.5s ease-in-out;
-}
-
-.mask-move-right {
-  mask-position: right;
 }
 
 .keyboard-purple {
