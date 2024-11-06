@@ -10,7 +10,7 @@ import Keys from "./components/Keys";
 import MaskLED from "./components/MaskLED";
 import ModeButtons from "./components/ModeButtons";
 import Description from "./components/Description";
-import { HiOutlinePaperClip } from "react-icons/hi";
+import LinkButton from "./components/LinkButton";
 
 function App() {
   const [lightOn, setLightOn] = useState<boolean>(false);
@@ -48,7 +48,7 @@ function App() {
   const colorHandler = () => {
     setPurpleMode(!purpleMode);
   };
-  
+
   const handleInfoMenu = () => {
     setShowInfo(true);
   };
@@ -107,17 +107,7 @@ function App() {
           <img src={keyboardOff} alt="keyboard" className="off" />
         )}
 
-        <a
-          href="https://smartstore.naver.com/dfshop1/products/10311254657?NaPm=ct%3Dm30wxxdy%7Cci%3Dcheckout%7Ctr%3Drete%7Ctrx%3Dnull%7Chk%3Dcdd72202dec441c8eb2f76b854f5c95026826df8"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="link-button group"
-        >
-          <HiOutlinePaperClip className="icons block group-hover:hidden" />
-          <span className="hidden group-hover:block whitespace-nowrap lg:text-base text-sm">
-            구매 링크
-          </span>
-        </a>
+        <LinkButton />
       </div>
     </div>
   );

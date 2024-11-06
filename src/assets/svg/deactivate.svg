@@ -12,4 +12,10 @@
 <rect x="845" y="38" width="69" height="71" rx="3" fill="#777777" stroke="#262F3E" stroke-width="2"/>
 <rect x="915" y="38" width="69" height="71" rx="3" fill="#777777" stroke="#262F3E" stroke-width="2"/>
 <rect x="985" y="38" width="69" height="71" rx="3" fill="#777777" stroke="#262F3E" stroke-width="2"/>
+<line x1="225" y1="38" x2="391" y2="38" stroke="#262F3E" stroke-width="2"/>
+<line x1="225" y1="109" x2="391" y2="109" stroke="#262F3E" stroke-width="2"/>
+<line x1="525" y1="38" x2="691" y2="38" stroke="#262F3E" stroke-width="2"/>
+<line x1="525" y1="109" x2="691" y2="109" stroke="#262F3E" stroke-width="2"/>
+<line x1="835" y1="38" x2="1001" y2="38" stroke="#262F3E" stroke-width="2"/>
+<line x1="835" y1="109" x2="1001" y2="109" stroke="#262F3E" stroke-width="2"/>
 </svg>
