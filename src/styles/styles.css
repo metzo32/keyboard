@@ -44,13 +44,13 @@
 
 .info-container {
   @apply text-white border-2 border-white
-  w-[40%] aspect-[1/1]
-  flex flex-row justify-center items-center
+  w-[80%] 
   rounded-xl p-[20px]
- bg-white bg-opacity-70
-   relative
-   md:w-[50%]
-   md:aspect-auto
+  bg-white bg-opacity-70
+  flex flex-col items-center
+  relative
+
+  sm:w-[40%] sm:flex-row
 }
 
 .info-ul {
@@ -60,7 +60,9 @@
 }
 
 .info-text {
-  @apply text-sizing
+  @apply 
+  text-sm
+  sm:text-base
 }
 
 .selected {
@@ -74,7 +76,8 @@
 }
 
 .buttons-container {
-  @apply min-w-[150px] w-[80%] h-[30px] flex flex-row justify-between items-end
+  @apply min-w-[150px] w-[80%] h-[30px]
+  flex flex-row justify-between items-end
   absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-[150%] z-40
 
   md:items-end
@@ -139,7 +142,6 @@
 
 .hoverEffect {
   @apply transition transform duration-200 ease-in
-  rounded-md
   hover:opacity-100
   hover:cursor-pointer
   hover:text-white
@@ -155,7 +157,7 @@
 }
 
 .text-sizing {
-  @apply text-[0.6rem] leading-[0.7rem]
+  @apply text-[0.4rem] leading-[0.5rem]
   sm:text-sm sm:leading-5
   lg:text-xl lg:leading-7
 }
@@ -175,6 +177,7 @@
   @apply w-[6.3%] text-lg whitespace-nowrap
   opacity-0  text-white 
   text-sizing;
+
 }
 
 .key-span {
@@ -241,7 +244,8 @@
 }
 
 .info-button {
-  @apply w-[20px] aspect-square border-2 border-white rounded-full p-1 ml-[10px]
+  @apply w-[20px] aspect-square p-1 ml-[10px] mr-[9px]
+  border-2 border-white rounded-full
   flex justify-center items-center
   text-white
   bg-gray-600
@@ -253,6 +257,7 @@
   hover:bg-white
   hover:text-black
 
+  lg:mr-0
   lg:w-[35px] lg:ml-[20px]
 }
 
@@ -353,11 +358,30 @@
   mask-size: cover;
   mask-repeat: no-repeat;
   mask-position: left; /* 기본 위치를 왼쪽으로 설정 */
+  transition: mask-position 0.5s ease-in-out;
 }
 
 .mask-move-right {
-  mask-position: 100% 0; /* `purpleMode`가 true일 때 오른쪽으로 이동 */
+  mask-position: right;
 }
+
+.keyboard-purple {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  clip-path: polygon(0 0, 0 0, -30% 100%, -60% 100%); 
+  transition: clip-path 0.5s ease-in-out, filter 1s ease-in-out; 
+}
+
+.keyboard-purple.visible {
+  clip-path: polygon(0 0, 130% 0, 100% 100%, -60% 100%);
+}
+
+
+
 
 
 

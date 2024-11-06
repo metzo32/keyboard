@@ -1,24 +1,15 @@
-import { useState } from "react";
 import { BiQuestionMark } from "react-icons/bi";
-import Description from "./Description";
 
-export default function InfoButton() {
-  const [showInfo, setShowInfo] = useState<boolean>(false);
+interface InfoButtonProps {
+  onInfoToggle: () => void;
+}
 
-  const handleInfoMenu = () => {
-    setShowInfo(true);
-  };
-
-  const closeInfoMenu = () => {
-    setShowInfo(false);
-  };
-
+export default function InfoButton({ onInfoToggle }:InfoButtonProps) {
   return (
     <>
-      <button className="info-button" onClick={handleInfoMenu}>
+      <button className="info-button" onClick={onInfoToggle}>
         <BiQuestionMark className="icons" />
       </button>
-      {showInfo ? <Description onClose={closeInfoMenu} /> : <></>}
     </>
   );
 }

@@ -9,9 +9,10 @@ import InfoButton from "./InfoButton";
 interface ButtonGroupProps {
   onButtonGroupChange: (index: number) => void;
   onPurpleToggle: () => void;
+  onInfoToggle: () => void;
 }
 
-const ButtonGroup = ({ onButtonGroupChange, onPurpleToggle  }: ButtonGroupProps) => {
+const ButtonGroup = ({ onButtonGroupChange, onPurpleToggle, onInfoToggle  }: ButtonGroupProps) => {
   const [selectedButton, setSelectedButton] = useState<number>(0);
 
   const handleButtonClick = (index: number) => {
@@ -37,7 +38,7 @@ const ButtonGroup = ({ onButtonGroupChange, onPurpleToggle  }: ButtonGroupProps)
         </button>
       ))}
 
-      <InfoButton/>
+      <InfoButton onInfoToggle={onInfoToggle}/>
     </div>
   );
 };

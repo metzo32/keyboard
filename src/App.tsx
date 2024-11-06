@@ -9,7 +9,8 @@ import deactivate from "./assets/svg/deactivate.svg";
 import Keys from "./components/Keys";
 import MaskLED from "./components/MaskLED";
 import ModeButtons from "./components/ModeButtons";
-import { BiPurchaseTag } from "react-icons/bi";
+import Description from "./components/Description";
+import { HiOutlinePaperClip } from "react-icons/hi";
 
 function App() {
   const [lightOn, setLightOn] = useState<boolean>(false);
@@ -18,6 +19,7 @@ function App() {
   const [mouseEnterOn, setMouseEnterOn] = useState<boolean>(false);
   const [knobValue, setKnobValue] = useState<number>(0);
   const [purpleMode, setPurpleMode] = useState<boolean>(false);
+  const [showInfo, setShowInfo] = useState<boolean>(false);
 
   const handleKnobChange = (value: number) => {
     setKnobValue(value);
@@ -46,6 +48,14 @@ function App() {
   const colorHandler = () => {
     setPurpleMode(!purpleMode);
   };
+  
+  const handleInfoMenu = () => {
+    setShowInfo(true);
+  };
+
+  const closeInfoMenu = () => {
+    setShowInfo(false);
+  };
 
   const brightnessStyle = useMemo(() => {
     return {
@@ -55,73 +65,60 @@ function App() {
 
   return (
     <div className="background">
-     
-        <div className="base">
+      {showInfo ? <Description onClose={closeInfoMenu} /> : null}
+      <div className="base">
         <ModeButtons
           onButtonGroupChange={handleButtonGroupChange}
           onPurpleToggle={colorHandler}
+          onInfoToggle={handleInfoMenu}
         />
-          <img src={shadow} alt="shadow" className="base-shadow" />
-          <Keys
-            onLightToggle={lightHandler}
-            typingOn={typingOn}
-            onClickOn={onClickOn}
-            mouseEnterOn={mouseEnterOn}
-            onKnobChange={handleKnobChange}
-            onLightOn={lightOn}
-            purpleMode={purpleMode}
-          />
+        <img src={shadow} alt="shadow" className="base-shadow" />
+        <Keys
+          onLightToggle={lightHandler}
+          typingOn={typingOn}
+          onClickOn={onClickOn}
+          mouseEnterOn={mouseEnterOn}
+          onKnobChange={handleKnobChange}
+          onLightOn={lightOn}
+          purpleMode={purpleMode}
+        />
 
-          {/* {purpleMode ? (
-          <img
-            src={purple}
-            alt="keyboard"
-            className="keyboard-purple"
-            style={brightnessStyle}
-          />
+        <img
+          src={purple}
+          alt="keyboard"
+          className={`keyboard-purple ${purpleMode ? "visible" : ""}`}
+          style={brightnessStyle}
+        />
+
+        <img
+          src={keyboard}
+          alt="keyboard"
+          className="keyboard"
+          style={brightnessStyle}
+        />
+
+        {typingOn ? (
+          <img src={deactivate} alt="deactivate" className="deactivate" />
+        ) : null}
+
+        {lightOn ? (
+          <MaskLED />
         ) : (
-          null
-        )} */}
+          <img src={keyboardOff} alt="keyboard" className="off" />
+        )}
 
-          <img
-            src={purple}
-            alt="keyboard"
-            className={`keyboard-purple ${purpleMode ? "" : "mask-color"}`}
-            style={brightnessStyle}
-          />
-
-          <img
-            src={keyboard}
-            alt="keyboard"
-            className="keyboard"
-            style={brightnessStyle}
-          />
-
-          {typingOn ? (
-            <img src={deactivate} alt="deactivate" className="deactivate" />
-          ) : null}
-
-          {lightOn ? (
-            <MaskLED />
-          ) : (
-            <>
-              <img src={keyboardOff} alt="keyboard" className="off" />
-            </>
-          )}
-
-          <a
-            href="https://smartstore.naver.com/dfshop1/products/10311254657?NaPm=ct%3Dm30wxxdy%7Cci%3Dcheckout%7Ctr%3Drete%7Ctrx%3Dnull%7Chk%3Dcdd72202dec441c8eb2f76b854f5c95026826df8"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="link-button group"
-          >
-            <BiPurchaseTag className="icons block group-hover:hidden" />
-            <span className="hidden group-hover:block whitespace-nowrap lg:text-base text-sm">
-              구매 링크
-            </span>
-          </a>
-        </div>
-
+        <a
+          href="https://smartstore.naver.com/dfshop1/products/10311254657?NaPm=ct%3Dm30wxxdy%7Cci%3Dcheckout%7Ctr%3Drete%7Ctrx%3Dnull%7Chk%3Dcdd72202dec441c8eb2f76b854f5c95026826df8"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="link-button group"
+        >
+          <HiOutlinePaperClip className="icons block group-hover:hidden" />
+          <span className="hidden group-hover:block whitespace-nowrap lg:text-base text-sm">
+            구매 링크
+          </span>
+        </a>
+      </div>
     </div>
   );
 }
