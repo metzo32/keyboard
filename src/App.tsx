@@ -66,6 +66,7 @@ function App() {
   return (
     <>
       <div className="background">
+        <div className="screen-container">
 
         <Header onPurpleToggle={colorHandler} onInfoToggle={handleInfoMenu} />
 
@@ -112,6 +113,7 @@ function App() {
         </div>
           <LinkButton />
         {showInfo ? <Description onClose={closeInfoMenu} /> : null}
+      </div>
       </div>
     </>
   );

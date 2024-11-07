@@ -8,10 +8,20 @@
 
 .background {
   @apply min-w-[320px] w-screen h-screen pt-[1%] pb-[3%]
-  flex flex-col justify-between items-center
+  flex flex-col justify-center items-center
   bg-gray-600 select-none
-  relative
   ;
+}
+
+.screen-container {
+  @apply
+  w-full h-[42%]
+  flex flex-col justify-evenly items-center
+
+  custom-sm:h-[40%] custom-sm:justify-between
+  sm:h-[60%]
+  md:h-[60%]
+  lg:h-full
 }
 
 .header-container {
@@ -262,7 +272,7 @@
 .knob {
   @apply
   flex justify-center items-center
-  absolute top-[0%] right-[1%] transform translate-y-[-100%] origin-center z-10;
+  absolute top-[-1%] right-[3%] transform translate-y-[-100%] origin-center z-10;
 }
 
 .knob-show {

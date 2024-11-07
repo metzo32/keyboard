@@ -130,12 +130,16 @@ export default function Keys({
   const [knobSize, setKnobSize] = useState(100); // 기본 Knob 크기 설정
 
   const handleKnobWidth = () => {
-    if (window.innerWidth < 600) {
+    if (window.innerWidth < 480) { //이하
       return 30;
-    } else if (window.innerWidth < 900) {
+    } else if (window.innerWidth < 650) { //custom-sm
+      return 40;
+    } else if (window.innerWidth < 768) { //sm
       return 50;
-    } else {
-      return 80;
+    } else if (window.innerWidth < 1024) { //md
+      return 60;
+    } else { //lg
+      return 90;
     }
   };
 
@@ -155,7 +159,7 @@ export default function Keys({
     return () => window.removeEventListener("resize", updateKnobSize);
   }, []);
 
-  
+
 
   return (
     <div className="key-container">

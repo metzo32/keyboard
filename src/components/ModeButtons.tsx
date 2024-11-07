@@ -2,9 +2,12 @@ import { useState } from "react";
 import { FaKeyboard } from "react-icons/fa";
 import { GiArrowCursor } from "react-icons/gi";
 import { PiMouseLeftClickFill } from "react-icons/pi";
+import ResponsiveKnob from "./ResponsiveKnob";
 
 interface ButtonGroupProps {
   onButtonGroupChange: (index: number) => void;
+  onLightOn: boolean;
+  onKnobChange: (value: number) => void;
 }
 
 const ButtonGroup = ({ onButtonGroupChange }: ButtonGroupProps) => {
@@ -19,7 +22,6 @@ const ButtonGroup = ({ onButtonGroupChange }: ButtonGroupProps) => {
 
   return (
     <div className="buttons-container">
-
       {buttons.map((button, index) => (
         <button
           key={index}
@@ -31,7 +33,6 @@ const ButtonGroup = ({ onButtonGroupChange }: ButtonGroupProps) => {
           <div className="button-bg" />
         </button>
       ))}
-
     </div>
   );
 };
