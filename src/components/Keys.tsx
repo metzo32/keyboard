@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "../styles/styles.css";
-import { Knob } from "primereact/knob";
 import "primereact/resources/themes/lara-light-cyan/theme.css";
 import mainKeys, {
   functionKeys,
@@ -24,11 +23,8 @@ export default function Keys({
   typingOn,
   onClickOn,
   mouseEnterOn,
-  onKnobChange,
-  onLightOn,
   purpleMode,
 }: KeysProps) {
-  const [knobValue, setKnobValue] = useState<number>(0);
   const { playHandler } = useAudioPlayer();
 
   useEffect(() => {
@@ -120,47 +116,6 @@ export default function Keys({
 
 
 
-  const handleKnobChange = (e: { value: number }) => {
-    setKnobValue(e.value);
-    onKnobChange(e.value);
-  };
-
-
-
-  const [knobSize, setKnobSize] = useState(100); // 기본 Knob 크기 설정
-
-  const handleKnobWidth = () => {
-    if (window.innerWidth < 480) { //이하
-      return 30;
-    } else if (window.innerWidth < 650) { //custom-sm
-      return 40;
-    } else if (window.innerWidth < 768) { //sm
-      return 50;
-    } else if (window.innerWidth < 1024) { //md
-      return 60;
-    } else { //lg
-      return 90;
-    }
-  };
-
-  useEffect(() => {
-    const updateKnobSize = () => {
-      setKnobSize(handleKnobWidth());
-      console.log("Knob size updated:", handleKnobWidth()); // 콘솔로 확인
-    };
-
-    // 초기 Knob 크기 설정
-    updateKnobSize();
-
-    // resize 이벤트 리스너 추가
-    window.addEventListener("resize", updateKnobSize);
-
-    // 언마운트 시 이벤트 리스너 제거
-    return () => window.removeEventListener("resize", updateKnobSize);
-  }, []);
-
-
-
   return (
     <div className="key-container">
       <div className="key-top-container">
@@ -241,19 +196,6 @@ export default function Keys({
         <button onClick={onLightToggle} className="wheel">
           <span>LED</span>
         </button>
-
-        {onLightOn && (
-          <Knob
-            value={knobValue}
-            size={knobSize}
-            min={0}
-            max={70}
-            showValue={false}
-            onChange={handleKnobChange}
-            strokeWidth={8}
-            className={`knob ${onLightOn ? "knob-show" : "knob-hide"}`}
-          />
-        )}
       </div>
 
       <div className="key-main-container">

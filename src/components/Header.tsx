@@ -8,7 +8,7 @@ interface HeaderProps {
 
 export default function Header({ onPurpleToggle, onInfoToggle }: HeaderProps) {
   return (
-    <div className="header-container ">
+    <div className="header-container">
       <ColorButton onPurpleToggle={onPurpleToggle} />
       <InfoButton onInfoToggle={onInfoToggle} />
     </div>

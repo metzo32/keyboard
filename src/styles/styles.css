@@ -15,12 +15,11 @@
 
 .screen-container {
   @apply
-  w-full h-[42%]
+  w-full h-[30%]
   flex flex-col justify-evenly items-center
 
   custom-sm:h-[40%] custom-sm:justify-between
   sm:h-[60%]
-  md:h-[60%]
   lg:h-full
 }
 
@@ -41,8 +40,17 @@
 }
 
 .keyboard-purple {
-  @apply w-full h-auto absolute z-10
+  @apply w-full h-auto 
+  absolute top-0 left-0 z-10
+  transition-all duration-1000 ease-in-out;
+
+  clip-path: polygon(0 0, 0 0, -30% 100%, -60% 100%); 
 }
+
+.keyboard-purple.visible {
+  clip-path: polygon(0 0, 130% 0, 100% 100%, -60% 100%);
+}
+
 
 .menu-button {
   @apply border-2 border-white
@@ -71,9 +79,10 @@
 }
 
 .resizable-container {
-  @apply w-[70%] min-w-[150px] h-auto
-  border-2 border-red-800
+  @apply w-[70%] min-w-[150px] h-[36%]
+  flex flex-col justify-center
   transition-all duration-500 ease-out
+  border-2 border-red-500
 
   sm:w-[50%]
 }
@@ -89,6 +98,10 @@
   sm:flex-row sm:mr-0
   sm:pr-[30px] sm:py-0
   sm:justify-start
+}
+
+.info-container:last-child {
+  @apply m-0
 }
 
 .info-text {
@@ -134,8 +147,8 @@
 
 .buttons-container {
   @apply min-w-[150px] w-[50%] 
-  
   flex flex-row justify-between items-center
+  relative
 }
 
 .base-shadow {
@@ -272,7 +285,10 @@
 .knob {
   @apply
   flex justify-center items-center
-  absolute top-[-1%] right-[3%] transform translate-y-[-100%] origin-center z-10;
+  absolute top-[105%] right-[-33%] translate-x-[150%]
+  transform origin-center z-10
+
+  sm:top-[130%]
 }
 
 .knob-show {
@@ -363,7 +379,7 @@
 .color-toggle-bar {
  @apply 
  w-[30px] h-[12px] 
- relative ml-[12px] mb-[4px]
+ relative 
   border-2 border-white
   rounded-full 
   drop-shadow-lg
@@ -410,19 +426,4 @@
   mask-size: cover;
   mask-repeat: no-repeat;
   mask-position: center;
-}
-
-.keyboard-purple {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-  clip-path: polygon(0 0, 0 0, -30% 100%, -60% 100%); 
-  transition: clip-path 1s ease-in-out;
-}
-
-.keyboard-purple.visible {
-  clip-path: polygon(0 0, 130% 0, 100% 100%, -60% 100%);
 }

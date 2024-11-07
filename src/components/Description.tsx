@@ -22,10 +22,18 @@ export default function Description({ onClose }: DescriptionProps) {
       id: 2,
       text: "브라우저 정책에 따라 타이핑 모드에서 ESC 와 Function 키는 지원하지 않습니다.",
     },
+    {
+      id: 3,
+      text: "우측 상단은 LED키로, 조도를 조절할 수 있습니다.",
+    },
   ]);
   const [removedIds, setRemovedIds] = useState<Set<number>>(new Set());
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   const handleCloseMessage = (id: number) => {
+    if (isButtonDisabled) return;
+
+    setIsButtonDisabled(true); // 버튼 다중 클릭 방지를 위해 비활성화
     setRemovedIds((prev) => new Set(prev).add(id));
 
     setTimeout(() => {
@@ -40,6 +48,8 @@ export default function Description({ onClose }: DescriptionProps) {
           onClose();
         }, 1000);
       }
+
+      setIsButtonDisabled(false); // 버튼 다시 활성화
     }, 500);
   };
 
@@ -61,6 +71,7 @@ export default function Description({ onClose }: DescriptionProps) {
             <button
               className="close-button"
               onClick={() => handleCloseMessage(message.id)}
+              disabled={isButtonDisabled} // 버튼 비활성화 상태 적용
             >
               <IoClose className="close-icon" />
             </button>

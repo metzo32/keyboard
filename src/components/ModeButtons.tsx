@@ -6,11 +6,11 @@ import ResponsiveKnob from "./ResponsiveKnob";
 
 interface ButtonGroupProps {
   onButtonGroupChange: (index: number) => void;
-  onLightOn: boolean;
   onKnobChange: (value: number) => void;
+  lightOn: boolean;
 }
 
-const ButtonGroup = ({ onButtonGroupChange }: ButtonGroupProps) => {
+const ButtonGroup: React.FC<ButtonGroupProps> = ({ onButtonGroupChange, onKnobChange, lightOn }) => {
   const [selectedButton, setSelectedButton] = useState<number>(0);
 
   const handleButtonClick = (index: number) => {
@@ -25,14 +25,15 @@ const ButtonGroup = ({ onButtonGroupChange }: ButtonGroupProps) => {
       {buttons.map((button, index) => (
         <button
           key={index}
-          className={`menu-button
-            ${selectedButton === index ? "selected" : "unselected"}`}
+          className={`menu-button ${selectedButton === index ? "selected" : "unselected"}`}
           onClick={() => handleButtonClick(index)}
         >
           <span className="clickEffect">{button}</span>
           <div className="button-bg" />
         </button>
       ))}
+      
+      <ResponsiveKnob onKnobChange={onKnobChange} lightOn={lightOn} />
     </div>
   );
 };
