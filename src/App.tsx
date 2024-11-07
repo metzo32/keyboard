@@ -10,6 +10,7 @@ import MaskLED from "./components/MaskLED";
 import ModeButtons from "./components/ModeButtons";
 import Description from "./components/Description";
 import LinkButton from "./components/LinkButton";
+import Header from "./components/Header";
 
 function App() {
   const [lightOn, setLightOn] = useState<boolean>(false);
@@ -65,15 +66,13 @@ function App() {
   return (
     <>
       <div className="background">
-        {showInfo ? <Description onClose={closeInfoMenu} /> : null}
 
+        <Header onPurpleToggle={colorHandler} onInfoToggle={handleInfoMenu} />
+
+
+        <ModeButtons onButtonGroupChange={handleButtonGroupChange} />
+        
         <div className="base">
-          <ModeButtons
-            onButtonGroupChange={handleButtonGroupChange}
-            onPurpleToggle={colorHandler}
-            onInfoToggle={handleInfoMenu}
-          />
-
           <img src={shadow} alt="shadow" className="base-shadow" />
 
           <Keys
@@ -110,8 +109,9 @@ function App() {
             <img src={keyboardOff} alt="keyboard" className="off" />
           )}
 
-          <LinkButton />
         </div>
+          <LinkButton />
+        {showInfo ? <Description onClose={closeInfoMenu} /> : null}
       </div>
     </>
   );

@@ -7,12 +7,21 @@
 }
 
 .background {
-  @apply min-w-[320px] w-screen h-screen flex flex-col justify-center items-center
-  bg-gray-600 select-none;
+  @apply min-w-[320px] w-screen h-screen pt-[1%] pb-[3%]
+  flex flex-col justify-between items-center
+  bg-gray-600 select-none
+  relative
+  ;
+}
+
+.header-container {
+  @apply min-w-[150px] w-[90%] h-[30px] mt-[1%]
+  
+  flex flex-row justify-between items-center
 }
 
 .base {
-  @apply w-[90%] h-auto max-w-full
+  @apply w-[85%] h-auto max-w-full
   relative flex items-center justify-center z-10;
 }
 
@@ -55,6 +64,7 @@
   @apply w-[70%] min-w-[150px] h-auto
   border-2 border-red-800
   transition-all duration-500 ease-out
+
   sm:w-[50%]
 }
 
@@ -113,11 +123,9 @@
 }
 
 .buttons-container {
-  @apply min-w-[150px] w-[80%] h-[30px]
-  flex flex-row justify-between items-end
-  absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-[150%] z-40
-
-  md:items-end
+  @apply min-w-[150px] w-[50%] 
+  
+  flex flex-row justify-between items-center
 }
 
 .base-shadow {
@@ -253,8 +261,8 @@
 
 .knob {
   @apply
-  flex justify-center items-center border border-red-700
-  absolute top-[0%] right-[1%] transform translate-y-[-50%] origin-center z-10;
+  flex justify-center items-center
+  absolute top-[0%] right-[1%] transform translate-y-[-100%] origin-center z-10;
 }
 
 .knob-show {
@@ -302,16 +310,25 @@
   hover:text-black
 }
 
+.link-button-container {
+  @apply min-w-[150px] w-[90%] h-[30px] 
+  
+  flex flex-row justify-between items-end
+  relative
+
+  lg:h-[50px]
+}
+
 .link-button {
   @apply border-2 border-white
   w-[30px] h-[30px] p-2
-  text-sm
-  absolute bottom-0 right-0 transform translate-y-[150%] z-40
+  text-base
+  absolute top-0 right-0 z-40
   flex justify-center items-center
   rounded-full
   bg-gray-600
   drop-shadow-lg
-  text-sizing text-white
+ text-white
   transition-all duration-200 ease-out
 
   hover:aspect-[2/1]
@@ -320,6 +337,7 @@
 
   lg:w-[50px] lg:h-[50px]
   lg:hover:w-[100px]
+  lg:text-2xl
 }
 
 
@@ -398,15 +416,3 @@
 .keyboard-purple.visible {
   clip-path: polygon(0 0, 130% 0, 100% 100%, -60% 100%);
 }
-
-
-
-
-
-
-/* .mask-color {
-  background-image: url("../assets/svg/color_mask.svg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-} */

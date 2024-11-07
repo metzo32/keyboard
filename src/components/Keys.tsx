@@ -118,14 +118,44 @@ export default function Keys({
     };
   }, [typingOn]);
 
+
+
   const handleKnobChange = (e: { value: number }) => {
     setKnobValue(e.value);
     onKnobChange(e.value);
   };
 
+
+
+  const [knobSize, setKnobSize] = useState(100); // 기본 Knob 크기 설정
+
   const handleKnobWidth = () => {
-    
-  }
+    if (window.innerWidth < 600) {
+      return 30;
+    } else if (window.innerWidth < 900) {
+      return 50;
+    } else {
+      return 80;
+    }
+  };
+
+  useEffect(() => {
+    const updateKnobSize = () => {
+      setKnobSize(handleKnobWidth());
+      console.log("Knob size updated:", handleKnobWidth()); // 콘솔로 확인
+    };
+
+    // 초기 Knob 크기 설정
+    updateKnobSize();
+
+    // resize 이벤트 리스너 추가
+    window.addEventListener("resize", updateKnobSize);
+
+    // 언마운트 시 이벤트 리스너 제거
+    return () => window.removeEventListener("resize", updateKnobSize);
+  }, []);
+
+  
 
   return (
     <div className="key-container">
@@ -211,7 +241,7 @@ export default function Keys({
         {onLightOn && (
           <Knob
             value={knobValue}
-            width={handleKnobWidth}
+            size={knobSize}
             min={0}
             max={70}
             showValue={false}
