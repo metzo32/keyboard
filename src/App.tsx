@@ -32,12 +32,12 @@ function App() {
       setMouseEnterOn(false);
     } else if (index === 1) {
       setTypingOn(false);
-      setOnClickOn(true);
-      setMouseEnterOn(false);
-    } else if (index === 2) {
-      setTypingOn(false);
       setOnClickOn(false);
       setMouseEnterOn(true);
+    } else if (index === 2) {
+      setTypingOn(false);
+      setOnClickOn(true);
+      setMouseEnterOn(false);
     }
   };
 

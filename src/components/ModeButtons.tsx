@@ -18,7 +18,7 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({ onButtonGroupChange, onKnobCh
     onButtonGroupChange(index);
   };
 
-  const buttons = [<FaKeyboard />, <PiMouseLeftClickFill />, <GiArrowCursor />];
+  const buttons = [<FaKeyboard />, <GiArrowCursor />, <PiMouseLeftClickFill />];
 
   return (
     <div className="buttons-container">
