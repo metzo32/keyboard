@@ -8,15 +8,24 @@
 
 .background {
   @apply min-w-[320px] w-screen h-screen pt-[1%] pb-[3%]
-  flex flex-col justify-between items-center
-  bg-gray-600 select-none
-  relative
-  ;
+  flex flex-col justify-center items-center
+  bg-gradient-to-b from-[#242432] to-[#2e3b53]
+  select-none
+}
+
+
+.screen-container {
+  @apply
+  w-full h-[30%]
+  flex flex-col justify-evenly items-center
+
+  custom-sm:h-[40%] custom-sm:justify-between
+  sm:h-[60%]
+  lg:h-full
 }
 
 .header-container {
   @apply min-w-[150px] w-[90%] h-[30px] mt-[1%]
-  
   flex flex-row justify-between items-center
 }
 
@@ -26,13 +35,24 @@
 }
 
 .keyboard-blue {
-  @apply w-full h-auto;
-  transition: clip-path 0.5s ease-in-out, filter 1s ease-in-out; 
+  @apply w-full h-auto
+  transition-all duration-500 ease-in-out
 }
 
 .keyboard-purple {
-  @apply w-full h-auto absolute z-10
+  @apply w-full h-auto 
+  absolute top-0 left-0 z-10
+  transition-all duration-1000 ease-in-out;
+
+  clip-path: polygon(0 0, 0 0, -30% 100%, -60% 100%); 
+  will-change: clip-path;
+  transform: translateZ(0);
 }
+
+.keyboard-purple.visible {
+  clip-path: polygon(0 0, 130% 0, 100% 100%, -60% 100%);
+}
+
 
 .menu-button {
   @apply border-2 border-white
@@ -41,7 +61,7 @@
   
   flex justify-center items-center
   rounded-full
-  bg-gray-600
+  bg-custom-gray-light
   text-base
   drop-shadow-lg
 
@@ -61,8 +81,8 @@
 }
 
 .resizable-container {
-  @apply w-[70%] min-w-[150px] h-auto
-  border-2 border-red-800
+  @apply w-[70%] min-w-[150px] h-[36%]
+  flex flex-col justify-center
   transition-all duration-500 ease-out
 
   sm:w-[50%]
@@ -79,6 +99,10 @@
   sm:flex-row sm:mr-0
   sm:pr-[30px] sm:py-0
   sm:justify-start
+}
+
+.info-container:last-child {
+  @apply m-0
 }
 
 .info-text {
@@ -124,8 +148,8 @@
 
 .buttons-container {
   @apply min-w-[150px] w-[50%] 
-  
   flex flex-row justify-between items-center
+  relative
 }
 
 .base-shadow {
@@ -262,7 +286,10 @@
 .knob {
   @apply
   flex justify-center items-center
-  absolute top-[0%] right-[1%] transform translate-y-[-100%] origin-center z-10;
+  absolute top-[105%] right-[-33%] translate-x-[150%]
+  transform origin-center z-10
+
+  sm:top-[130%]
 }
 
 .knob-show {
@@ -283,7 +310,7 @@
   border-2 border-white rounded-full
   flex justify-center items-center
   text-white
-  bg-gray-600
+  bg-custom-gray-light
   overflow-hidden
   drop-shadow-lg
 
@@ -326,7 +353,7 @@
   absolute top-0 right-0 z-40
   flex justify-center items-center
   rounded-full
-  bg-gray-600
+  bg-custom-gray-light
   drop-shadow-lg
  text-white
   transition-all duration-200 ease-out
@@ -353,7 +380,7 @@
 .color-toggle-bar {
  @apply 
  w-[30px] h-[12px] 
- relative ml-[12px] mb-[4px]
+ relative 
   border-2 border-white
   rounded-full 
   drop-shadow-lg
@@ -400,19 +427,4 @@
   mask-size: cover;
   mask-repeat: no-repeat;
   mask-position: center;
-}
-
-.keyboard-purple {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-  clip-path: polygon(0 0, 0 0, -30% 100%, -60% 100%); 
-  transition: clip-path 1s ease-in-out;
-}
-
-.keyboard-purple.visible {
-  clip-path: polygon(0 0, 130% 0, 100% 100%, -60% 100%);
 }

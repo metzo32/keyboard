@@ -31,6 +31,10 @@ module.exports = {
           20: 'rgba(30, 128, 233, 0.2)', // 20% 투명도
           50: 'rgba(30, 128, 233, 0.5)', // 50% 투명도
         },
+        'custom-gray': {
+          DEFAULT: '#242432', 
+          light: '#313144'
+        }
       },
       screens: {
         'custom-sm': '480px',

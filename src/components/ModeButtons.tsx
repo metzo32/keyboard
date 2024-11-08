@@ -2,12 +2,15 @@ import { useState } from "react";
 import { FaKeyboard } from "react-icons/fa";
 import { GiArrowCursor } from "react-icons/gi";
 import { PiMouseLeftClickFill } from "react-icons/pi";
+import ResponsiveKnob from "./ResponsiveKnob";
 
 interface ButtonGroupProps {
   onButtonGroupChange: (index: number) => void;
+  onKnobChange: (value: number) => void;
+  lightOn: boolean;
 }
 
-const ButtonGroup = ({ onButtonGroupChange }: ButtonGroupProps) => {
+const ButtonGroup: React.FC<ButtonGroupProps> = ({ onButtonGroupChange, onKnobChange, lightOn }) => {
   const [selectedButton, setSelectedButton] = useState<number>(0);
 
   const handleButtonClick = (index: number) => {
@@ -19,19 +22,18 @@ const ButtonGroup = ({ onButtonGroupChange }: ButtonGroupProps) => {
 
   return (
     <div className="buttons-container">
-
       {buttons.map((button, index) => (
         <button
           key={index}
-          className={`menu-button
-            ${selectedButton === index ? "selected" : "unselected"}`}
+          className={`menu-button ${selectedButton === index ? "selected" : "unselected"}`}
           onClick={() => handleButtonClick(index)}
         >
           <span className="clickEffect">{button}</span>
           <div className="button-bg" />
         </button>
       ))}
-
+      
+      <ResponsiveKnob onKnobChange={onKnobChange} lightOn={lightOn} />
     </div>
   );
 };
