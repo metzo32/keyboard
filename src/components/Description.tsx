@@ -20,11 +20,11 @@ export default function Description({ onClose }: DescriptionProps) {
     },
     {
       id: 2,
-      text: "브라우저 정책에 따라 타이핑 모드에서 ESC 와 Function 키는 지원하지 않습니다.",
+      text: "브라우저 정책에 따라 타이핑 모드에서 ESC와 Function 키는 지원하지 않습니다.",
     },
     {
       id: 3,
-      text: "우측 상단은 LED키로, 조도를 조절할 수 있습니다.",
+      text: "우측 상단의 LED키를 통해 조도를 조절할 수 있습니다.",
     },
   ]);
   const [removedIds, setRemovedIds] = useState<Set<number>>(new Set());

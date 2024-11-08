@@ -9,9 +9,10 @@
 .background {
   @apply min-w-[320px] w-screen h-screen pt-[1%] pb-[3%]
   flex flex-col justify-center items-center
-  bg-gray-600 select-none
-  ;
+  bg-gradient-to-b from-[#242432] to-[#2e3b53]
+  select-none
 }
+
 
 .screen-container {
   @apply
@@ -25,7 +26,6 @@
 
 .header-container {
   @apply min-w-[150px] w-[90%] h-[30px] mt-[1%]
-  
   flex flex-row justify-between items-center
 }
 
@@ -35,8 +35,8 @@
 }
 
 .keyboard-blue {
-  @apply w-full h-auto;
-  transition: clip-path 0.5s ease-in-out, filter 1s ease-in-out; 
+  @apply w-full h-auto
+  transition-all duration-500 ease-in-out
 }
 
 .keyboard-purple {
@@ -45,6 +45,8 @@
   transition-all duration-1000 ease-in-out;
 
   clip-path: polygon(0 0, 0 0, -30% 100%, -60% 100%); 
+  will-change: clip-path;
+  transform: translateZ(0);
 }
 
 .keyboard-purple.visible {
@@ -59,7 +61,7 @@
   
   flex justify-center items-center
   rounded-full
-  bg-gray-600
+  bg-custom-gray-light
   text-base
   drop-shadow-lg
 
@@ -82,7 +84,6 @@
   @apply w-[70%] min-w-[150px] h-[36%]
   flex flex-col justify-center
   transition-all duration-500 ease-out
-  border-2 border-red-500
 
   sm:w-[50%]
 }
@@ -309,7 +310,7 @@
   border-2 border-white rounded-full
   flex justify-center items-center
   text-white
-  bg-gray-600
+  bg-custom-gray-light
   overflow-hidden
   drop-shadow-lg
 
@@ -352,7 +353,7 @@
   absolute top-0 right-0 z-40
   flex justify-center items-center
   rounded-full
-  bg-gray-600
+  bg-custom-gray-light
   drop-shadow-lg
  text-white
   transition-all duration-200 ease-out
