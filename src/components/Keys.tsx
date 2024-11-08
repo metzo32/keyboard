@@ -65,7 +65,7 @@ export default function Keys({
         return; // CapsLock의 경우 여기서 종료
       }
 
-      const audioFile = findAudioFile(pressedKey);
+      const audioFile = findAudioFile(pressedKey.toLowerCase());
       if (audioFile) {
         event.preventDefault();
         playHandler(audioFile);
