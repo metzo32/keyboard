@@ -7,8 +7,11 @@ interface ResponsiveKnobProps {
   lightOn: boolean;
 }
 
-const ResponsiveKnob: React.FC<ResponsiveKnobProps> = ({ onKnobChange, lightOn }) => {
-  const [knobValue, setKnobValue] = useState<number>(0);
+const ResponsiveKnob: React.FC<ResponsiveKnobProps> = ({
+  onKnobChange,
+  lightOn,
+}) => {
+  const [knobValue, setKnobValue] = useState<number>(10);
   const [knobSize, setKnobSize] = useState<number>(100);
 
   const handleKnobWidth = () => {
@@ -49,6 +52,8 @@ const ResponsiveKnob: React.FC<ResponsiveKnobProps> = ({ onKnobChange, lightOn }
           onChange={handleKnobChange}
           strokeWidth={8}
           className={`knob ${lightOn ? "knob-show" : "knob-hide"}`}
+          valueColor="#ffffff"
+          rangeColor="#494b64"
         />
       )}
     </>
