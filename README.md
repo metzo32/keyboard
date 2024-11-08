@@ -1,50 +1,24 @@
-# React + TypeScript + Vite
+# 키보드 소리 체크 서비스
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# 프로젝트 개요
 
-## Expanding the ESLint configuration
+키보드를 고를 때 배열과 키감, 디자인 등 많은 요인을 고려하게 됩니다.
+이 때 각 키의 소리 또한 매우 중요한데요.
+구매 사이트 또는 다양한 유튜브 후기 영상에서 소리를 확인할 수 있지만, 여전히 녹음 환경과 품질에 따라 소리를 명확하게 듣기 어렵습니다.
+이에 따라 키의 소리를 녹음하고 확인할 수 있도록 하는 가상 키보드 형태의 키보드 소리 체크 서비스를 제작하였습니다.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+# 기술 스택
+React Typescript
+Vite
+Tailwind
 
-- Configure the top-level `parserOptions` property like this:
+# 프로젝트 기간
+241024 - 241108
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+핵심 기능
+- 반응형 웹 디자인
+- 오디오 이벤트 처리 및 출력
+- 키보드, 마우스 이벤트 별도 처리
+- useMemo()를 통한 연산 최적화
