@@ -98,6 +98,7 @@ const mainKeys: Key[][] = [
     { code: ",", label: ",", audio: "A" },
     { code: ".", label: ".", audio: "A" },
     { code: "/", label: "/", audio: "D" },
+   
     { code: "shift", label: "SHIFT", audio: "B", extraClass: "w-[11%]", location: "R" },
     { code: "arrowup", label: "↑", audio: "A" },
     { code: "end", label: "END", audio: "A", extraClass: "w-[6.25%]" },
@@ -114,5 +115,30 @@ const mainKeys: Key[][] = [
     { code: "arrowright", label: "→", audio: "A", extraClass: "w-[6.25%]" },
   ],
 ];
+
+export const specialKeyMap: Record<string, string> = {
+  "~": "`",
+  "!": "1",
+  "@": "2",
+  "#": "3",
+  "$": "4",
+  "%": "5",
+  "^": "6",
+  "&": "7",
+  "*": "8",
+  "(": "9",
+  ")": "0",
+  "_": "-",
+  "+": "=",
+  "{": "[",
+  "}": "]",
+  "|": "\\",
+  ":": ";",
+  "\"": "'",
+  "<": ",",
+  ">": ".",
+  "?": "/",
+};
+
 
 export default mainKeys;

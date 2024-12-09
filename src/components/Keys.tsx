@@ -5,6 +5,7 @@ import mainKeys, {
   functionKeys,
   escKey,
   AudioType,
+  specialKeyMap,
 } from "../assets/data/keyArray";
 import useAudioPlayer from "../components/hooks/AudioPlay";
 
@@ -39,9 +40,16 @@ export default function Keys({
     }
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      const pressedKey = event.key.toLowerCase();
+      let pressedKey = event.key; // 원본 키 값
       const pressedLocation =
         event.location === 1 ? "L" : event.location === 2 ? "R" : "";
+
+      // 특수문자 매핑 적용
+      if (specialKeyMap[pressedKey]) {
+        pressedKey = specialKeyMap[pressedKey];
+      }
+
+      pressedKey = pressedKey.toLowerCase(); // 소문자로 변환
 
       if (pressedKey === "capslock") {
         // CapsLock이 활성화된 상태가 아니라면 return
@@ -65,7 +73,7 @@ export default function Keys({
         return; // CapsLock의 경우 여기서 종료
       }
 
-      const audioFile = findAudioFile(pressedKey.toLowerCase());
+      const audioFile = findAudioFile(pressedKey);
       if (audioFile) {
         event.preventDefault();
         playHandler(audioFile);
@@ -86,14 +94,20 @@ export default function Keys({
     };
 
     const handleKeyUp = (event: KeyboardEvent) => {
-      const pressedKey = event.key.toLowerCase();
+      let pressedKey = event.key; // 원본 키 값
       const pressedLocation =
         event.location === 1 ? "L" : event.location === 2 ? "R" : "";
+
+      // 특수문자 매핑 적용
+      if (specialKeyMap[pressedKey]) {
+        pressedKey = specialKeyMap[pressedKey];
+      }
+
+      pressedKey = pressedKey.toLowerCase();
 
       const locationSelector = pressedLocation
         ? `[data-location="${pressedLocation}"]`
         : "";
-
       const selectedKey = pressedKey === "\\" ? "\\\\" : pressedKey;
 
       const buttonElement = document.querySelector(
@@ -113,8 +127,6 @@ export default function Keys({
       document.removeEventListener("keyup", handleKeyUp);
     };
   }, [typingOn]);
-
-
 
   return (
     <div className="key-container">
