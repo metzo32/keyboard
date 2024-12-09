@@ -10,23 +10,21 @@
   @apply min-w-[320px] w-screen h-screen pt-[1%] pb-[3%]
   flex flex-col justify-center items-center
   bg-gradient-to-b from-[#242432] to-[#2e3b53]
-  select-none
+  select-none;
 }
 
-
 .screen-container {
-  @apply
-  w-full h-[30%]
+  @apply w-full h-[30%]
   flex flex-col justify-evenly items-center
 
   custom-sm:h-[40%] custom-sm:justify-between
   sm:h-[60%]
-  lg:h-full
+  lg:h-full;
 }
 
 .header-container {
   @apply min-w-[150px] w-[90%] h-[30px] mt-[1%]
-  flex flex-row justify-between items-center
+  flex flex-row justify-between items-center;
 }
 
 .base {
@@ -36,7 +34,7 @@
 
 .keyboard-blue {
   @apply w-full h-auto
-  transition-all duration-500 ease-in-out
+  transition-all duration-500 ease-in-out;
 }
 
 .keyboard-purple {
@@ -44,7 +42,7 @@
   absolute top-0 left-0 z-10
   transition-all duration-1000 ease-in-out;
 
-  clip-path: polygon(0 0, 0 0, -30% 100%, -60% 100%); 
+  clip-path: polygon(0 0, 0 0, -30% 100%, -60% 100%);
   will-change: clip-path;
   transform: translateZ(0);
 }
@@ -53,11 +51,9 @@
   clip-path: polygon(0 0, 130% 0, 100% 100%, -60% 100%);
 }
 
-
 .menu-button {
   @apply border-2 border-white
-  w-[30px]
-  aspect-square
+  w-[50px]
   
   flex justify-center items-center
   rounded-full
@@ -73,6 +69,11 @@
   transition duration-200 ease-out;
 }
 
+.menu-text {
+  @apply text-xs
+  lg:text-base;
+}
+
 .info-bg {
   @apply w-full h-full fixed top-0 right-0 z-50
   bg-black bg-opacity-80 
@@ -85,7 +86,7 @@
   flex flex-col justify-center
   transition-all duration-500 ease-out
 
-  sm:w-[50%]
+  sm:w-[50%];
 }
 
 .info-container {
@@ -98,37 +99,35 @@
   transition-all duration-500 ease-out
   sm:flex-row sm:mr-0
   sm:pr-[30px] sm:py-0
-  sm:justify-start
+  sm:justify-start;
 }
 
 .info-container:last-child {
-  @apply m-0
+  @apply m-0;
 }
 
 .info-text {
-  @apply 
-  w-full
+  @apply w-full
   text-xs text-center p-[10px]
 
   sm:text-sm sm:text-center sm:p-0 sm:mr-[15px]
-  lg:text-lg lg:text-center
+  lg:text-lg lg:text-center;
 }
 
 .info-icon-box {
-  @apply
-  w-full h-[40px] bg-white/50
+  @apply w-full h-[40px] bg-white/50
   border-white border-b-2
   flex justify-center items-center
 
   sm:w-auto sm:h-full
   sm:border-b-0
   sm:border-r-2 
-  sm:p-[30px] sm:mr-[30px]
+  sm:p-[30px] sm:mr-[30px];
 }
 
 .info-icon {
   @apply text-3xl 
-  sm:mr-[3%] sm:mb-0
+  sm:mr-[3%] sm:mb-0;
 }
 
 .info-remove {
@@ -149,7 +148,7 @@
 .buttons-container {
   @apply min-w-[150px] w-[50%] 
   flex flex-row justify-between items-center
-  relative
+  relative;
 }
 
 .base-shadow {
@@ -172,17 +171,17 @@
 .key-container {
   @apply absolute top-0 left-0 w-full h-full z-20
   pt-[3.14%] pb-[3.0%] pl-[2.7%] pr-[3.2%]
-  flex flex-col 
+  flex flex-col;
 }
 
 .key-top-container {
   @apply flex flex-row w-[100%] h-[20.1%]
-  mb-[2.05%]
+  mb-[2.05%];
 }
 
 .key-main-container {
   @apply w-[100%] h-[97%]
-  flex flex-col justify-evenly
+  flex flex-col justify-evenly;
 }
 
 .key-main-row {
@@ -219,7 +218,7 @@
 .text-sizing {
   @apply text-[0.4rem] leading-[0.5rem]
   sm:text-sm sm:leading-5
-  lg:text-xl lg:leading-7
+  lg:text-xl lg:leading-7;
 }
 
 .esc {
@@ -250,7 +249,7 @@
   text-sizing text-gray-400
   transition transform duration-200 ease-in
   hover:opacity-100
-  hover:cursor-pointer
+  hover:cursor-pointer;
 }
 
 .typed {
@@ -259,7 +258,6 @@
   backdrop-blur-2xl 
   scale-[120%];
 }
-
 
 @keyframes slideIn {
   0% {
@@ -284,12 +282,11 @@
 }
 
 .knob {
-  @apply
-  flex justify-center items-center
+  @apply flex justify-center items-center
   absolute top-[105%] right-[-33%] translate-x-[150%]
   transform origin-center z-10
 
-  sm:top-[130%]
+  sm:top-[130%];
 }
 
 .knob-show {
@@ -302,7 +299,7 @@
 
 .color-button {
   @apply w-[3em] h-[3em] border-2 border-white rounded-full
-  overflow-hidden
+  overflow-hidden;
 }
 
 .info-button {
@@ -320,12 +317,11 @@
   hover:text-black
 
   lg:mr-0
-  lg:w-[35px] lg:ml-[20px]
+  lg:w-[35px] lg:ml-[20px];
 }
 
 .close-button {
-  @apply 
-  border-2 border-white rounded-full p-1
+  @apply border-2 border-white rounded-full p-1
   bg-gray-300
   text-white text-lg
   absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2
@@ -334,7 +330,7 @@
   transition-colors duration-200 ease-in
 
   hover:bg-white
-  hover:text-black
+  hover:text-black;
 }
 
 .link-button-container {
@@ -343,7 +339,7 @@
   flex flex-row justify-between items-end
   relative
 
-  lg:h-[50px]
+  lg:h-[50px];
 }
 
 .link-button {
@@ -364,22 +360,20 @@
 
   lg:w-[50px] lg:h-[50px]
   lg:hover:w-[100px]
-  lg:text-2xl
+  lg:text-2xl;
 }
-
 
 .close-icon {
   @apply text-base
-  sm:text-2xl
+  sm:text-2xl;
 }
 
 .info-close {
-  @apply opacity-0
+  @apply opacity-0;
 }
 
 .color-toggle-bar {
- @apply 
- w-[30px] h-[12px] 
+  @apply w-[30px] h-[12px] 
  relative 
   border-2 border-white
   rounded-full 
@@ -388,12 +382,11 @@
   transition-colors duration-300
 
   /* sm:w-[40px] sm:h-[16px] */
-  lg:w-[50px] lg:h-[20px] 
+  lg:w-[50px] lg:h-[20px];
 }
 
 .color-toggle-circle {
-  @apply 
-  w-[18px] aspect-square
+  @apply w-[18px] aspect-square
   rounded-full 
   absolute top-1/2 transform -translate-y-1/2 
   drop-shadow-lg
@@ -401,9 +394,8 @@
   transition duration-300
 
   /* sm:w-[24px] */
-  lg:w-[30px]
+  lg:w-[30px];
 }
-
 
 /* 배경 관련 */
 @keyframes infiniteFlow {

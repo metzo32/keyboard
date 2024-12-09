@@ -12,13 +12,18 @@ interface ButtonGroupProps {
 
 const ButtonGroup: React.FC<ButtonGroupProps> = ({ onButtonGroupChange, onKnobChange, lightOn }) => {
   const [selectedButton, setSelectedButton] = useState<number>(0);
+  const [hoveredButton, setHoveredButton] = useState<number | null>(null);
 
   const handleButtonClick = (index: number) => {
     setSelectedButton(index);
     onButtonGroupChange(index);
   };
 
-  const buttons = [<FaKeyboard />, <GiArrowCursor />, <PiMouseLeftClickFill />];
+  const buttons = [
+    { icon: <FaKeyboard />, text: <p className="menu-text">Keyboard</p> },
+    { icon: <GiArrowCursor />, text: <p className="menu-text">Hover</p> },
+    { icon: <PiMouseLeftClickFill />, text: <p className="menu-text">Click</p> },
+  ];
 
   return (
     <div className="buttons-container">
@@ -27,8 +32,12 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({ onButtonGroupChange, onKnobCh
           key={index}
           className={`menu-button ${selectedButton === index ? "selected" : "unselected"}`}
           onClick={() => handleButtonClick(index)}
+          onMouseEnter={() => setHoveredButton(index)}
+          onMouseLeave={() => setHoveredButton(null)}
         >
-          <span className="clickEffect">{button}</span>
+          <span className="clickEffect">
+            {hoveredButton === index || selectedButton === index ? button.text : button.icon}
+          </span>
           <div className="button-bg" />
         </button>
       ))}
