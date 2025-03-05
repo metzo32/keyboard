@@ -10,15 +10,18 @@
 ---
 
 ### 사용 툴 및 라이브러리
+
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white) ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white) ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white) ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
 
 ---
 
 ### 프로젝트 기간
+
 241024 - 241108
 ---
 
 ### 핵심 기능
+
 - 반응형 웹 디자인
 - 오디오 이벤트 처리 및 출력
 - 키보드, 마우스 이벤트 별도 처리
