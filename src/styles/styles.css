@@ -2,7 +2,7 @@
 *::before,
 *::after {
   @apply box-border
-  break-keep break-words
+  break-keep break-words;
 }
 
 .background {
@@ -51,11 +51,10 @@
 }
 
 .loading-container {
-  @apply
-  w-screen h-screen text-white bg-[#242432] 
+  @apply w-screen h-screen text-white bg-[#242432] 
   absolute z-50 
   flex justify-center items-center 
-  transition-transform duration-500 
+  transition-transform duration-500;
 }
 
 .menu-button {
@@ -71,8 +70,7 @@
   custom-sm:w-[60px]
   custom-sm:aspect-[2/1]
 
-  lg:w-[100px] lg:text-2xl
-
+  lg:w-[100px] lg:text-2xl;
 }
 
 .menu-text {
@@ -229,9 +227,10 @@
 
 .esc {
   @apply w-[6.4%] text-sm  whitespace-nowrap
-  opacity-0  text-gray-400
+  opacity-0 text-white
   text-sizing;
 }
+
 .quad-keys {
   @apply w-[25%] text-sm whitespace-nowrap 
   opacity-0 text-white

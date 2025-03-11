@@ -1,23 +1,18 @@
 import { useState, useEffect } from "react";
 import { Knob } from "primereact/knob";
-import "primereact/resources/themes/lara-light-cyan/theme.css";
 
 interface ResponsiveKnobProps {
   onKnobChange: (value: number) => void;
   lightOn: boolean;
 }
 
-const ResponsiveKnob: React.FC<ResponsiveKnobProps> = ({
-  onKnobChange,
-  lightOn,
-}) => {
+const ResponsiveKnob = ({ onKnobChange, lightOn }: ResponsiveKnobProps) => {
   const [knobValue, setKnobValue] = useState<number>(10);
   const [knobSize, setKnobSize] = useState<number>(100);
 
   const handleKnobWidth = () => {
     if (window.innerWidth < 480) return 30;
     if (window.innerWidth < 650) return 50;
-
     if (window.innerWidth < 1024) return 60;
     return 100;
   };
