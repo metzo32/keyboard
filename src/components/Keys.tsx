@@ -1,13 +1,12 @@
 import { useEffect } from "react";
 import "../styles/styles.css";
-import "primereact/resources/themes/lara-light-cyan/theme.css";
 import mainKeys, {
   functionKeys,
   escKey,
   AudioType,
   specialKeyMap,
 } from "../assets/data/keyArray";
-import useAudioPlayer from "../components/hooks/AudioPlay";
+import useAudioPlayer from "./hooks/useAudioPlayer";
 
 interface KeysProps {
   onLightToggle: () => void;
@@ -41,6 +40,9 @@ export default function Keys({
 
     const handleKeyDown = (event: KeyboardEvent) => {
       let pressedKey = event.key; // 원본 키 값
+      pressedKey = event.code.toLowerCase(); // 한영키 무시하고 원래 키값만 받기
+      
+      console.log(pressedKey)
       const pressedLocation =
         event.location === 1 ? "L" : event.location === 2 ? "R" : "";
 
@@ -49,8 +51,10 @@ export default function Keys({
         pressedKey = specialKeyMap[pressedKey];
       }
 
-      pressedKey = pressedKey.toLowerCase(); // 소문자로 변환
-
+      if (/^[A-Z]$/.test(pressedKey)) {
+        pressedKey = pressedKey.toLowerCase();
+      }
+      
       if (pressedKey === "capslock") {
         // CapsLock이 활성화된 상태가 아니라면 return
         if (!event.getModifierState("CapsLock")) return;
@@ -63,6 +67,7 @@ export default function Keys({
         const buttonElement = document.querySelector(
           `button[data-code="capslock"]`
         );
+
         if (buttonElement) {
           buttonElement.classList.add("typed");
 
@@ -70,6 +75,7 @@ export default function Keys({
             buttonElement.classList.remove("typed");
           }, 150);
         }
+
         return; // CapsLock의 경우 여기서 종료
       }
 
@@ -78,9 +84,9 @@ export default function Keys({
         event.preventDefault();
         playHandler(audioFile);
 
-        const locationSelector = pressedLocation
-          ? `[data-location="${pressedLocation}"]`
-          : "";
+        const locationSelector =
+          pressedLocation && `[data-location="${pressedLocation}"]`;
+
         const selectedKey = pressedKey === "\\" ? "\\\\" : pressedKey;
 
         const buttonElement = document.querySelector(
@@ -95,6 +101,8 @@ export default function Keys({
 
     const handleKeyUp = (event: KeyboardEvent) => {
       let pressedKey = event.key; // 원본 키 값
+      pressedKey = event.code.toLowerCase(); // 한영키 무시하고 원래 키값만 받기
+      
       const pressedLocation =
         event.location === 1 ? "L" : event.location === 2 ? "R" : "";
 
@@ -105,9 +113,8 @@ export default function Keys({
 
       pressedKey = pressedKey.toLowerCase();
 
-      const locationSelector = pressedLocation
-        ? `[data-location="${pressedLocation}"]`
-        : "";
+      const locationSelector =
+        pressedLocation && `[data-location="${pressedLocation}"]`;
       const selectedKey = pressedKey === "\\" ? "\\\\" : pressedKey;
 
       const buttonElement = document.querySelector(
@@ -139,24 +146,22 @@ export default function Keys({
             }
             onClick={onClickOn ? () => playHandler(esc.audio) : undefined}
             className={`esc 
-                ${typingOn ? "cursor-default" : ""}
+                ${typingOn && "cursor-default"}
                 ${
-                  onClickOn
-                    ? `clickEffect ${
-                        purpleMode
-                          ? "active:bg-custom-purple-50 hover:bg-custom-purple-20"
-                          : "active:bg-custom-blue-50 hover:bg-custom-blue-20"
-                      }`
-                    : ""
+                  onClickOn &&
+                  `clickEffect ${
+                    purpleMode
+                      ? "active:bg-custom-purple-50 hover:bg-custom-purple-20"
+                      : "active:bg-custom-blue-50 hover:bg-custom-blue-20"
+                  }`
                 }
                 ${
-                  mouseEnterOn
-                    ? `hoverEffect ${
-                        purpleMode
-                          ? " hover:bg-custom-purple-50"
-                          : "hover:bg-custom-blue-50"
-                      }`
-                    : ""
+                  mouseEnterOn &&
+                  `hoverEffect ${
+                    purpleMode
+                      ? " hover:bg-custom-purple-50"
+                      : "hover:bg-custom-blue-50"
+                  }`
                 }
             `}
             data-code={esc.code.toLowerCase()}
@@ -171,24 +176,22 @@ export default function Keys({
               {row.map((label, labelIndex) => (
                 <button
                   className={`quad-keys 
-                    ${typingOn ? "cursor-default" : ""}
+                    ${typingOn && "cursor-default"}
                     ${
-                      onClickOn
-                        ? `clickEffect ${
-                            purpleMode
-                              ? "active:bg-custom-purple-50 hover:bg-custom-purple-20"
-                              : "active:bg-custom-blue-50 hover:bg-custom-blue-20"
-                          }`
-                        : ""
+                      onClickOn &&
+                      `clickEffect ${
+                        purpleMode
+                          ? "active:bg-custom-purple-50 hover:bg-custom-purple-20"
+                          : "active:bg-custom-blue-50 hover:bg-custom-blue-20"
+                      }`
                     }
                     ${
-                      mouseEnterOn
-                        ? `hoverEffect ${
-                            purpleMode
-                              ? " hover:bg-custom-purple-50"
-                              : "hover:bg-custom-blue-50"
-                          }`
-                        : ""
+                      mouseEnterOn &&
+                      `hoverEffect ${
+                        purpleMode
+                          ? " hover:bg-custom-purple-50"
+                          : "hover:bg-custom-blue-50"
+                      }`
                     }
                   `}
                   key={labelIndex}
@@ -218,31 +221,26 @@ export default function Keys({
                 className={`main-keys 
                   ${label.extraClass || ""}
                   ${
-                    typingOn
-                      ? `cursor-default ${
-                          purpleMode
-                            ? "bg-custom-purple-50"
-                            : "bg-custom-blue-50"
-                        }`
-                      : ""
+                    typingOn &&
+                    `cursor-default ${
+                      purpleMode ? "bg-custom-purple-50" : "bg-custom-blue-50"
+                    }`
                   }
                   ${
-                    onClickOn
-                      ? `clickEffect ${
-                          purpleMode
-                            ? "active:bg-custom-purple-50 hover:bg-custom-purple-20"
-                            : "active:bg-custom-blue-50 hover:bg-custom-blue-20"
-                        }`
-                      : ""
+                    onClickOn &&
+                    `clickEffect ${
+                      purpleMode
+                        ? "active:bg-custom-purple-50 hover:bg-custom-purple-20"
+                        : "active:bg-custom-blue-50 hover:bg-custom-blue-20"
+                    }`
                   }
                   ${
-                    mouseEnterOn
-                      ? `hoverEffect ${
-                          purpleMode
-                            ? " hover:bg-custom-purple-50"
-                            : "hover:bg-custom-blue-50"
-                        }`
-                      : ""
+                    mouseEnterOn &&
+                    `hoverEffect ${
+                      purpleMode
+                        ? " hover:bg-custom-purple-50"
+                        : "hover:bg-custom-blue-50"
+                    }`
                   }
                 `}
                 key={labelIndex}

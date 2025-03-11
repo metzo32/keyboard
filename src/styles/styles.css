@@ -1,9 +1,8 @@
 *,
 *::before,
 *::after {
-  @apply box-border;
-  word-break: keep-all;
-  overflow-wrap: break-word;
+  @apply box-border
+  break-keep break-words
 }
 
 .background {
@@ -49,6 +48,14 @@
 
 .keyboard-purple.visible {
   clip-path: polygon(0 0, 130% 0, 100% 100%, -60% 100%);
+}
+
+.loading-container {
+  @apply
+  w-screen h-screen text-white bg-[#242432] 
+  absolute z-50 
+  flex justify-center items-center 
+  transition-transform duration-500 
 }
 
 .menu-button {

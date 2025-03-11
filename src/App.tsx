@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import "./styles/styles.css";
 import keyboard from "./assets/svg/keyboard_base.svg";
 import purple from "./assets/svg/keyboard_purple.svg";
@@ -11,6 +11,7 @@ import ModeButtons from "./components/ModeButtons";
 import Description from "./components/Description";
 import LinkButton from "./components/LinkButton";
 import Header from "./components/Header";
+import { LoadingText } from "./components/LoadingText";
 
 function App() {
   const [lightOn, setLightOn] = useState<boolean>(false);
@@ -20,6 +21,8 @@ function App() {
   const [knobValue, setKnobValue] = useState<number>(0);
   const [purpleMode, setPurpleMode] = useState<boolean>(false);
   const [showInfo, setShowInfo] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isMoved, setIsMoved] = useState<boolean>(false);
 
   const handleKnobChange = (value: number) => {
     setKnobValue(value);
@@ -63,8 +66,24 @@ function App() {
     };
   }, [lightOn, knobValue]);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsMoved(true);
+      const hideTimer = setTimeout(() => {
+        setIsLoading(false);
+        return () => clearTimeout(hideTimer);
+      }, 800);
+    }, 800);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <>
+      {isLoading && (
+        <div className={`loading-container ${isMoved && "translate-y-full"}`}>
+          <LoadingText />
+        </div>
+      )}
       <div className="background">
         <div className="screen-container">
           <Header onPurpleToggle={colorHandler} onInfoToggle={handleInfoMenu} />
