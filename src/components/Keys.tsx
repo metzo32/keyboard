@@ -42,7 +42,6 @@ export default function Keys({
       let pressedKey = event.key; // 원본 키 값
       pressedKey = event.code.toLowerCase(); // 한영키 무시하고 원래 키값만 받기
       
-      console.log(pressedKey)
       const pressedLocation =
         event.location === 1 ? "L" : event.location === 2 ? "R" : "";
 
@@ -102,7 +101,7 @@ export default function Keys({
     const handleKeyUp = (event: KeyboardEvent) => {
       let pressedKey = event.key; // 원본 키 값
       pressedKey = event.code.toLowerCase(); // 한영키 무시하고 원래 키값만 받기
-      
+
       const pressedLocation =
         event.location === 1 ? "L" : event.location === 2 ? "R" : "";
 

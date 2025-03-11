@@ -108,7 +108,7 @@ const mainKeys: Key[][] = [
     { code: "metaleft", label: "WIN", audio: "C", extraClass: "w-[7.7%]", location: "L" },
     { code: "altleft", label: "ALT", audio: "C", extraClass: "w-[7.7%]", location: "L" },
     { code: "space", label: "SPACE", audio: "E", extraClass: "w-[39.2%]" },
-    { code: "metaright", label: "FN", audio: "C", extraClass: "w-[7.7%]", location: "L" },
+    { code: "metaright", label: "FN", audio: "C", extraClass: "w-[7.7%]", location: "R" },
     { code: "altright", label: "CTRL", audio: "C", extraClass: "w-[7.8%] mr-[2.9%]", location: "R" },
     { code: "arrowleft", label: "←", audio: "A" },
     { code: "arrowdown", label: "↓", audio: "A", extraClass: "w-[6.1%]"},
