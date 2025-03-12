@@ -24,10 +24,6 @@ function App() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isMoved, setIsMoved] = useState<boolean>(false);
 
-  const handleKnobChange = (value: number) => {
-    setKnobValue(value);
-  };
-
   const handleButtonGroupChange = (index: number) => {
     if (index === 0) {
       setTypingOn(true);
@@ -58,6 +54,10 @@ function App() {
 
   const closeInfoMenu = () => {
     setShowInfo(false);
+  };
+
+  const handleKnobChange = (value: number) => {
+    setKnobValue(value);
   };
 
   const brightnessStyle = useMemo(() => {

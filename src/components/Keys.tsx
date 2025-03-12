@@ -33,6 +33,7 @@ export default function Keys({
       mainKeys.flat().map((key) => [key.code, key.audio])
     );
 
+    //알맞은 오디오 파일 찾기
     function findAudioFile(audioFile: string) {
       return keyMap.get(audioFile);
     }
@@ -41,6 +42,7 @@ export default function Keys({
       let pressedKey = event.key; // 원본 키 값
       pressedKey = event.code.toLowerCase(); // 한영키 무시하고 원래 키값만 받기
 
+      //좌우키
       const pressedLocation =
         event.location === 1 ? "L" : event.location === 2 ? "R" : "";
 
@@ -49,10 +51,12 @@ export default function Keys({
         pressedKey = specialKeyMap[pressedKey];
       }
 
+      //대소문자 판별 없애기
       if (/^[A-Z]$/.test(pressedKey)) {
         pressedKey = pressedKey.toLowerCase();
       }
 
+      //capslock 케이스 처리
       if (pressedKey === "capslock") {
         // CapsLock이 활성화된 상태가 아니라면 return
         if (!event.getModifierState("CapsLock")) return;
@@ -62,6 +66,7 @@ export default function Keys({
           playHandler(audioFile); // CapsLock일 때도 오디오 재생
         }
 
+        //토글형 capslock 버튼 이벤트 따로 처리
         const buttonElement = document.querySelector(
           `button[data-code="capslock"]`
         );
