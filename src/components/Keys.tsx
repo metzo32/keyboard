@@ -19,9 +19,9 @@ interface KeysProps {
 
 export default function Keys({
   onLightToggle,
-  typingOn,
-  onClickOn,
-  mouseEnterOn,
+  typingOn, // 타이핑 모드
+  onClickOn, // 클릭 모드
+  mouseEnterOn, // 호버 모드
   purpleMode,
 }: KeysProps) {
   const { playHandler } = useAudioPlayer();
@@ -34,8 +34,8 @@ export default function Keys({
     );
 
     //알맞은 오디오 파일 찾기
-    function findAudioFile(audioFile: string) {
-      return keyMap.get(audioFile);
+    function findAudioFile(pressedKey: string) { // pressedKey를 추적하기
+      return keyMap.get(pressedKey);
     }
 
     const handleKeyDown = (event: KeyboardEvent) => {

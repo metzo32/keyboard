@@ -6,11 +6,11 @@ import DAudio from "../../assets/audio/D.mp3";
 import EAudio from "../../assets/audio/E.mp3";
 import { AudioType } from "../../assets/data/keyArray";
 
-
 function useAudioPlayer() {
   // 오디오 배열 생성 함수
   const createAudioArray = (audioSource: string, count: number) =>
     Array.from({ length: count }, () => new Audio(audioSource));
+    // 입력된 number 만큼의 길이를 갖는 배열을 생성하고, 각각에 audioSource가 들어간 오디오 객체를 생성함
 
   // 오디오 맵 ref
   const audioMap = useRef<{ [audioFileName in AudioType]: HTMLAudioElement[] }>({
@@ -33,7 +33,7 @@ function useAudioPlayer() {
   // 초기 로딩 처리
   // 모든 객체에 load()를 호출해 미리 로드해둔다
   useEffect(() => {
-    Object.values(audioMap.current).forEach((audioArray) =>
+    Object.values(audioMap.current).forEach((audioArray) => //audioMap.current객체의 '값'만 배열로 변경
       audioArray.forEach((audio) => audio.load())
     );
   }, []);
