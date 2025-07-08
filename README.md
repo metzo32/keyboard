@@ -19,7 +19,6 @@ https://checkkeyboardsound.netlify.app/
 
 ### 핵심 기능
 
-- 반응형 웹 디자인
 - 각 키 별 매핑된 객체를 활용하여 오디오 이벤트 처리 및 출력
 - 키보드 타이핑, 마우스 호버, 마우스 클릭 모드에 따라 eventHandler 교체
 - useMemo()를 통한 연산 최적화
